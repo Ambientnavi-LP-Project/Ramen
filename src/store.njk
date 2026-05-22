@@ -686,7 +686,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
       <span class="lp-nav__name-cn">{{ store.name_cn }}</span>
     </span>
   </a>
-  <a href="{{ store.tablecheck_url }}" target="_blank" rel="noopener" class="lp-nav__cta">
+  <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="lp-nav__cta">
     Reserve <span>→</span>
   </a>
 </nav>
@@ -738,7 +738,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
         </p>
 
         <div class="hero__cta-group">
-          <a href="{{ store.tablecheck_url }}" target="_blank" rel="noopener" class="hero__cta-primary">
+          <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="hero__cta-primary">
             <span class="corner tl"></span>
             <span class="corner tr"></span>
             <span class="corner bl"></span>
@@ -1121,7 +1121,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
     </p>
 
     <div class="reserve__cta-group">
-      <a class="reserve__cta-primary" href="{{ store.tablecheck_url }}" target="_blank" rel="noopener">
+      <a class="reserve__cta-primary" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
         Reserve online <span class="arrow">→</span>
       </a>
       <a class="reserve__cta-secondary" href="tel:+{{ store.tel_raw }}">
@@ -1171,7 +1171,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
       <span class="sticky-live__check">✓</span>
       <span><em id="sticky-reserved">14</em> reservations this week</span>
     </div>
-    <a class="sticky-live__cta" href="{{ store.tablecheck_url }}" target="_blank" rel="noopener">
+    <a class="sticky-live__cta" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
       Check Availability <span>→</span>
     </a>
   </div>
@@ -1189,7 +1189,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
       <em>reservations are recommended</em> to make sure we can welcome you.
     </p>
     <div class="engage-dialog__actions">
-      <a class="engage-dialog__btn primary" href="{{ store.tablecheck_url }}" target="_blank" rel="noopener">
+      <a class="engage-dialog__btn primary" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
         Reserve online <span>→</span>
       </a>
       <a class="engage-dialog__btn secondary" href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_short | urlencode }}">
