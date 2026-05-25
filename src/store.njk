@@ -1,1010 +1,1292 @@
 ---
 pagination:
-  data: stores.pages
+  data: stores.stores
   size: 1
   alias: store
-permalink: "/{{ store.region }}/{{ store.slug }}/{{ store.channel_suffix }}index.html"
-eleventyComputed:
-  title: "{{ store.name_full_en }}"
-  is_reserve_ready: "{{ 'true' if store.tablecheck_url != 'TBD' else 'false' }}"
-  is_form_reserve: "{{ 'true' if store.reserve_system == 'form' else 'false' }}"
-  tablecheck_with_utm: "{% if store.tablecheck_url != 'TBD' %}{{ store.tablecheck_url }}?utm_source={{ store.channel_utm_source }}&utm_medium=referral{% else %}#{% endif %}"
+permalink: "/{{ store.region }}/{{ store.slug }}/index.html"
 ---
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>{{ store.name_full_en }}</title>
-<meta name="description" content="Muslim-friendly omakase featuring ultra-rare lean Wagyu and authentic Edomae sushi in {{ store.city }}. Alcohol-free menu, crafted for everyone.">
-{% if store.channel_id != "default" %}
-<meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://{{ stores.brand.domain }}/{{ store.region }}/{{ store.slug }}/">
-{% endif %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ store.name_meta }} {{ store.name_cn }}</title>
 
 <!-- Google tag (gtag.js) - GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ stores.brand.ga4_id }}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2C2VMN1FCC"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', '{{ stores.brand.ga4_id }}', {
-    'store_name': '{{ store.slug }}',
-    'store_area': '{{ store.region }}',
-    'brand': '{{ stores.brand.brand_slug }}',
-    'channel': '{{ store.channel_id }}'
-  });
+  gtag('config', 'G-2C2VMN1FCC');
 </script>
 
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<meta name="description" content="{{ store.name_meta }} — looking for halal ramen or halal restaurants near me? Authentic Japanese Wagyu noodle, halal-friendly, near {{ store.station_en }}. The ramen near me locals and travelers come back for.">
+<meta name="keywords" content="halal ramen, halal restaurants, halal near me, ramen near me, noodle, wagyu ramen, halal kyoto, halal japan, wagyu beef halal, japanese food halal">
+<meta property="og:title" content="{{ store.name_meta }} · {{ store.name_cn }}">
+<meta property="og:description" content="Authentic halal ramen — Japanese Wagyu noodle, the halal restaurant near {{ store.station_en }} travelers fly in for.">
+<meta property="og:type" content="restaurant">
 
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Epilogue:wght@300;400;600&family=Josefin+Sans:wght@300;400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet"/>
-
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        'ginza-gold': '#c9a96e',
-        'ginza-black': '#090909',
-        'ginza-ivory': '#f0ede4',
-        'halal-green': '#0d1f10',
-      },
-      fontFamily: {
-        'epilogue': ['Epilogue', 'sans-serif'],
-        'cormorant': ['Cormorant Garamond', 'serif'],
-        'josefin': ['Josefin Sans', 'sans-serif'],
-      },
-      animation: { 'ken-burns': 'kenburns 20s ease-in-out infinite alternate' },
-      keyframes: {
-        kenburns: { '0%': { transform:'scale(1)' }, '100%': { transform:'scale(1.15)' } }
-      }
-    }
-  }
-}
-</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Caveat:wght@400;500;600;700&family=Yuji+Boku&family=Yuji+Mai&display=swap" rel="stylesheet">
 
 <style>
-body { padding-bottom: 72px; }
-.reveal { opacity:0; transform:translateY(30px); transition:all 0.8s ease-out; }
-.reveal.active { opacity:1; transform:translateY(0); }
-.dark-overlay { background:linear-gradient(to bottom,rgba(9,9,9,0.15) 0%,rgba(9,9,9,0.90) 100%); }
-.nav-link { position:relative; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(240,237,228,0.6); transition:color 0.3s; }
-.nav-link::after { content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:#c9a96e; transition:width 0.3s; }
-.nav-link:hover { color:#c9a96e; }
-.nav-link:hover::after { width:100%; }
-.header-divider { width:1px; height:14px; background:rgba(201,169,110,0.3); }
-.sticky-cta { position:fixed; bottom:0; left:0; right:0; z-index:100; background:rgba(9,9,9,0.93); backdrop-filter:blur(12px); border-top:1px solid rgba(201,169,110,0.25); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.sticky-cta-text { font-size:11px; color:rgba(240,237,228,0.55); letter-spacing:0.05em; line-height:1.4; }
-.sticky-cta-text strong { display:block; color:rgba(201,169,110,0.9); font-weight:600; font-size:12px; letter-spacing:0.08em; }
-.sticky-cta-btn { flex-shrink:0; background:#c9a96e; color:#090909; font-family:'Josefin Sans',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; padding:12px 20px; border-radius:8px; white-space:nowrap; transition:transform 0.2s,opacity 0.2s; border:none; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; }
-.sticky-cta-btn:hover { transform:scale(1.04); opacity:0.92; }
-.halal-cert-badge { display:inline-flex; flex-direction:column; align-items:center; gap:6px; border:1.5px solid #c9a96e; border-radius:50%; width:88px; height:88px; justify-content:center; position:relative; background:radial-gradient(circle at center,rgba(201,169,110,0.08) 0%,transparent 70%); }
-.halal-cert-badge::before { content:''; position:absolute; inset:4px; border-radius:50%; border:0.5px dashed rgba(201,169,110,0.4); }
-.halal-cert-badge-wrap { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:2rem; }
-.map-wrapper { position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; border:1px solid rgba(201,169,110,0.2); }
-.map-wrapper iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; filter:grayscale(30%) contrast(1.05); }
-.jp-text { font-family: 'Noto Serif JP', serif; font-weight: 300; letter-spacing: 0.15em; }
-.year-badge { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:3.5rem; color:rgba(201,169,110,0.2); line-height:1; }
-.section-label { font-size:10px; letter-spacing:0.3em; color:rgba(201,169,110,0.6); text-transform:uppercase; }
-.slide { transition: opacity 1.2s ease-in-out; }
-.course-scroll { display:flex; gap:16px; overflow-x:auto; padding:8px 0 16px; -ms-overflow-style:none; scrollbar-width:none; }
-.course-scroll::-webkit-scrollbar { display:none; }
-.course-card { flex-shrink:0; width:260px; border-radius:16px; overflow:hidden; }
-@media (min-width:768px) {
-  .course-scroll { display:grid; grid-template-columns:repeat(3,1fr); overflow-x:visible; }
-  .course-card { width:auto; }
+:root{
+  --ink-deep:#0e0a07;--ink:#1f1812;--ink-2:#2a2018;--ink-3:#16110d;--ink-warm:#1a130e;--ink-card:#1c1611;
+  --paper:#f5ede0;--paper-dim:#c8b89e;--paper-mute:#90836f;--paper-faint:rgba(245,237,224,0.55);
+  --gold:#d4af6e;--gold-bright:#e6c280;--gold-pale:#efd9a5;--gold-dim:#8a6f3a;--gold-deep:#a68445;
+  --vermilion:#c4452b;--vermilion-deep:#9a3520;--vermilion-soft:#d76548;
+  --sumi:#1a120a;--pulse-green:#9eb87f;
+  /* hero display 用に Fraunces を採用（モダンセリフ、和の余韻にも馴染む） */
+  --display:'Fraunces','Cormorant Garamond','Times New Roman',serif;
+  --serif:'Cormorant Garamond','Times New Roman',serif;
+  --jp:'Shippori Mincho',serif;
+  --brush:'Yuji Boku','Yuji Mai','Shippori Mincho',serif;
+  --ar:'Amiri',serif;--sans:'Inter',sans-serif;--hand:'Caveat',cursive;
 }
-.course-detail-panel { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
-.course-detail-panel.open { max-height:600px; }
-.chevron-icon { transition:transform 0.3s; }
-.chevron-icon.open { transform:rotate(180deg); }
-.booking-pulse { display:inline-block; width:8px; height:8px; border-radius:50%; background:#ef4444; margin-right:8px; animation: pulseRed 1.8s ease-in-out infinite; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-@keyframes pulseRed {
-  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-  70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--ink-deep);color:var(--paper);font-family:var(--serif);overflow-x:hidden;font-weight:400;line-height:1.55}
+body{padding-bottom:64px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");opacity:0.14;mix-blend-mode:overlay}
+
+/* NAV */
+.lp-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;background:linear-gradient(180deg, rgba(10,8,7,0.65) 0%, rgba(10,8,7,0.3) 60%, transparent 100%);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background 0.4s, padding 0.4s}
+.lp-nav.scrolled{background:rgba(10,8,7,0.92);padding:12px 32px;border-bottom:1px solid rgba(201,163,90,0.12)}
+.lp-nav__logo{text-decoration:none;display:flex;align-items:center;gap:14px;min-width:0;flex:1}
+.lp-nav__name{display:flex;flex-direction:column;gap:2px;min-width:0}
+.lp-nav__name-en{font-family:var(--display);font-style:italic;font-size:12.5px;color:var(--paper);font-weight:500;line-height:1.25;letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 10px rgba(0,0,0,0.7)}
+.lp-nav__name-cn{font-family:var(--jp);font-size:10px;font-weight:500;color:rgba(245,237,224,0.7);letter-spacing:0.18em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 8px rgba(0,0,0,0.6)}
+.lp-nav__cta{padding:11px 24px;background:transparent;color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;border:1px solid rgba(212,175,110,0.7);transition:background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
+.lp-nav__cta:hover{background:var(--gold);color:var(--ink-deep);border-color:var(--gold);transform:translateY(-1px)}
+@media (max-width:600px){.lp-nav{padding:12px 14px;gap:10px}.lp-nav.scrolled{padding:10px 14px}.lp-nav__name{gap:1px}.lp-nav__name-en{font-size:9.5px;letter-spacing:0;line-height:1.3;white-space:normal;overflow:visible;text-overflow:clip;font-style:italic}.lp-nav__name-cn{font-size:9px;letter-spacing:0.1em;white-space:nowrap}.lp-nav__cta{padding:8px 12px;font-size:9px;letter-spacing:0.2em}}
+
+/* =================================================================
+   HERO — Full-screen slideshow background + 麺 overlay + bold text
+================================================================= */
+.hero{
+  position:relative;min-height:100vh;min-height:100svh;
+  background:#0a0805;
+  overflow:hidden;
 }
-.review-scroll { display:flex; gap:16px; overflow-x:auto; padding:8px 0 16px; -ms-overflow-style:none; scrollbar-width:none; scroll-snap-type:x mandatory; }
-.review-scroll::-webkit-scrollbar { display:none; }
-.review-card { flex-shrink:0; width:300px; padding:24px; border-radius:16px; border:1px solid rgba(201,169,110,0.2); background:linear-gradient(135deg, rgba(201,169,110,0.06) 0%, rgba(201,169,110,0.02) 100%); scroll-snap-align:start; }
-@media (min-width:768px) {
-  .review-scroll { display:grid; grid-template-columns:repeat(2, 1fr); overflow-x:visible; }
-  .review-card { width:auto; }
+
+/* スライドショー全体のラッパー（画面いっぱい） */
+.hero__slideshow{
+  position:absolute;inset:0;z-index:0;
+  background:#000;
 }
-@media (min-width:1024px) {
-  .review-scroll { grid-template-columns:repeat(3, 1fr); }
+
+/* 各スライド */
+.hero__slide{
+  position:absolute;inset:0;
+  opacity:0;
+  transition:opacity 1.6s ease-in-out;
 }
+.hero__slide.is-active{opacity:1}
+
+/* 動画スライド */
+.hero__slide video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  filter:saturate(1.05) contrast(1.02);
+}
+
+/* 画像スライド（Ken Burns 風ゆっくりズーム） */
+.hero__slide img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  filter:saturate(1.05) contrast(1.02);
+  transform:scale(1.0);
+  transition:transform 7s ease-out;
+}
+.hero__slide.is-active img{
+  transform:scale(1.08);
+}
+
+/* スライドショー上の暗化グラデーション（最小限、左の文字側だけ暗く） */
+.hero__slideshow::before{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      rgba(10,8,5,0.45) 0%,
+      rgba(10,8,5,0.15) 15%,
+      transparent 35%,
+      rgba(10,8,5,0.4) 55%,
+      rgba(10,8,5,0.85) 80%,
+      rgba(10,8,5,0.95) 100%);
+}
+/* 端のヴィネット */
+.hero__slideshow::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  box-shadow:inset 0 0 200px rgba(10,8,5,0.65);
+}
+
+/* 巨大な「麺」— 確実に金色で見える書道感。文字エリアと被らない位置に */
+.hero__mei{
+  position:absolute;
+  font-family:var(--brush);
+  font-weight:400;
+  color:var(--gold-bright);
+  opacity:0.32;
+  pointer-events:none;
+  user-select:none;
+  z-index:3;
+  line-height:0.9;
+  letter-spacing:-0.05em;
+  /* 動画の暗い部分でも輪郭が見えるよう、軽い金色のグローを足す */
+  text-shadow:
+    0 0 60px rgba(230,194,128,0.35),
+    0 4px 20px rgba(0,0,0,0.4);
+}
+/* PC: 画面右下にどんと配置。動画と一緒の側、文字とは被らない */
+.hero__mei--pc{
+  display:block;
+  font-size:min(70vh, 46vw);
+  bottom:2vh;right:-2vw;
+  transform:rotate(-4deg);
+}
+.hero__mei--mobile{display:none}
+
+/* コンテンツ */
+.hero__content{
+  position:relative;z-index:5;
+  min-height:100vh;min-height:100svh;
+  max-width:1600px;margin:0 auto;
+  padding:130px 60px 50px;
+  display:grid;grid-template-rows:1fr auto;
+}
+
+.hero__center{
+  display:flex;align-items:flex-end;
+  min-height:55vh;
+  padding-top:38vh;
+  padding-bottom:4vh;
+}
+.hero__copy{
+  max-width:780px;
+  display:flex;flex-direction:column;
+}
+
+/* ヒーロー上の店名ライン（ナビと同じ2行構成） */
+.hero__eyebrow{
+  display:flex;flex-direction:column;align-items:flex-start;gap:4px;
+  margin-bottom:36px;
+}
+.hero__eyebrow-en{
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:14px;color:var(--paper);letter-spacing:0.01em;
+  line-height:1.3;
+  text-shadow:0 2px 10px rgba(0,0,0,0.7);
+}
+.hero__eyebrow-cn{
+  font-family:var(--jp);font-size:11px;font-weight:500;
+  color:var(--gold-pale);letter-spacing:0.2em;
+  text-shadow:0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* タイトル — Fraunces, weight 500-600, optical sizing */
+.hero__title{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 144, "SOFT" 50;
+  font-weight:500;
+  font-size:clamp(56px, 7.4vw, 132px);
+  line-height:0.92;letter-spacing:-0.025em;
+  color:var(--paper);margin-bottom:32px;
+  text-shadow:
+    0 4px 30px rgba(0,0,0,0.75),
+    0 2px 12px rgba(0,0,0,0.65);
+}
+.hero__title em{
+  font-style:italic;
+  font-weight:600;
+  color:var(--gold-pale);
+  display:inline-block;
+}
+
+/* サブタイトル — display 体で italic */
+.hero__subtitle{
+  font-family:var(--display);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(20px, 1.9vw, 28px);line-height:1.45;
+  color:var(--paper);max-width:560px;
+  margin-bottom:48px;letter-spacing:0.005em;
+  text-shadow:0 2px 18px rgba(0,0,0,0.75);
+}
+
+.hero__cta-group{
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+}
+
+/* ============================================================
+ * 予約ボタン — 朱印(はんこ) × 暖簾(のれん) インスパイア
+ * - くすんだ朱（神社の鳥居や漆器の色）
+ * - 内外の二重金枠（判子の縁）
+ * - 四隅の小さなL字マーカー（額装感）
+ * - 上下の細い縦線（暖簾の布が垂れる風）
+ * ============================================================ */
+.hero__cta-primary{
+  position:relative;
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 38px;
+  /* くすんだ朱：神社/漆器系の落ち着いた赤 */
+  background:linear-gradient(180deg, #a64537 0%, #8e3025 100%);
+  color:var(--gold-pale);text-decoration:none;
+  font-family:var(--sans);font-size:11px;letter-spacing:0.34em;
+  text-transform:uppercase;font-weight:700;
+  /* 外側の金枠 */
+  border:1px solid rgba(212,175,110,0.85);
+  /* 内側の細い金枠（判子の二重縁） */
+  box-shadow:
+    inset 0 0 0 1px rgba(212,175,110,0.18),
+    inset 0 0 0 5px rgba(154,53,32,0.0),
+    inset 0 0 0 6px rgba(212,175,110,0.32),
+    0 8px 24px rgba(154,53,32,0.35),
+    0 2px 8px rgba(0,0,0,0.4);
+  transition:transform 0.35s, box-shadow 0.35s, filter 0.3s;
+}
+/* 暖簾の縦線：左右に細く2本ずつ垂らす */
+.hero__cta-primary::before,
+.hero__cta-primary::after{
+  content:"";position:absolute;
+  top:-6px;bottom:-6px;width:1px;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(212,175,110,0.5) 15%,
+    rgba(212,175,110,0.7) 50%,
+    rgba(212,175,110,0.5) 85%,
+    transparent 100%);
+  pointer-events:none;
+}
+.hero__cta-primary::before{left:-1px}
+.hero__cta-primary::after{right:-1px}
+
+/* 四隅のL字マーカー（判子の角飾り） */
+.hero__cta-primary > .corner{
+  position:absolute;width:7px;height:7px;
+  border:1px solid var(--gold);
+  pointer-events:none;
+}
+.hero__cta-primary > .corner.tl{top:3px;left:3px;border-right:0;border-bottom:0}
+.hero__cta-primary > .corner.tr{top:3px;right:3px;border-left:0;border-bottom:0}
+.hero__cta-primary > .corner.bl{bottom:3px;left:3px;border-right:0;border-top:0}
+.hero__cta-primary > .corner.br{bottom:3px;right:3px;border-left:0;border-top:0}
+
+.hero__cta-primary .arrow{
+  font-family:serif;font-size:16px;line-height:1;
+  color:var(--gold);opacity:0.9;
+  transition:transform 0.3s;
+}
+.hero__cta-primary:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(212,175,110,0.3),
+    inset 0 0 0 6px rgba(212,175,110,0.45),
+    0 12px 32px rgba(154,53,32,0.5),
+    0 3px 10px rgba(0,0,0,0.45);
+}
+.hero__cta-primary:hover .arrow{transform:translateX(4px)}
+
+/* 電話番号 — 控えめな金色italic、ボタンに視線を譲る */
+.hero__cta-tel{
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:16px;color:var(--gold-pale);text-decoration:none;
+  letter-spacing:0.01em;position:relative;padding:6px 0;
+  transition:color 0.3s;
+  text-shadow:0 2px 10px rgba(0,0,0,0.7);
+  opacity:0.92;
+}
+.hero__cta-tel::before{
+  content:"☎";display:inline-block;margin-right:8px;
+  font-style:normal;font-size:13px;opacity:0.7;vertical-align:1px;
+}
+.hero__cta-tel::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:rgba(212,175,110,0.3);transition:background 0.3s;
+}
+.hero__cta-tel:hover{color:var(--gold);opacity:1}
+.hero__cta-tel:hover::after{background:var(--gold)}
+
+/* 下: トラスト + スクロールサイン */
+.hero__bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:36px;flex-wrap:wrap;
+  padding-top:36px;
+  border-top:1px solid rgba(245,237,224,0.16);
+}
+.hero__trust{
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+  font-family:var(--sans);
+}
+.hero__trust-item{display:inline-flex;align-items:center;gap:14px}
+.hero__trust-stars{font-family:var(--display);font-size:16px;color:var(--gold);letter-spacing:0.06em;line-height:1;text-shadow:0 0 12px rgba(212,175,110,0.4)}
+.hero__trust-text{
+  font-family:var(--display);font-style:italic;font-weight:500;font-size:16px;color:var(--paper);
+  letter-spacing:0.01em;
+  text-shadow:0 2px 10px rgba(0,0,0,0.6);
+}
+.hero__trust-text em{color:var(--gold-pale);font-style:italic;font-weight:600}
+.hero__trust-divider{width:1px;height:18px;background:rgba(245,237,224,0.22)}
+
+/* スクロールサイン */
+/* タブレット */
+@media (max-width:1100px){
+  .hero__content{padding:120px 6vw 40px}
+  .hero__title{font-size:clamp(56px, 10vw, 112px)}
+  .hero__mei--pc{font-size:min(60vh, 70vw);bottom:2vh;right:-6vw}
+  .hero__bottom{flex-direction:column;align-items:flex-start;gap:20px}
+}
+
+/* モバイル */
+@media (max-width:680px){
+  /* スマホ: スライドショーは画面上部40%の「横長枠」、コンテンツはその下に流す */
+  .hero{min-height:100vh;min-height:100svh}
+  .hero__slideshow{
+    inset:auto;  /* PC時の inset:0 を打ち消す */
+    position:absolute;
+    top:60px;left:0;right:0;
+    bottom:auto;
+    height:40vh;
+  }
+  .hero__slideshow::before{
+    background:
+      linear-gradient(180deg,
+        rgba(10,8,5,0.45) 0%,
+        rgba(10,8,5,0.10) 25%,
+        rgba(10,8,5,0.05) 55%,
+        rgba(10,8,5,0.55) 100%);
+  }
+  .hero__slideshow::after{
+    box-shadow:inset 0 0 80px rgba(10,8,5,0.45);
+  }
+  /* コンテンツはスライドショーの下に始まる（ナビ60px + スライド40vh + 余白50px） */
+  .hero__content{
+    padding:calc(60px + 40vh + 50px) 22px 28px;
+    gap:24px;
+    grid-template-rows:auto auto;
+  }
+  .hero__center{min-height:auto;padding:0;align-items:flex-start}
+  .hero__mei--pc{display:none}
+  .hero__mei--mobile{
+    display:block;
+    font-size:min(50vh, 70vw);
+    top:calc(60px + 40vh + 30px);right:-14vw;
+    color:var(--gold-bright);opacity:0.18;
+    transform:rotate(-3deg);
+    text-shadow:0 0 40px rgba(230,194,128,0.3), 0 4px 16px rgba(0,0,0,0.4);
+    z-index:1;
+  }
+  .hero__eyebrow{margin-bottom:24px;gap:3px}
+  .hero__eyebrow-en{font-size:12.5px;line-height:1.35}
+  .hero__eyebrow-cn{font-size:10px;letter-spacing:0.18em}
+  .hero__title{font-size:48px;line-height:0.98;margin-bottom:22px}
+  .hero__subtitle{font-size:17px;line-height:1.45;margin-bottom:30px}
+  .hero__cta-group{flex-direction:column;align-items:stretch;gap:16px}
+  .hero__cta-primary{justify-content:center;padding:16px 28px}
+  .hero__cta-tel{text-align:center;font-size:15px;align-self:center;padding-top:4px}
+  .hero__bottom{padding-top:24px;gap:14px}
+  .hero__trust{gap:14px;flex-direction:column;align-items:flex-start}
+  .hero__trust-divider{display:none}
+  .hero__trust-text{font-size:14px}
+}
+
+/* BOWL */
+.bowl-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 20% 0%, rgba(138,90,43,0.08), transparent 55%),radial-gradient(ellipse at 80% 100%, rgba(201,163,90,0.06), transparent 50%),var(--ink-deep);overflow:hidden}
+.bowl-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(180deg,var(--gold-deep) 0%,transparent 100%);z-index:2}
+.bowl__head{max-width:1280px;margin:0 auto 70px;text-align:center}
+.bowl__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:inline-flex;align-items:center;gap:14px}
+.bowl__chapter::before,.bowl__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.bowl__title{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6vw,88px);line-height:1.02;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
+.bowl__title em{font-style:italic;color:var(--gold)}
+.bowl__intro{font-family:var(--serif);font-size:18px;line-height:1.7;color:rgba(243,236,225,0.78);max-width:720px;margin:0 auto}
+.bowl__intro em{font-style:italic;color:var(--gold);font-weight:500}
+.bowl__hero{max-width:1280px;margin:0 auto 80px;display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+.bowl__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.55)}
+.bowl__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.bowl__photo .bowl__video{width:100%;height:100%;object-fit:cover;display:block}
+.bowl__photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 80px rgba(10,8,7,0.5)}
+.bowl__photo .corner{position:absolute;width:50px;height:50px;border:1px solid var(--gold);pointer-events:none}
+.bowl__photo .corner.tl{top:14px;left:14px;border-right:0;border-bottom:0}
+.bowl__photo .corner.tr{top:14px;right:14px;border-left:0;border-bottom:0}
+.bowl__photo .corner.bl{bottom:14px;left:14px;border-right:0;border-top:0}
+.bowl__photo .corner.br{bottom:14px;right:14px;border-left:0;border-top:0}
+.bowl__photo .label{position:absolute;top:24px;left:24px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(10,8,7,0.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(201,163,90,0.45);color:var(--gold);padding:8px 16px;font-family:var(--sans);font-size:9.5px;letter-spacing:0.36em;text-transform:uppercase;font-weight:600}
+.bowl__photo .label::before{content:"";display:inline-block;width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.bowl__details h3{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,54px);line-height:1.05;letter-spacing:-0.02em;color:var(--paper);margin-bottom:8px}
+.bowl__details h3 em{font-style:italic;color:var(--gold)}
+.bowl__details .name-jp{font-family:var(--jp);font-size:16px;color:var(--paper-dim);letter-spacing:0.22em;margin-bottom:28px}
+.bowl__details p.desc{font-family:var(--serif);font-size:17px;line-height:1.75;color:rgba(243,236,225,0.85);margin-bottom:24px}
+.bowl__details p.desc em{font-style:italic;color:var(--gold);font-weight:500}
+.bowl__cta{display:inline-flex;align-items:center;gap:14px;padding:18px 32px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:background 0.3s, transform 0.2s;cursor:pointer}
+.bowl__cta:hover{background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);transform:translateY(-2px)}
+/* ロゴ的な店名ブロック（軽い装飾枠つき） */
+.bowl__brand{
+  margin-top:36px;padding:18px 0;
+  border-top:1px solid rgba(212,175,110,0.25);
+  border-bottom:1px solid rgba(212,175,110,0.25);
+  display:flex;flex-direction:column;gap:5px;
+  max-width:480px;
+}
+.bowl__brand-en{
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:13.5px;color:var(--paper);letter-spacing:0.01em;
+  line-height:1.35;
+}
+.bowl__brand-cn{
+  font-family:var(--jp);font-size:10.5px;font-weight:500;
+  color:var(--gold-pale);letter-spacing:0.22em;
+}
+@media (max-width:1024px){.bowl__hero{grid-template-columns:1fr;gap:40px}.bowl__photo{aspect-ratio:4/3;max-width:600px;margin:0 auto;width:100%}}
+@media (max-width:600px){.bowl-section{padding:80px 22px 90px}.bowl__hero{margin-bottom:60px}}
+
+/* FLAVORS */
+.flavors-section{position:relative;padding:130px 60px 140px;background:linear-gradient(180deg, var(--ink-deep) 0%, #14100c 100%)}
+.flavors__head{max-width:1280px;margin:0 auto 70px;text-align:center}
+.flavors__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:inline-flex;align-items:center;gap:14px}
+.flavors__chapter::before,.flavors__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.flavors__title{font-family:var(--serif);font-weight:400;font-size:clamp(46px,5.4vw,78px);line-height:1.02;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
+.flavors__title em{font-style:italic;color:var(--gold)}
+.flavors__hero{max-width:1280px;margin:0 auto 80px;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.flavors__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.55)}
+.flavors__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.flavors__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 50%, rgba(10,8,7,0.55) 100%)}
+.flavors__photo-label{position:absolute;bottom:24px;left:24px;right:24px;z-index:2;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.flavors__photo-label .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(10,8,7,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,163,90,0.45);color:var(--gold);padding:8px 16px;font-family:var(--sans);font-size:9.5px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600}
+.flavors__photo-label .badge::before{content:"";display:inline-block;width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.flavors__photo-label .meta{font-family:var(--jp);font-size:13px;color:var(--paper);letter-spacing:0.2em;background:rgba(10,8,7,0.55);backdrop-filter:blur(4px);padding:5px 12px;border-left:1px solid rgba(201,163,90,0.3)}
+.flavors__text{display:flex;flex-direction:column;gap:6px}
+.flavor-row{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:22px 0;border-bottom:1px solid rgba(201,163,90,0.18);transition:border-color 0.3s}
+.flavor-row:last-child{border-bottom:0}
+.flavor-row:hover{border-color:rgba(201,163,90,0.4)}
+.flavor-row__num{font-family:var(--serif);font-style:italic;font-weight:400;font-size:38px;color:var(--gold);line-height:1;opacity:0.55;align-self:flex-start}
+.flavor-row__name{font-family:var(--serif);font-weight:400;font-size:28px;color:var(--paper);line-height:1.1;margin-bottom:3px}
+.flavor-row__name em{font-style:italic;color:var(--gold)}
+.flavor-row__desc{font-family:var(--serif);font-size:15.5px;line-height:1.6;color:var(--paper-dim)}
+.combo{max-width:1280px;margin:60px auto 0;padding:30px;background:linear-gradient(135deg, rgba(201,163,90,0.10), rgba(138,90,43,0.05));border:1px solid rgba(201,163,90,0.28)}
+.combo__inner{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:center}
+.combo__photo{position:relative;aspect-ratio:4/3;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.45)}
+.combo__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.combo__badge{position:absolute;top:18px;left:18px;display:inline-flex;align-items:center;gap:8px;background:rgba(10,8,7,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,163,90,0.5);color:var(--gold);padding:8px 16px;font-family:var(--sans);font-size:9.5px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600}
+.combo__badge::before{content:"";display:inline-block;width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0;box-shadow:0 0 6px rgba(201,163,90,0.7)}
+.combo__chapter{font-family:var(--sans);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.combo__title{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,50px);line-height:1.05;letter-spacing:-0.02em;color:var(--paper);margin-bottom:8px}
+.combo__title em{font-style:italic;color:var(--gold)}
+.combo__desc{font-family:var(--serif);font-size:17px;line-height:1.7;color:var(--paper-dim);margin-bottom:18px}
+.combo__desc em{font-style:italic;color:var(--gold);font-weight:500}
+.combo__tag{font-family:var(--sans);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--paper-mute);padding-top:16px;border-top:1px solid rgba(201,163,90,0.2)}
+@media (max-width:1024px){.flavors__hero{grid-template-columns:1fr;gap:40px}.flavors__photo{max-width:600px;margin:0 auto;width:100%;aspect-ratio:4/3}.combo__inner{grid-template-columns:1fr;gap:30px}}
+@media (max-width:600px){.flavors-section{padding:80px 22px 90px}.combo{padding:20px}.flavor-row__num{font-size:30px}.flavor-row__name{font-size:24px}}
+
+/* TORCH */
+.torch-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 80% 20%, rgba(255,140,40,0.10), transparent 50%),radial-gradient(ellipse at 20% 80%, rgba(138,90,43,0.08), transparent 55%),var(--ink-deep)}
+.torch__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center}
+.torch__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
+.torch__chapter::before{content:"";width:36px;height:1px;background:var(--gold)}
+.torch__title{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5vw,72px);line-height:1.02;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
+.torch__title em{font-style:italic;color:var(--gold)}
+.torch__desc{font-family:var(--serif);font-size:17px;line-height:1.7;color:rgba(243,236,225,0.82);margin-bottom:18px}
+.torch__desc em{font-style:italic;color:var(--gold);font-weight:500}
+.torch__cta{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:background 0.3s, transform 0.2s;margin-top:14px}
+.torch__cta:hover{background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);transform:translateY(-2px)}
+.torch__video-wrap{display:flex;justify-content:center}
+.torch__video-frame{position:relative;width:340px;max-width:100%;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid rgba(201,163,90,0.3);box-shadow:0 0 60px rgba(201,163,90,0.15), 0 30px 80px rgba(0,0,0,0.5);background:#000}
+.torch__video{width:100%;height:100%;object-fit:cover;display:block}
+.torch__video-label{position:absolute;left:0;right:0;bottom:0;padding:30px 22px 22px;background:linear-gradient(to top, rgba(10,8,7,0.88) 0%, rgba(10,8,7,0.45) 60%, transparent 100%);pointer-events:none}
+.torch__video-tag{display:inline-block;font-family:var(--sans);font-size:9.5px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:var(--gold);margin-bottom:6px}
+.torch__video-label p{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--paper);line-height:1.3}
+@media (max-width:1024px){.torch__inner{grid-template-columns:1fr;gap:40px;justify-items:center}.torch__video-wrap{width:100%}}
+@media (max-width:600px){.torch-section{padding:80px 22px 90px}.torch__video-frame{width:280px}}
+
+/* STORY */
+.story-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 20% 0%, rgba(138,90,43,0.07), transparent 55%),var(--ink-deep)}
+.story-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(180deg,var(--gold) 0%,transparent 100%)}
+.story__inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.story__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.5)}
+.story__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.story__photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 80px rgba(10,8,7,0.5)}
+.story__photo .tag{position:absolute;top:24px;left:24px;z-index:2;font-family:var(--sans);font-size:9.5px;letter-spacing:0.28em;color:var(--paper);text-transform:uppercase;font-weight:600;background:rgba(10,8,7,0.75);backdrop-filter:blur(6px);border:1px solid rgba(201,163,90,0.4);padding:7px 14px}
+.story__chip{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:rgba(212,175,110,0.1);color:var(--gold-pale);border:1px solid var(--gold);font-family:var(--sans);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;margin-bottom:22px}
+.story__title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1.04;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
+.story__title em{font-style:italic;color:var(--gold)}
+.story__body p{font-family:var(--serif);font-size:16.5px;line-height:1.75;color:rgba(243,236,225,0.78);margin-bottom:22px}
+.story__body p em{font-style:italic;color:var(--gold);font-weight:500}
+.story__quote{margin-top:28px;padding:24px 0 0;border-top:1px solid rgba(201,163,90,0.22);font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold);line-height:1.35}
+.story__quote small{display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:0.32em;color:var(--paper-mute);text-transform:uppercase;margin-top:12px}
+@media (max-width:1024px){.story__inner{grid-template-columns:1fr;gap:50px}.story__photo{max-width:520px;margin:0 auto;width:100%}}
+@media (max-width:600px){.story-section{padding:80px 22px 90px}}
+
+/* TRUST */
+.trust-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 80% 0%, rgba(201,163,90,0.06), transparent 55%),var(--ink-deep)}
+.trust__inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+.trust__copy .chip{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:rgba(212,175,110,0.1);color:var(--gold-pale);border:1px solid var(--gold);font-family:var(--sans);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;margin-bottom:22px}
+.trust__copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.6vw,60px);line-height:1.04;letter-spacing:-0.02em;color:var(--paper);margin-bottom:24px}
+.trust__copy h2 em{font-style:italic;color:var(--gold)}
+.trust__lede{font-family:var(--serif);font-size:18px;line-height:1.7;color:var(--paper-dim);max-width:520px;font-weight:500}
+.trust__lede em{font-style:italic;color:var(--gold-pale);font-weight:600}
+.trust__panel{position:relative;aspect-ratio:4/5;background:radial-gradient(ellipse at 30% 25%, rgba(201,163,90,0.10), transparent 60%),radial-gradient(ellipse at 75% 75%, rgba(138,90,43,0.07), transparent 65%),linear-gradient(135deg, var(--ink), var(--ink-deep));border:1px solid rgba(201,163,90,0.25);padding:50px 40px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px rgba(0,0,0,0.4)}
+.trust__panel .top{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--sans);font-size:10px;letter-spacing:0.32em;color:var(--gold);text-transform:uppercase;font-weight:500}
+.trust__panel .ar{font-family:var(--ar);font-size:15px;color:var(--paper-dim);direction:rtl;letter-spacing:0;text-transform:none}
+.trust__panel .seal{align-self:center;text-align:center;margin:auto 0}
+.trust__panel .ring{width:180px;height:180px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto 22px;background:radial-gradient(circle at 50% 50%, rgba(201,163,90,0.08), transparent 70%)}
+.trust__panel .ring::before,.trust__panel .ring::after{content:"";position:absolute;inset:8px;border-radius:50%;border:1px solid rgba(201,163,90,0.4)}
+.trust__panel .ring::after{inset:14px;border-style:dashed;opacity:0.5}
+.trust__panel .ring .ar-big{font-family:var(--ar);font-size:64px;color:var(--gold);font-weight:700;line-height:1;direction:rtl}
+.trust__panel .label-en{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--paper);margin-bottom:4px}
+.trust__panel .label-en em{font-style:italic;color:var(--gold)}
+.trust__panel .bottom{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:22px;border-top:1px solid rgba(201,163,90,0.22)}
+.trust__panel .bottom .k{display:block;font-family:var(--sans);font-size:9px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:3px}
+.trust__panel .bottom .v{font-family:var(--serif);font-style:italic;color:var(--paper);font-size:13px}
+@media (max-width:1024px){.trust__inner{grid-template-columns:1fr;gap:50px}.trust__panel{max-width:520px;margin:0 auto;width:100%}}
+@media (max-width:600px){.trust-section{padding:80px 22px 90px}.trust__panel{padding:36px 24px}.trust__panel .ring{width:140px;height:140px}.trust__panel .ring .ar-big{font-size:48px}}
+.seo-prose{max-width:780px;margin:60px auto 0;padding:24px 28px;background:rgba(201,163,90,0.03);border-left:1px solid rgba(201,163,90,0.18);font-family:var(--serif);font-size:15px;line-height:1.7;color:var(--paper-mute)}
+.seo-prose em{font-style:italic;color:var(--paper-dim);font-weight:400}
+.seo-prose p{margin:0}
+@media (max-width:600px){.seo-prose{margin:40px 22px 0;padding:20px 22px;font-size:14px}}
+
+/* REVIEWS */
+.reviews-section{position:relative;padding:120px 60px 130px;background:radial-gradient(ellipse at 50% 50%, rgba(201,163,90,0.06), transparent 60%),var(--ink-deep);text-align:center}
+.reviews__head--center{max-width:900px;margin:0 auto 56px;display:flex;flex-direction:column;align-items:center}
+.reviews__chapter{font-family:var(--sans);font-size:10.5px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
+.reviews__chapter::before,.reviews__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.reviews__title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4.6vw,60px);line-height:1.05;letter-spacing:-0.02em;color:var(--paper);margin-bottom:8px}
+.reviews__title em{font-style:italic;color:var(--gold)}
+.rating-display{max-width:560px;margin:0 auto;padding:48px 40px;background:linear-gradient(160deg, rgba(201,163,90,0.07) 0%, rgba(201,163,90,0.02) 100%);border:1px solid rgba(201,163,90,0.22);display:flex;flex-direction:column;align-items:center;gap:18px;position:relative}
+.rating-display::before,.rating-display::after{content:"";position:absolute;width:40px;height:40px;border:1px solid var(--gold)}
+.rating-display::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.rating-display::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.rating-display__stars{display:inline-flex;gap:8px;font-size:42px;line-height:1;color:var(--gold);letter-spacing:0}
+.rating-display__stars .star{display:inline-block;font-family:var(--serif);filter:drop-shadow(0 2px 6px rgba(201,163,90,0.3))}
+.rating-display__stars .star.half{background:linear-gradient(90deg, var(--gold) 60%, rgba(201,163,90,0.25) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rating-display__score{display:inline-flex;align-items:baseline;gap:8px}
+.rating-display__score .num{font-family:var(--serif);font-style:italic;font-weight:500;font-size:64px;color:var(--paper);line-height:1;letter-spacing:-0.01em}
+.rating-display__score .of{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--paper-mute)}
+.rating-display__count{font-family:var(--serif);font-size:16px;color:var(--paper-dim);line-height:1.5}
+.rating-display__count em{font-style:italic;color:var(--gold);font-weight:500;font-size:18px}
+.rating-display__sources{display:inline-flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid rgba(201,163,90,0.18);font-family:var(--sans);font-size:10.5px;letter-spacing:0.28em;color:var(--paper-mute);text-transform:uppercase;font-weight:500}
+.rating-display__sources .src{color:var(--paper-dim)}
+.rating-display__sources .dot{color:var(--gold);opacity:0.6}
+.reviews__cta{margin-top:50px}
+.reviews__cta a{display:inline-flex;align-items:center;gap:12px;padding:16px 30px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:background 0.3s}
+.reviews__cta a:hover{background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%)}
+@media (max-width:680px){.reviews-section{padding:80px 22px 90px}.rating-display{padding:36px 24px}.rating-display__stars{font-size:32px;gap:6px}.rating-display__score .num{font-size:48px}}
+
+/* ACCESS */
+.access-section{position:relative;padding:120px 60px;background:linear-gradient(180deg,#14100c,var(--ink-deep))}
+.access__head{max-width:1280px;margin:0 auto 50px;text-align:center}
+.access__chapter{font-family:var(--sans);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
+.access__chapter::before,.access__chapter::after{content:"";width:32px;height:1px;background:var(--gold)}
+.access__title{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5vw,68px);line-height:1.04;color:var(--paper);margin-bottom:10px}
+.access__title em{font-style:italic;color:var(--gold)}
+.access__grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:50px}
+.access__map{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink-card);border:1px solid rgba(201,163,90,.2)}
+.access__map iframe{width:100%;height:100%;border:0;display:block}
+.access__map .label{position:absolute;top:18px;left:18px;z-index:2;background:rgba(14,10,7,0.85);color:var(--gold-pale);border:1px solid var(--gold);backdrop-filter:blur(8px);padding:8px 14px;font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600}
+.access__map .open-link{position:absolute;bottom:18px;right:18px;z-index:2;padding:8px 16px;background:rgba(10,8,7,.85);backdrop-filter:blur(4px);border:1px solid rgba(201,163,90,.4);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;transition:border-color .3s, color .3s}
+.access__map .open-link:hover{color:var(--gold);border-color:var(--gold)}
+.access__info{background:rgba(31,24,20,.5);border:1px solid rgba(201,163,90,.2);padding:36px 30px}
+.access__info .k{font-family:var(--sans);font-size:9.5px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.access__info h3{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--paper);margin-bottom:4px;line-height:1.2}
+.access__info h3 em{font-style:italic;color:var(--gold)}
+.access__info .head-jp{font-family:var(--jp);font-size:13px;color:var(--paper-dim);letter-spacing:.16em;margin-bottom:6px}
+.access__info .head-cn{display:block;font-family:var(--jp);font-size:11.5px;color:var(--paper-mute);letter-spacing:.08em;margin-bottom:24px}
+.access__info .rows{padding-top:18px;border-top:1px solid rgba(201,163,90,.2);display:flex;flex-direction:column}
+.access__info .row{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(201,163,90,.12)}
+.access__info .row:last-child{border-bottom:0}
+.access__info .rk{font-family:var(--sans);font-size:9.5px;letter-spacing:.28em;color:var(--paper-mute);text-transform:uppercase;font-weight:500;line-height:1.5}
+.access__info .rv{font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--paper)}
+.access__info .rv em{font-style:italic;color:var(--gold);font-weight:500}
+.access__info .rv small{display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.18em;color:var(--paper-mute);text-transform:uppercase;margin-top:4px}
+@media (max-width:1024px){.access__grid{grid-template-columns:1fr;gap:30px}}
+@media (max-width:600px){.access-section{padding:70px 22px 90px}}
+
+/* RESERVE */
+.reserve-section{position:relative;padding:130px 60px 130px;background:radial-gradient(ellipse at 50% 0%, rgba(138,90,43,0.10), transparent 55%),radial-gradient(ellipse at 50% 100%, rgba(201,163,90,0.08), transparent 60%),var(--ink-deep)}
+.reserve-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(180deg,var(--gold-deep) 0%,transparent 100%)}
+.reserve__inner{max-width:1100px;margin:0 auto;text-align:center}
+.reserve__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:inline-flex;align-items:center;gap:14px}
+.reserve__chapter::before,.reserve__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.reserve__title{font-family:var(--serif);font-weight:400;font-size:clamp(54px,7vw,108px);line-height:0.98;letter-spacing:-0.03em;color:var(--paper);margin-bottom:20px}
+.reserve__title em{font-style:italic;color:var(--gold-pale)}
+.reserve__title .strike{display:block;font-style:italic;color:var(--gold-pale);font-size:0.58em;line-height:1.2;margin-top:8px;font-weight:400}
+.reserve__lede{font-family:var(--serif);font-size:19px;line-height:1.7;color:rgba(243,236,225,0.85);max-width:680px;margin:0 auto 48px}
+.reserve__lede em{font-style:italic;color:var(--gold);font-weight:500}
+.reserve__cta-group{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
+.reserve__cta-primary{display:inline-flex;align-items:center;gap:14px;padding:24px 46px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:13px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;border:1px solid var(--gold);transition:transform 0.3s, filter 0.3s;cursor:pointer;box-shadow:0 16px 50px rgba(196,69,43,0.4),0 4px 12px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.18)}
+.reserve__cta-primary:hover{transform:translateY(-3px);filter:brightness(1.06)}
+.reserve__cta-primary .arrow{font-style:normal;font-family:serif;font-size:22px;color:var(--gold-pale)}
+.reserve__cta-secondary{display:inline-flex;align-items:center;gap:14px;padding:20px 36px;background:transparent;text-decoration:none;border:1px solid rgba(201,163,90,0.4);font-family:var(--serif);font-style:italic;font-size:22px;color:var(--paper);transition:color 0.3s, border-color 0.3s}
+.reserve__cta-secondary:hover{color:var(--gold);border-color:var(--gold)}
+.reserve__cta-secondary .icon{font-size:22px;color:var(--gold)}
+.reserve__cta-secondary small{display:block;font-family:var(--sans);font-style:normal;font-size:9.5px;letter-spacing:0.28em;color:var(--paper-mute);text-transform:uppercase;margin-top:3px}
+.reserve__alts{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;padding:24px 0;border-top:1px solid rgba(201,163,90,0.18);border-bottom:1px solid rgba(201,163,90,0.18);margin-bottom:36px;align-items:center}
+.reserve__alts a{font-family:var(--sans);font-size:10.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--paper-dim);font-weight:500;text-decoration:none;transition:color 0.3s;display:inline-flex;align-items:center;gap:8px}
+.reserve__alts a:hover{color:var(--gold)}
+.reserve__alts a em{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:13px;letter-spacing:0;text-transform:none;font-weight:500;margin:0 4px}
+.reserve__alts .alt-instagram svg{width:16px;height:16px}
+.reserve__status{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--paper-mute)}
+.reserve__status em{color:var(--gold);font-style:italic;font-weight:500}
+.reserve__status::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold-deep);margin-right:8px;animation:pulse 1.4s ease-in-out infinite;vertical-align:middle}
+@media (max-width:600px){.reserve-section{padding:80px 22px 90px}.reserve__title{font-size:46px}.reserve__lede{font-size:16px}.reserve__cta-group{flex-direction:column;align-items:stretch}.reserve__cta-primary,.reserve__cta-secondary{justify-content:center;text-align:center}.reserve__cta-secondary{font-size:18px}.reserve__alts{flex-direction:column;gap:12px;text-align:center}}
+
+/* STICKY */
+.sticky-live{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:150;background:rgba(10,8,7,0.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(201,163,90,0.32);border-radius:999px;box-shadow:0 12px 40px rgba(0,0,0,0.55),0 4px 12px rgba(0,0,0,0.4),inset 0 1px 0 rgba(201,163,90,0.08);animation:sticky-enter 0.7s cubic-bezier(0.16,1,0.3,1) 0.5s both;max-width:calc(100vw - 32px)}
+.sticky-live.hidden{transform:translate(-50%, 200%);opacity:0}
+@keyframes sticky-enter{from{transform:translate(-50%, 200%);opacity:0}to{transform:translate(-50%, 0);opacity:1}}
+.sticky-live__inner{padding:10px 16px 10px 22px;display:flex;align-items:center;gap:18px}
+.sticky-live__item{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:11.5px;color:var(--paper-dim);line-height:1.4;letter-spacing:0.02em;white-space:nowrap}
+.sticky-live__item em{font-family:var(--serif);font-style:italic;color:var(--gold);font-weight:500;font-size:15px;margin:0 1px}
+.sticky-live__dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px rgba(74,222,128,0.6);animation:sticky-pulse 2.4s ease-in-out infinite;flex-shrink:0}
+@keyframes sticky-pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.sticky-live__check{color:var(--gold);font-weight:700;font-size:12px;font-family:var(--sans);flex-shrink:0}
+.sticky-live__sep{width:1px;height:14px;background:rgba(201,163,90,0.25);flex-shrink:0}
+.sticky-live__cta{padding:12px 24px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11.5px;letter-spacing:0.26em;text-transform:uppercase;font-weight:700;border-radius:999px;transition:filter 0.3s, transform 0.3s;display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;flex-shrink:0;border:1px solid var(--gold);box-shadow:0 6px 18px rgba(196,69,43,0.5),0 2px 6px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.2);position:relative;animation:cta-pulse 2.6s ease-in-out infinite}
+.sticky-live__cta::before{content:"";position:absolute;inset:-2px;border-radius:999px;border:1px solid var(--gold);opacity:0;animation:cta-ring 2.6s ease-out infinite;pointer-events:none}
+@keyframes cta-pulse{0%,100%{box-shadow:0 6px 18px rgba(196,69,43,0.5), 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)}50%{box-shadow:0 10px 26px rgba(196,69,43,0.7), 0 3px 10px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.25)}}
+@keyframes cta-ring{0%{transform:scale(1);opacity:0.6}100%{transform:scale(1.18);opacity:0}}
+.sticky-live__cta:hover{filter:brightness(1.1);transform:translateY(-2px)}
+@media (max-width:640px){body{padding-bottom:96px}.sticky-live{bottom:14px;border-radius:18px;width:calc(100vw - 28px);max-width:none}.sticky-live__inner{padding:10px 12px;gap:10px;flex-wrap:wrap;justify-content:space-between}.sticky-live__item{font-size:10px;gap:5px}.sticky-live__item em{font-size:12px}.sticky-live__sep{display:none}.sticky-live__cta{padding:9px 14px;font-size:9.5px;letter-spacing:0.14em;gap:5px;margin-left:auto}}
+
+/* DIALOG */
+.engage-dialog{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.4s}
+.engage-dialog[hidden]{display:none}
+.engage-dialog.show{opacity:1;pointer-events:auto}
+.engage-dialog__backdrop{position:absolute;inset:0;background:rgba(10,8,7,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.engage-dialog__panel{position:relative;max-width:540px;width:100%;background:linear-gradient(165deg, #1c1410 0%, #261b14 50%, #1a130e 100%);border:1px solid rgba(212,175,110,0.35);padding:54px 44px 36px;box-shadow:0 50px 100px rgba(0,0,0,0.7),0 0 60px rgba(212,175,110,0.08),inset 0 1px 0 rgba(212,175,110,0.12);transform:translateY(20px) scale(0.98);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
+.engage-dialog.show .engage-dialog__panel{transform:translateY(0) scale(1)}
+.engage-dialog__panel::before,.engage-dialog__panel::after{content:"";position:absolute;width:44px;height:44px;border:1px solid var(--gold);pointer-events:none}
+.engage-dialog__panel::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.engage-dialog__panel::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.engage-dialog__close{position:absolute;top:16px;right:16px;width:32px;height:32px;background:transparent;border:1px solid rgba(212,175,110,0.3);border-radius:50%;color:var(--paper-dim);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:5}
+.engage-dialog__close:hover{color:var(--ink-deep);border-color:var(--gold);background:var(--gold)}
+.engage-dialog__chip{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10.5px;letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;font-weight:700;margin-bottom:22px}
+.engage-dialog__chip::before{content:"";width:30px;height:1px;background:var(--gold)}
+.engage-dialog__title{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.4vw,52px);line-height:1.05;color:var(--paper);margin-bottom:18px;letter-spacing:-0.02em}
+.engage-dialog__title em{font-style:italic;color:var(--gold-pale);font-weight:400}
+.engage-dialog__lede{font-family:var(--serif);font-size:17px;line-height:1.65;color:rgba(245,237,224,0.85);margin-bottom:32px;font-weight:500}
+.engage-dialog__lede em{font-style:italic;color:var(--gold-pale);font-weight:600}
+.engage-dialog__actions{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.engage-dialog__btn{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 24px;text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;transition:all 0.3s;cursor:pointer;border:1px solid transparent}
+.engage-dialog__btn.primary{background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);border:1px solid var(--gold);box-shadow:0 10px 30px rgba(196,69,43,0.35),inset 0 1px 0 rgba(255,255,255,0.15)}
+.engage-dialog__btn.primary:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.engage-dialog__btn.secondary{background:transparent;color:var(--paper);border:1px solid rgba(212,175,110,0.5)}
+.engage-dialog__btn.secondary:hover{color:var(--gold-pale);border-color:var(--gold);background:rgba(212,175,110,0.06)}
+.engage-dialog__foot{padding-top:20px;border-top:1px solid rgba(212,175,110,0.18);font-family:var(--sans);font-size:10.5px;letter-spacing:0.24em;color:var(--paper-mute);text-transform:uppercase;text-align:center;font-weight:500}
+.engage-dialog__foot a{color:var(--gold);text-decoration:none;font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;font-weight:500;border-bottom:1px solid var(--gold-dim);padding-bottom:1px}
+@media (max-width:540px){.engage-dialog__panel{padding:36px 24px 26px}}
 </style>
 </head>
+<body>
 
-<body class="bg-ginza-black text-ginza-ivory font-epilogue overflow-x-hidden">
-
-<!-- STICKY CTA -->
-<div class="sticky-cta">
-  <div class="sticky-cta-text">
-    <strong>Reservations</strong>
-    Recommended 2 weeks in advance
-  </div>
-  {% if store.is_form_reserve == 'true' or is_form_reserve == 'true' %}
-  <button onclick="openReserveModal('sticky_cta')" class="sticky-cta-btn"
-          data-ga-event="reserve_click" data-ga-location="sticky_cta">
-    RESERVE →
-  </button>
-  {% elif store.tablecheck_url == 'TBD' %}
-  <button onclick="openCallReserveModal('sticky_cta')" class="sticky-cta-btn"
-          data-ga-event="reserve_click" data-ga-location="sticky_cta">
-    RESERVE →
-  </button>
-  {% else %}
-  <a href="{{ tablecheck_with_utm }}" target="_blank" rel="noopener" class="sticky-cta-btn"
-     data-ga-event="reserve_click" data-ga-location="sticky_cta">
-    RESERVE →
+<!-- ============ NAV ============ -->
+<nav class="lp-nav">
+  <a href="#top" class="lp-nav__logo">
+    <span class="lp-nav__name">
+      <span class="lp-nav__name-en">{{ store.name_full_en }}</span>
+      <span class="lp-nav__name-cn">{{ store.name_cn }}</span>
+    </span>
   </a>
-  {% endif %}
-</div>
-
-<!-- HEADER -->
-<header class="fixed top-0 left-0 w-full z-50 bg-ginza-black/80 backdrop-blur-md border-b border-ginza-gold/20">
-<div class="hidden sm:flex items-center justify-center gap-6 py-1.5 border-b border-ginza-gold/10 text-[9px] tracking-[0.25em] text-ginza-gold/60 uppercase">
-<span>{{ store.region_label }}</span>
-<span class="header-divider"></span>
-<span>Open {{ store.hours }}</span>
-<span class="header-divider"></span>
-<span>Muslim-Friendly</span>
-</div>
-<nav class="flex items-center justify-between px-6 py-3 max-w-[390px] mx-auto">
-<div class="flex flex-col leading-none">
-<span class="text-[9px] tracking-[0.35em] text-ginza-gold/60 uppercase mb-0.5 jp-text">omakase</span>
-<span class="text-xl text-ginza-gold tracking-wide jp-text">墨</span>
-</div>
-<div class="hidden xs:flex items-center gap-4">
-<a class="nav-link" href="#story">Story</a>
-<span class="header-divider"></span>
-<a class="nav-link" href="#access">Access</a>
-</div>
-{% if store.is_form_reserve == 'true' or is_form_reserve == 'true' %}
-<button onclick="openReserveModal('header')"
-        class="bg-ginza-gold text-ginza-black px-4 py-2 rounded-lg text-[10px] font-josefin font-semibold tracking-widest hover:bg-opacity-90 hover:scale-105 transition-all"
-        data-ga-event="reserve_click" data-ga-location="header">
-  RESERVE
-</button>
-{% elif store.tablecheck_url == 'TBD' %}
-<button onclick="openCallReserveModal('header')"
-        class="bg-ginza-gold text-ginza-black px-4 py-2 rounded-lg text-[10px] font-josefin font-semibold tracking-widest hover:bg-opacity-90 hover:scale-105 transition-all"
-        data-ga-event="reserve_click" data-ga-location="header">
-  RESERVE
-</button>
-{% else %}
-<a href="{{ tablecheck_with_utm }}" target="_blank" rel="noopener"
-   class="bg-ginza-gold text-ginza-black px-4 py-2 rounded-lg text-[10px] font-josefin font-semibold tracking-widest hover:bg-opacity-90 hover:scale-105 transition-all"
-   data-ga-event="reserve_click" data-ga-location="header">
-  RESERVE
-</a>
-{% endif %}
+  <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="lp-nav__cta">
+    Reserve <span>→</span>
+  </a>
 </nav>
-</header>
 
-<!-- HERO -->
-<section class="relative h-screen w-full flex flex-col justify-end items-center overflow-hidden" id="hero">
-<div class="absolute inset-0 z-0">
-<div id="slideshow" class="absolute inset-0">
-<img class="slide absolute inset-0 w-full h-full object-cover" src="/images/hero.jpg" alt="Omakase Full Course"/>
-<img class="slide absolute inset-0 w-full h-full object-cover opacity-0" src="/images/sushi.jpg" alt="Omakase Sushi"/>
-<img class="slide absolute inset-0 w-full h-full object-cover opacity-0" src="/images/wagyu.jpg" alt="A5 Wagyu"/>
-<img class="slide absolute inset-0 w-full h-full object-cover opacity-0" src="/images/Seasonal_menu.jpg" alt="Seasonal Menu"/>
-<img class="slide absolute inset-0 w-full h-full object-cover opacity-0" src="/images/Japanese_sweets.jpg" alt="Japanese Sweets"/>
-</div>
-<div class="absolute inset-0 dark-overlay"></div>
-</div>
+<main id="top">
 
-<div class="relative z-10 w-full px-8 pb-28 text-center">
-<span class="inline-block border border-ginza-gold/50 px-3 py-1 mb-6 text-[10px] tracking-[0.3em] text-ginza-gold uppercase jp-text">浅草 · ASAKUSA · TOKYO</span>
-<h1 class="font-cormorant italic text-4xl md:text-5xl mb-3 leading-tight">
-{{ store.name_full_en }}<br/><span class="text-2xl md:text-3xl">{{ store.name_zh }}</span>
-</h1>
-<p class="text-sm text-ginza-gold/60 tracking-widest mb-5 jp-text">おまかせコース · 和牛体験</p>
-<p class="text-sm font-light text-ginza-ivory/70 mb-8 max-w-xs mx-auto leading-relaxed">
-Ultra-rare lean Wagyu. Muslim-friendly.<br/>A dining experience crafted for the world.
-</p>
+<!-- ============ HERO（フルスクリーンスライドショー + 巨大「麺」）============ -->
+<section class="hero">
 
-<div class="flex flex-col items-center gap-3 w-full max-w-xs mx-auto">
-  {% if store.is_form_reserve == 'true' or is_form_reserve == 'true' %}
-  <button onclick="openReserveModal('hero')"
-     class="w-full bg-ginza-gold text-ginza-black font-josefin font-semibold rounded-lg tracking-widest text-sm hover:scale-105 transition-transform shadow-[0_0_24px_rgba(201,169,110,0.3)] flex overflow-hidden"
-     data-ga-event="reserve_click" data-ga-location="hero">
-    <span class="flex-1 py-4 px-4 text-center">RESERVE YOUR SEAT</span>
-    <span class="bg-black/15 px-4 flex items-center justify-center">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </span>
-  </button>
-  {% elif store.tablecheck_url == 'TBD' %}
-  <button onclick="openCallReserveModal('hero')"
-     class="w-full bg-ginza-gold text-ginza-black font-josefin font-semibold rounded-lg tracking-widest text-sm hover:scale-105 transition-transform shadow-[0_0_24px_rgba(201,169,110,0.3)] flex overflow-hidden"
-     data-ga-event="reserve_click" data-ga-location="hero">
-    <span class="flex-1 py-4 px-4 text-center">RESERVE YOUR SEAT</span>
-    <span class="bg-black/15 px-4 flex items-center justify-center">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </span>
-  </button>
-  {% else %}
-  <a href="{{ tablecheck_with_utm }}" target="_blank" rel="noopener"
-     class="w-full bg-ginza-gold text-ginza-black font-josefin font-semibold rounded-lg tracking-widest text-sm hover:scale-105 transition-transform shadow-[0_0_24px_rgba(201,169,110,0.3)] flex overflow-hidden"
-     data-ga-event="reserve_click" data-ga-location="hero">
-    <span class="flex-1 py-4 px-4 text-center">RESERVE YOUR SEAT</span>
-    <span class="bg-black/15 px-4 flex items-center justify-center">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </span>
-  </a>
-  {% endif %}
-
-  <a class="w-full text-center text-ginza-gold font-josefin text-xs tracking-widest py-3 rounded-lg border border-ginza-gold/40 hover:border-ginza-gold/80 transition-colors flex items-center justify-center gap-2"
-     href="#access" data-ga-event="map_click" data-ga-location="hero">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-      <path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="#c9a96e" stroke-width="1.5"/>
-      <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" stroke="#c9a96e" stroke-width="1.5"/>
-    </svg>
-    ACCESS &amp; MAP
-  </a>
-
-  <!-- BOOKING COUNT BANNER -->
-  <div class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-ginza-gold/10 via-ginza-gold/20 to-ginza-gold/10 border border-ginza-gold/40 rounded-full px-4 py-2.5 mt-1">
-    <span class="booking-pulse"></span>
-    <span class="text-[11px] font-josefin font-semibold tracking-[0.1em] text-ginza-gold uppercase">
-      <span class="text-ginza-ivory">76 bookings</span> in the last 24 hours
-    </span>
+  <!-- フルスクリーンのスライドショー（画像4枚） -->
+  <div class="hero__slideshow" id="heroSlideshow">
+    <div class="hero__slide is-active" data-slide="0">
+      <img src="/ramen-image/7.jpg" alt="Wagyu ramen with donburi set">
+    </div>
+    <div class="hero__slide" data-slide="1">
+      <img src="/ramen-image/8.jpg" alt="Signature wagyu ramen">
+    </div>
+    <div class="hero__slide" data-slide="2">
+      <img src="/ramen-image/6.jpg" alt="Wagyu ramen bowl">
+    </div>
+    <div class="hero__slide" data-slide="3">
+      <img src="/ramen-image/9.jpg" alt="The craft of five generations">
+    </div>
   </div>
 
-  <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
-    <svg class="w-4 h-4 text-ginza-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
-    <span class="text-[10px] font-josefin tracking-widest uppercase">Muslim-Friendly · Alcohol Free</span>
+  <!-- 巨大な「麺」（書道感、動画の上に重ねる） -->
+  <span class="hero__mei hero__mei--pc" aria-hidden="true">麺</span>
+  <span class="hero__mei hero__mei--mobile" aria-hidden="true">麺</span>
+
+  <!-- コンテンツ -->
+  <div class="hero__content">
+
+    <div class="hero__center">
+      <div class="hero__copy">
+
+        <div class="hero__eyebrow">
+          <span class="hero__eyebrow-en">{{ store.name_full_en }}</span>
+          <span class="hero__eyebrow-cn">{{ store.name_cn }}</span>
+        </div>
+
+        <h1 class="hero__title">
+          Authentic<br>
+          <em>Halal Wagyu</em><br>
+          Ramen.
+        </h1>
+
+        <p class="hero__subtitle">
+          A bowl you have to try at least once.
+        </p>
+
+        <div class="hero__cta-group">
+          <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="hero__cta-primary">
+            <span class="corner tl"></span>
+            <span class="corner tr"></span>
+            <span class="corner bl"></span>
+            <span class="corner br"></span>
+            <span>Reserve a seat</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="tel:+{{ store.tel_raw }}" class="hero__cta-tel">
+            {{ store.tel_display }}
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero__bottom">
+      <div class="hero__trust">
+        <div class="hero__trust-item">
+          <span class="hero__trust-stars">★★★★★</span>
+          <span class="hero__trust-text"><em>{{ store.rating }}</em> · 1,000+ reviews</span>
+        </div>
+        <div class="hero__trust-divider"></div>
+        <div class="hero__trust-item">
+          <span class="hero__trust-text">Reservations recommended</span>
+        </div>
+      </div>
+    </div>
+
   </div>
-</div>
-</div>
 </section>
 
-<script>
-(function() {
-const slides = document.querySelectorAll('.slide');
-let current = 0;
-setInterval(() => {
-slides[current].style.opacity = '0';
-current = (current + 1) % slides.length;
-slides[current].style.opacity = '1';
-}, 4000);
-})();
-</script>
-
-<!-- MENU -->
-<section class="reveal py-16 bg-ginza-black" id="menu">
-<div class="text-center mb-10 px-6">
-<p class="section-label mb-4">Menu · Mastery</p>
-<h3 class="font-cormorant italic text-3xl mb-4 leading-snug">"Where Theatre Meets Taste"</h3>
-<p class="text-sm font-light leading-relaxed text-ginza-ivory/70 max-w-lg mx-auto">
-From the delicate assembly of Edomae-style sushi to the dramatic carving of A5 Wagyu, every course is a choreographed masterpiece performed live before your eyes.
-</p>
-</div>
-<div class="flex mb-10">
-<div class="relative flex-1 h-52 overflow-hidden group">
-<img alt="Omakase Sushi" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/images/sushi.jpg"/>
-<div class="absolute inset-0 bg-gradient-to-r from-transparent to-ginza-black/70"></div>
-<div class="absolute bottom-0 right-0 p-4 text-right">
-<p class="text-[9px] tracking-widest uppercase text-ginza-gold mb-0.5">The Craft</p>
-<p class="font-cormorant italic text-lg">Omakase Sushi</p>
-</div>
-</div>
-<div class="relative flex-1 h-52 overflow-hidden group">
-<img alt="A5 Wagyu" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/images/wagyu.jpg"/>
-<div class="absolute inset-0 bg-gradient-to-l from-transparent to-ginza-black/70"></div>
-<div class="absolute bottom-0 left-0 p-4">
-<p class="text-[9px] tracking-widest uppercase text-ginza-gold mb-0.5">The Ritual</p>
-<p class="font-cormorant italic text-lg">A5 Wagyu</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- OUR STORY -->
-<section class="reveal py-20 bg-ginza-black border-t border-ginza-gold/10" id="story">
-<div class="max-w-3xl mx-auto px-8">
-<div class="text-center mb-12">
-<p class="section-label mb-4">Our Story</p>
-<h3 class="font-cormorant italic text-3xl leading-snug">The Story Begins in 1962</h3>
-</div>
-<div class="flex items-start gap-4 mb-10">
-<div class="flex-shrink-0 text-center">
-<div class="year-badge">1962</div>
-<div class="w-px h-16 bg-ginza-gold/20 mx-auto mt-2"></div>
-</div>
-<div class="pt-3">
-<p class="text-sm font-light leading-relaxed text-ginza-ivory/70">
-The first generation started this journey as a Wagyu merchant. A craftsman who faced cattle, discerned the quality of meat, and honed his skills. Since then, the family business expanded to meat wholesale, butcher shops, and the food industry. I was raised alongside meat as the fifth generation.
-</p>
-</div>
-</div>
-<div class="relative mb-10 pl-6 border-l border-ginza-gold/30">
-<p class="font-cormorant italic text-xl leading-relaxed text-ginza-ivory/90 mb-3">
-"Wagyu was never a 'special occasion treat' for me. I have known its taste since I was a child and it was always close to me."
-</p>
-<p class="text-[10px] font-josefin tracking-widest text-ginza-gold/60 uppercase">— 5th Generation Owner</p>
-</div>
-<div class="mb-8">
-<p class="section-label mb-3">The Turning Point</p>
-<p class="text-sm font-light leading-relaxed text-ginza-ivory/70 mb-4">
-However, in my 30s, when I visited America, that feeling was greatly shaken. The "WAGYU" I encountered there was completely different from the Wagyu I knew. Cattle from Australia and America were circulated as "Wagyu," and many people smiled as they ate, saying, "Is this Wagyu?"
-</p>
-<p class="text-sm font-light leading-relaxed text-ginza-ivory/70">
-Seeing that scene brought me both surprise and frustration. As the fifth generation, I decided to deliver the "real Wagyu" to the world once again — and opened this restaurant in the heart of Tokyo.
-</p>
-</div>
-<div class="bg-ginza-gold/5 border border-ginza-gold/15 rounded-2xl p-6 mb-8">
-<p class="section-label mb-3">Our Commitment to Quality</p>
-<p class="text-sm font-light leading-relaxed text-ginza-ivory/70">
-I visit livestock farms all over Japan and purchase only Wagyu that I truly accept by the whole head. Not the industrially fattened Wagyu with excessive fat — rather, Wagyu raised healthily with <span class="text-ginza-gold/90">umami and tenderness in the meat itself, not just in the fat.</span> This philosophy carries through every dish we serve.
-</p>
-</div>
-<div class="mb-4">
-<p class="section-label mb-3">For Everyone in the World</p>
-<p class="text-sm font-light leading-relaxed text-ginza-ivory/70">
-I personally select Wagyu processed at trusted suppliers in Japan. This restaurant was born to share authentic Japanese food culture with everyone — regardless of nationality, religion, age, or gender.
-</p>
-</div>
-</div>
-</section>
-
-<div class="relative h-48 overflow-hidden">
-<img src="/images/hero.jpg" alt="" class="w-full h-full object-cover object-center"/>
-<div class="absolute inset-0" style="background:linear-gradient(to bottom, #090909 0%, transparent 30%, transparent 70%, #090909 100%);"></div>
-<div class="absolute inset-0 flex items-center justify-center">
-<p class="font-cormorant italic text-2xl text-ginza-ivory/80 tracking-widest">— Course Selection —</p>
-</div>
-</div>
-
-<!-- COURSE SELECTION -->
-<section class="reveal py-16 bg-ginza-black" id="courses">
-<div class="px-6 max-w-3xl mx-auto">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
-<div class="rounded-xl p-4 text-center" style="background:linear-gradient(135deg,rgba(201,169,110,0.15) 0%,rgba(201,169,110,0.05) 100%); border:1px solid rgba(201,169,110,0.35);">
-<p class="font-cormorant italic text-2xl text-ginza-gold mb-1">Only 5%</p>
-<p class="text-[10px] tracking-widest uppercase text-ginza-ivory/60">of the market</p>
-<p class="text-[10px] text-ginza-ivory/40 mt-1">Ultra-rare lean Wagyu</p>
-</div>
-<div class="rounded-xl p-4 text-center" style="background:linear-gradient(135deg,rgba(201,169,110,0.15) 0%,rgba(201,169,110,0.05) 100%); border:1px solid rgba(201,169,110,0.35);">
-<p class="font-cormorant italic text-2xl text-ginza-gold mb-1">Direct</p>
-<p class="text-[10px] tracking-widest uppercase text-ginza-ivory/60">from the farm</p>
-<p class="text-[10px] text-ginza-ivory/40 mt-1">Whole-head purchase</p>
-</div>
-<div class="rounded-xl p-4 text-center" style="background:linear-gradient(135deg,rgba(201,169,110,0.15) 0%,rgba(201,169,110,0.05) 100%); border:1px solid rgba(201,169,110,0.35);">
-<p class="font-cormorant italic text-2xl text-ginza-gold mb-1">Low Temp</p>
-<p class="text-[10px] tracking-widest uppercase text-ginza-ivory/60">slow-cooked</p>
-<p class="text-[10px] text-ginza-ivory/40 mt-1">Deep umami unlocked</p>
-</div>
-<div class="rounded-xl p-4 text-center" style="background:linear-gradient(135deg,rgba(201,169,110,0.15) 0%,rgba(201,169,110,0.05) 100%); border:1px solid rgba(201,169,110,0.35);">
-<p class="font-cormorant italic text-2xl text-ginza-gold mb-1">100%</p>
-<p class="text-[10px] tracking-widest uppercase text-ginza-ivory/60">Muslim-Friendly</p>
-<p class="text-[10px] text-ginza-ivory/40 mt-1">Alcohol-free menu</p>
-</div>
-</div>
-
-<div class="text-center mb-4">
-<p class="section-label mb-2">Course Selection</p>
-<p class="text-xs text-ginza-ivory/40 font-josefin tracking-widest">Tap a course to see full details</p>
-</div>
-
-<div class="course-scroll" id="courseScroll">
-<div class="course-card border border-ginza-gold/20 bg-ginza-gold/5">
-<div class="p-5">
-<p class="text-[9px] section-label mb-1">Entry Course</p>
-<p class="font-cormorant italic text-xl mb-3">SUMI — 墨 —</p>
-<div class="flex items-baseline gap-2 mb-1">
-<span class="text-ginza-gold font-josefin font-bold">¥39,800</span>
-<span class="text-ginza-ivory/35 text-[9px]">(¥43,780 inc.tax)</span>
-</div>
-<p class="text-[10px] text-ginza-ivory/45 font-josefin mb-4">13 courses · 60–75 min</p>
-<button onclick="toggleCourse('sumi')" class="w-full text-[10px] font-josefin tracking-widest border border-ginza-gold/30 text-ginza-gold/70 py-2 rounded-lg flex items-center justify-center gap-1">
-SEE DETAILS <svg class="chevron-icon w-3 h-3" id="chevron-sumi" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
-</button>
-<div class="course-detail-panel" id="detail-sumi">
-<div class="border-t border-ginza-gold/10 space-y-2 pt-3 mt-3">
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">序</span><span class="text-ginza-ivory/60">Handmade Tofu · Seafood Yukhoe &amp; Hyogo Nori</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">八寸</span><span class="text-ginza-ivory/60">Seasonal Appetizer — Abalone / Shrimp &amp; Ginkgo / Squid / Namasu / Date-maki / Lotus Root</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">温物</span><span class="text-ginza-ivory/60">Wagyu Shabu-shabu &amp; Dashi</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">鮨</span><span class="text-ginza-ivory/60">Temaki: Salmon &amp; Ikura / Maguro · Pressed Sushi 6 kinds · Wagyu Tenderloin Nigiri × Akazu</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">椀</span><span class="text-ginza-ivory/60">Aka-dashi Miso — Lake Shinji Clams</span></div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="course-card border-2 border-ginza-gold relative" style="box-shadow:0 0 24px rgba(201,169,110,0.18);">
-<div class="absolute top-3 right-3 bg-ginza-gold text-ginza-black text-[9px] font-josefin font-bold tracking-widest px-2.5 py-1 rounded-full z-10">MOST POPULAR</div>
-<div class="p-5 bg-ginza-gold/5">
-<p class="text-[9px] section-label mb-1">Premium Course</p>
-<p class="font-cormorant italic text-xl mb-3">BOKUGA — 墨雅 —</p>
-<div class="flex items-baseline gap-2 mb-1">
-<span class="text-ginza-gold font-josefin font-bold">¥49,800</span>
-<span class="text-ginza-ivory/35 text-[9px]">(¥54,780 inc.tax)</span>
-</div>
-<p class="text-[10px] text-ginza-ivory/45 font-josefin mb-4">15 courses · 75–90 min</p>
-<button onclick="toggleCourse('bokuga')" class="w-full text-[10px] font-josefin tracking-widest border border-ginza-gold/50 text-ginza-gold py-2 rounded-lg flex items-center justify-center gap-1">
-SEE DETAILS <svg class="chevron-icon w-3 h-3" id="chevron-bokuga" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
-</button>
-<div class="course-detail-panel" id="detail-bokuga">
-<div class="border-t border-ginza-gold/10 space-y-2 pt-3 mt-3">
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">序</span><span class="text-ginza-ivory/60">Handmade Tofu · Seafood Yukhoe &amp; Hyogo Nori</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">八寸</span><span class="text-ginza-ivory/60">Seasonal Appetizer Collection</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">温物</span><span class="text-ginza-ivory/60">Wagyu Shabu-shabu &amp; Dashi</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">逸品</span><span class="text-ginza-ivory/60">Wagyu &amp; Shiso Spring Roll · "Cheese Snow"</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">鮨</span><span class="text-ginza-ivory/60">Temaki · Pressed Sushi 6 kinds · Wagyu Nigiri</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">椀</span><span class="text-ginza-ivory/60">Aka-dashi Miso — Lake Shinji Clams</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">茶と甘味</span><span class="text-ginza-ivory/60">Matcha — Tsujiri · Wagashi 6 kinds</span></div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="course-card border border-ginza-gold/20 bg-ginza-gold/5">
-<div class="p-5">
-<p class="text-[9px] section-label mb-1">Ultimate Course</p>
-<p class="font-cormorant italic text-xl mb-3">BOKUSHOU — 墨匠 —</p>
-<div class="flex items-baseline gap-2 mb-1">
-<span class="text-ginza-gold font-josefin font-bold">¥89,800</span>
-<span class="text-ginza-ivory/35 text-[9px]">(¥98,780 inc.tax)</span>
-</div>
-<p class="text-[10px] text-ginza-ivory/45 font-josefin mb-4">20 courses · 120 min</p>
-<button onclick="toggleCourse('bokushou')" class="w-full text-[10px] font-josefin tracking-widest border border-ginza-gold/30 text-ginza-gold/70 py-2 rounded-lg flex items-center justify-center gap-1">
-SEE DETAILS <svg class="chevron-icon w-3 h-3" id="chevron-bokushou" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
-</button>
-<div class="course-detail-panel" id="detail-bokushou">
-<div class="border-t border-ginza-gold/10 space-y-2 pt-3 mt-3">
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">序</span><span class="text-ginza-ivory/60">Handmade Tofu · Seafood Yukhoe &amp; Hyogo Nori</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">八寸</span><span class="text-ginza-ivory/60">Seasonal Appetizer Collection</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">温物</span><span class="text-ginza-ivory/60">Wagyu Shabu-shabu &amp; Dashi</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">鮨</span><span class="text-ginza-ivory/60">Temaki: Uni · Salmon &amp; Ikura · Pressed Sushi 6 kinds · Wagyu Nigiri</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">逸品</span><span class="text-ginza-ivory/60">Jet-Black Vichyssoise · Wagyu &amp; Shiso Spring Roll · "Cheese Snow"</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">和牛</span><span class="text-ginza-ivory/60">Wagyu Steak "Tanto" · Mini Burger · "Ultimate One Bite"</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">お口直し</span><span class="text-ginza-ivory/60">Yuzu Sorbet with Gold Leaf</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">椀</span><span class="text-ginza-ivory/60">Aka-dashi Miso — Lake Shinji Clams</span></div>
-<div class="flex gap-2 text-[10px]"><span class="text-ginza-gold/50 w-12 flex-shrink-0">茶と甘味</span><span class="text-ginza-ivory/60">Matcha — Tsujiri · Wagashi 6 kinds</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<p class="md:hidden text-center text-[9px] text-ginza-ivory/30 font-josefin tracking-widest mt-2 mb-8">← Swipe to see all courses →</p>
-
-<script>
-function toggleCourse(id) {
-  const panel = document.getElementById('detail-' + id);
-  const chevron = document.getElementById('chevron-' + id);
-  panel.classList.toggle('open');
-  chevron.classList.toggle('open');
-}
-window.addEventListener('load', function() {
-  if (window.innerWidth < 768) {
-    const scroll = document.getElementById('courseScroll');
-    const bokuga = scroll.children[1];
-    scroll.scrollLeft = bokuga.offsetLeft - (scroll.offsetWidth - bokuga.offsetWidth) / 2;
-  }
-});
-</script>
-
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-10 mb-6">
-<div class="aspect-square relative rounded-lg overflow-hidden">
-<img alt="Seasonal Menu" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/Seasonal_menu.jpg"/>
-<div class="absolute bottom-2 left-2 text-[10px] tracking-widest uppercase text-white/70">Seasonal Menu</div>
-</div>
-<div class="aspect-square relative rounded-lg overflow-hidden">
-<img alt="Wagyu Experience" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/wagyu_experience.jpg"/>
-<div class="absolute bottom-2 left-2 text-[10px] tracking-widest uppercase text-white/70">Wagyu Experience</div>
-</div>
-<div class="aspect-square relative rounded-lg overflow-hidden">
-<img alt="Matcha Ceremony" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/matcha.jpg"/>
-<div class="absolute bottom-2 left-2 text-[10px] tracking-widest uppercase text-white/70">Matcha Ceremony</div>
-</div>
-<div class="aspect-square relative rounded-lg overflow-hidden">
-<img alt="Japanese Sweets" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/Japanese_sweets.jpg"/>
-<div class="absolute bottom-2 left-2 text-[10px] tracking-widest uppercase text-white/70">Japanese Sweets</div>
-</div>
-</div>
-
-</div>
-</section>
-
-<!-- REVIEWS / VOICES -->
-<section class="reveal py-20 bg-ginza-black border-t border-ginza-gold/10" id="reviews">
-<div class="max-w-3xl mx-auto px-6">
-  <div class="text-center mb-10">
-    <p class="section-label mb-4">Guest Voices</p>
-    <h3 class="font-cormorant italic text-3xl mb-3">From Around the World</h3>
-    <p class="text-sm font-light text-ginza-ivory/50 max-w-sm mx-auto leading-relaxed">
-      A selection of impressions shared by our guests.<br/>
-      <span class="text-ginza-ivory/30 text-[11px]">※ Sample voices · to be replaced with verified reviews</span>
+<!-- ============ THE BOWL ============ -->
+<section class="bowl-section">
+  <div class="bowl__head">
+    <div class="bowl__chapter">The Bowl</div>
+    <h2 class="bowl__title">A bowl <em>worth flying for.</em></h2>
+    <p class="bowl__intro">
+      Travelers come to {{ store.city }} for many things. <em>This bowl</em> is one of them.
+      <em>Japanese wagyu</em> sliced and laid over a rich broth — a halal
+      ramen that exists at the intersection of <em>real wagyu</em> and
+      <em>real ramen</em>, and nothing else like it in the city.
     </p>
   </div>
 
-  <div class="review-scroll">
-    <div class="review-card">
-      <div class="flex items-center gap-1 mb-3">
-        <span class="text-ginza-gold text-sm">★★★★★</span>
-        <span class="text-[10px] text-ginza-ivory/40 font-josefin tracking-wider ml-2">TRIPADVISOR</span>
-      </div>
-      <p class="font-cormorant italic text-base leading-relaxed text-ginza-ivory/85 mb-4">
-        "Beautifully presented Wagyu, thoughtfully served. The Muslim-friendly menu meant my family from Dubai could fully enjoy the experience. Truly felt at home."
+  <div class="bowl__hero">
+    <div class="bowl__photo">
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+      <video class="bowl__video"
+             autoplay muted loop playsinline preload="auto"
+             poster="/ramen-image/8.jpg"
+             aria-label="Wagyu ramen — the bowl up close">
+        <source src="/ramen-image/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="bowl__details">
+      <h3>Wagyu <em>Ramen.</em></h3>
+      <div class="name-jp">Japanese Wagyu</div>
+
+      <p class="desc">
+        Sliced <em>Japanese wagyu</em> over a deep, savory broth.
+        Served halal-friendly, in the heart of {{ store.city }}. A bowl built around
+        one idea: the wagyu, and the broth that lets it shine.
       </p>
-      <div class="flex items-center gap-3 pt-3 border-t border-ginza-gold/10">
-        <div class="w-8 h-8 rounded-full bg-ginza-gold/20 border border-ginza-gold/30 flex items-center justify-center text-ginza-gold font-cormorant italic text-sm">A</div>
-        <div>
-          <p class="text-[11px] font-josefin tracking-wider text-ginza-ivory/70">Ahmed K.</p>
-          <p class="text-[9px] text-ginza-ivory/40 tracking-widest uppercase">Dubai · UAE</p>
-        </div>
+
+      <a href="#reserve" class="bowl__cta">
+        Book your seat <span>→</span>
+      </a>
+
+      <div class="bowl__brand">
+        <span class="bowl__brand-en">{{ store.name_full_en }}</span>
+        <span class="bowl__brand-cn">{{ store.name_cn }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLAVORS ============ -->
+<section class="flavors-section">
+  <div class="flavors__head">
+    <div class="flavors__chapter">Flavors</div>
+    <h2 class="flavors__title">Choose your <em>broth.</em></h2>
+  </div>
+
+  <div class="flavors__hero">
+    <div class="flavors__photo">
+      <img src="/ramen-image/6.jpg" alt="Wagyu ramen — our signature bowl">
+      <div class="flavors__photo-label">
+        <span class="badge">Signature Wagyu Ramen</span>
+        <span class="meta">和牛ラーメン</span>
       </div>
     </div>
 
-    <div class="review-card">
-      <div class="flex items-center gap-1 mb-3">
-        <span class="text-ginza-gold text-sm">★★★★★</span>
-        <span class="text-[10px] text-ginza-ivory/40 font-josefin tracking-wider ml-2">GOOGLE</span>
-      </div>
-      <p class="font-cormorant italic text-base leading-relaxed text-ginza-ivory/85 mb-4">
-        "The BOKUGA course was theatrical — watching the chef carve the wagyu felt like a performance. The quality of the beef is on another level. Worth every yen."
-      </p>
-      <div class="flex items-center gap-3 pt-3 border-t border-ginza-gold/10">
-        <div class="w-8 h-8 rounded-full bg-ginza-gold/20 border border-ginza-gold/30 flex items-center justify-center text-ginza-gold font-cormorant italic text-sm">J</div>
-        <div>
-          <p class="text-[11px] font-josefin tracking-wider text-ginza-ivory/70">Jennifer M.</p>
-          <p class="text-[9px] text-ginza-ivory/40 tracking-widest uppercase">New York · USA</p>
+    <div class="flavors__text">
+      <div class="flavor-row">
+        <div class="flavor-row__num">01</div>
+        <div class="flavor-row__body">
+          <div class="flavor-row__name">Wagyu <em>Miso</em></div>
+          <p class="flavor-row__desc">A rich, deep miso broth layered with the umami of the wagyu slices.</p>
         </div>
       </div>
-    </div>
 
-    <div class="review-card">
-      <div class="flex items-center gap-1 mb-3">
-        <span class="text-ginza-gold text-sm">★★★★★</span>
-        <span class="text-[10px] text-ginza-ivory/40 font-josefin tracking-wider ml-2">GOOGLE</span>
-      </div>
-      <p class="font-cormorant italic text-base leading-relaxed text-ginza-ivory/85 mb-4">
-        「接待で利用しました。海外のお客様に和牛と寿司の両方を体験していただけて大変喜ばれました。静かな個室と丁寧な英語対応で安心してお任せできます。」
-      </p>
-      <div class="flex items-center gap-3 pt-3 border-t border-ginza-gold/10">
-        <div class="w-8 h-8 rounded-full bg-ginza-gold/20 border border-ginza-gold/30 flex items-center justify-center text-ginza-gold font-cormorant italic text-sm">T</div>
-        <div>
-          <p class="text-[11px] font-josefin tracking-wider text-ginza-ivory/70">田中 宏之 様</p>
-          <p class="text-[9px] text-ginza-ivory/40 tracking-widest uppercase">Tokyo · Japan</p>
+      <div class="flavor-row">
+        <div class="flavor-row__num">02</div>
+        <div class="flavor-row__body">
+          <div class="flavor-row__name">Wagyu <em>Shoyu</em></div>
+          <p class="flavor-row__desc">A traditional shoyu broth that lets the wagyu speak first.</p>
         </div>
       </div>
-    </div>
 
-    <div class="review-card">
-      <div class="flex items-center gap-1 mb-3">
-        <span class="text-ginza-gold text-sm">★★★★★</span>
-        <span class="text-[10px] text-ginza-ivory/40 font-josefin tracking-wider ml-2">TRIPADVISOR</span>
-      </div>
-      <p class="font-cormorant italic text-base leading-relaxed text-ginza-ivory/85 mb-4">
-        "真正的日本和牛體驗，完全不同於香港吃到的。低溫慢煮帶出的甘甜讓人難忘。師傅對每一片肉的態度就像對藝術品一樣。"
-      </p>
-      <div class="flex items-center gap-3 pt-3 border-t border-ginza-gold/10">
-        <div class="w-8 h-8 rounded-full bg-ginza-gold/20 border border-ginza-gold/30 flex items-center justify-center text-ginza-gold font-cormorant italic text-sm">L</div>
-        <div>
-          <p class="text-[11px] font-josefin tracking-wider text-ginza-ivory/70">Lin H.</p>
-          <p class="text-[9px] text-ginza-ivory/40 tracking-widest uppercase">Hong Kong</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="flex items-center gap-1 mb-3">
-        <span class="text-ginza-gold text-sm">★★★★★</span>
-        <span class="text-[10px] text-ginza-ivory/40 font-josefin tracking-wider ml-2">GOOGLE</span>
-      </div>
-      <p class="font-cormorant italic text-base leading-relaxed text-ginza-ivory/85 mb-4">
-        "As a Muslim food lover, finding an authentic Muslim-friendly omakase in Japan was a dream. The attention to dietary detail and respect for our needs really showed. The wagyu itself was sublime."
-      </p>
-      <div class="flex items-center gap-3 pt-3 border-t border-ginza-gold/10">
-        <div class="w-8 h-8 rounded-full bg-ginza-gold/20 border border-ginza-gold/30 flex items-center justify-center text-ginza-gold font-cormorant italic text-sm">F</div>
-        <div>
-          <p class="text-[11px] font-josefin tracking-wider text-ginza-ivory/70">Farah S.</p>
-          <p class="text-[9px] text-ginza-ivory/40 tracking-widest uppercase">Kuala Lumpur</p>
+      <div class="flavor-row">
+        <div class="flavor-row__num">03</div>
+        <div class="flavor-row__body">
+          <div class="flavor-row__name">Wagyu <em>Spicy</em></div>
+          <p class="flavor-row__desc">Our signature spicy broth, layered with house chili oil and chili threads. The heat lifts the fat off the wagyu in waves.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <p class="md:hidden text-center text-[9px] text-ginza-ivory/30 font-josefin tracking-widest mt-2">← Swipe to read more →</p>
+  <div class="combo">
+    <div class="combo__inner">
+      <div class="combo__photo">
+        <img src="/ramen-image/7.jpg" alt="Wagyu ramen + marbled wagyu donburi combo set">
+        <span class="combo__badge">Most Popular Combo</span>
+      </div>
+      <div class="combo__body">
+        <div class="combo__chapter">Set Menu</div>
+        <h3 class="combo__title">+ <em>Marbled Wagyu Donburi</em></h3>
 
-  <div class="mt-10 flex flex-wrap justify-center items-center gap-6 pt-8 border-t border-ginza-gold/10">
-    <div class="text-center">
-      <p class="font-cormorant italic text-3xl text-ginza-gold leading-none mb-1">{{ store.rating }}</p>
-      <p class="text-ginza-gold text-sm mb-1">★★★★★</p>
-      <p class="text-[9px] text-ginza-ivory/40 font-josefin tracking-widest uppercase">Google · {{ store.rating_count }} reviews</p>
-    </div>
-    <div class="w-px h-12 bg-ginza-gold/20"></div>
-    <div class="text-center">
-      <p class="font-cormorant italic text-3xl text-ginza-gold leading-none mb-1">No.1</p>
-      <p class="text-[9px] text-ginza-ivory/40 font-josefin tracking-widest uppercase mt-2">Tripadvisor Tokyo<br/>Aug 2025 — Mar 2026 (flagship)</p>
+        <p class="combo__desc">
+          Pair any ramen with our <em>marbled wagyu donburi</em> — sliced wagyu
+          over rice, finished tableside. The <em>combo everyone orders</em> when
+          they sit down. One bowl is never enough.
+        </p>
+        <div class="combo__tag">Available with any flavor</div>
+      </div>
     </div>
   </div>
-</div>
 </section>
 
-<!-- RESERVATION CTA SECTION -->
-<section class="reveal py-20 px-6 text-center bg-ginza-black" id="reservation">
-<div class="max-w-[390px] mx-auto">
-<p class="section-label mb-4">Reserve</p>
-<h3 class="font-cormorant italic text-3xl mb-2">Begin Your Experience</h3>
-<p class="text-sm font-light text-ginza-ivory/50 mb-6 max-w-xs mx-auto">
-Reservations recommended 2 weeks in advance.<br/>Walk-ins welcome subject to availability.
-</p>
+<!-- ============ TORCH ============ -->
+<section class="torch-section">
+  <div class="torch__inner">
+    <div class="torch__copy">
+      <div class="torch__chapter">The Experience</div>
+      <h2 class="torch__title">Flame-torched <em>at your table.</em></h2>
 
-  <div class="inline-flex items-center justify-center gap-2 bg-ginza-gold/10 border border-ginza-gold/40 rounded-full px-4 py-2 mb-8">
-    <span class="booking-pulse"></span>
-    <span class="text-[11px] font-josefin font-semibold tracking-[0.1em] text-ginza-gold uppercase">
-      <span class="text-ginza-ivory">76 bookings</span> in the last 24 hours
-    </span>
-  </div>
-
-  {% if store.is_form_reserve == 'true' or is_form_reserve == 'true' %}
-  <button onclick="openReserveModal('reservation_section')"
-     class="w-full bg-ginza-gold text-ginza-black font-josefin font-bold py-4 rounded-lg tracking-widest text-sm hover:scale-105 transition-transform shadow-[0_0_24px_rgba(201,169,110,0.3)] flex items-center justify-center gap-2"
-     data-ga-event="reserve_click" data-ga-location="reservation_section">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    RESERVE YOUR SEAT
-  </button>
-  <p class="text-[10px] text-ginza-ivory/25 tracking-widest mt-4">* Reservation is confirmed after email from {{ stores.brand.brand_name }}.</p>
-  {% elif store.tablecheck_url == 'TBD' %}
-  <button onclick="openCallReserveModal('reservation_section')"
-     class="w-full bg-ginza-gold text-ginza-black font-josefin font-bold py-4 rounded-lg tracking-widest text-sm hover:scale-105 transition-transform shadow-[0_0_24px_rgba(201,169,110,0.3)] flex items-center justify-center gap-2"
-     data-ga-event="reserve_click" data-ga-location="reservation_section">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    RESERVE YOUR SEAT
-  </button>
-  <p class="text-[10px] text-ginza-ivory/25 tracking-widest mt-4">* Phone reservation only — please call us directly.</p>
-  {% else %}
-  <a href="{{ tablecheck_with_utm }}" target="_blank" rel="noopener"
-     class="w-full bg-ginza-gold text-ginza-black font-josefin font-bold py-4 rounded-lg tracking-widest text-sm hover:scale-105 transition-transform shadow-[0_0_24px_rgba(201,169,110,0.3)] flex items-center justify-center gap-2"
-     data-ga-event="reserve_click" data-ga-location="reservation_section">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    RESERVE ON TABLECHECK
-  </a>
-  <p class="text-[10px] text-ginza-ivory/25 tracking-widest mt-4">* Reservation handled by TableCheck — secure & instant.</p>
-  {% endif %}
-</div>
-</section>
-
-<!-- ACCESS -->
-<section class="reveal py-20 px-6 bg-ginza-black" id="access">
-<div class="max-w-[390px] mx-auto">
-<div class="text-center mb-10">
-<p class="section-label mb-4">Access</p>
-<h3 class="font-cormorant italic text-3xl">Find Us</h3>
-</div>
-<div class="mb-8 flex items-start gap-4">
-<div class="mt-1 flex-shrink-0 w-8 h-8 flex items-center justify-center border border-ginza-gold/30 rounded-full">
-<svg class="w-3.5 h-3.5 text-ginza-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
-</svg>
-</div>
-<div>
-<p class="text-[10px] font-josefin tracking-[0.2em] text-ginza-gold uppercase mb-1">Address</p>
-<address class="not-italic text-sm text-ginza-ivory/70 font-light leading-relaxed">
-〒{{ store.address_postal }} {{ store.address_jp_line1 }}<br/>
-{{ store.address_en_line1 }}<br/><br/>
-<span class="text-ginza-ivory/40 text-[11px]">Open {{ store.hours }}</span>
-</address>
-{% if store.maps_link != "TBD" %}
-<a href="{{ store.maps_link }}" target="_blank" rel="noopener"
-   class="inline-flex items-center gap-1.5 mt-3 text-[10px] font-josefin tracking-widest text-ginza-gold uppercase border-b border-ginza-gold/30 pb-0.5 hover:border-ginza-gold transition-colors"
-   data-ga-event="directions_click" data-ga-location="access">
-Open in Google Maps
-<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
-</svg>
-</a>
-{% endif %}
-<p class="text-[10px] text-ginza-gold/70 mt-3"><a href="tel:{{ store.tel_raw }}" class="hover:text-ginza-gold" data-ga-event="tel_click" data-ga-location="access">📞 {{ store.tel_display }}</a></p>
-</div>
-</div>
-{% if store.maps_embed != "TBD" %}
-<div class="map-wrapper">
-<iframe src="{{ store.maps_embed }}"
-allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="{{ store.name_short }} Map">
-</iframe>
-</div>
-{% endif %}
-</div>
-</section>
-
-<!-- HALAL -->
-<section class="reveal py-20 px-8 bg-halal-green border-t border-ginza-gold/10">
-<div class="flex flex-col items-center text-center max-w-[390px] mx-auto">
-<div class="w-16 h-16 mb-6 text-ginza-gold opacity-80">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24">
-<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-</svg>
-</div>
-<p class="section-label mb-3">Muslim-Friendly Dining</p>
-<h2 class="font-cormorant italic text-3xl mb-6">A Muslim-Friendly Dining Experience in {{ store.city.split(',')[0] }}</h2>
-<p class="text-sm font-light leading-relaxed text-ginza-ivory/70 max-w-xs mb-4">
-Welcome to our restaurant — a warm, inclusive space where guests from all cultures can dine with peace of mind. We thoughtfully prepare pork-free, alcohol-free dishes, making us a trusted choice for Muslim travelers and families visiting Japan.
-</p>
-<p class="text-sm font-light leading-relaxed text-ginza-ivory/60 max-w-xs mb-8">
-Please feel free to share any dietary preferences or restrictions when making your reservation — we will do our best to accommodate.
-</p>
-<div class="flex flex-wrap items-center justify-center gap-3 text-xs font-josefin tracking-[0.15em] text-ginza-gold mb-4">
-<span class="px-3 py-1 border border-ginza-gold/30 rounded">NO PORK</span>
-<span class="px-3 py-1 border border-ginza-gold/30 rounded">NO ALCOHOL IN FOOD</span>
-<span class="px-3 py-1 border border-ginza-gold/30 rounded">MUSLIM-FRIENDLY</span>
-</div>
-</div>
-</section>
-
-<!-- FOOTER -->
-<footer class="py-16 px-8 bg-black/50 border-t border-white/5">
-<div class="text-center">
-<div class="mb-1 text-[9px] font-josefin tracking-[0.35em] text-ginza-gold/60 uppercase">omakase</div>
-<div class="font-cormorant italic text-3xl tracking-widest text-ginza-gold mb-8">墨</div>
-<address class="not-italic text-sm text-ginza-ivory/60 mb-8 font-light leading-relaxed">
-〒{{ store.address_postal }} {{ store.address_jp_line1 }}<br/>
-{{ store.address_en_line1 }}<br/><br/>
-Open {{ store.hours }}
-</address>
-<div class="flex justify-center gap-6 mb-12">
-  <a class="text-ginza-gold hover:text-white transition-colors"
-     href="https://www.instagram.com/omakase_tokyo_wagyu?igsh=dzR6cmlvZzlueG93&utm_source=qr"
-     target="_blank" rel="noopener" aria-label="Instagram">
-    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-    </svg>
-  </a>
-  {% if store.is_form_reserve == 'true' or is_form_reserve == 'true' %}
-  <button class="text-ginza-gold hover:text-white transition-colors"
-     onclick="openReserveModal('footer')" aria-label="Reserve"
-     data-ga-event="reserve_click" data-ga-location="footer"
-     style="background:none;border:none;cursor:pointer;padding:0;">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
-    </svg>
-  </button>
-  {% elif store.tablecheck_url == 'TBD' %}
-  <button class="text-ginza-gold hover:text-white transition-colors"
-     onclick="openCallReserveModal('footer')" aria-label="Reserve"
-     data-ga-event="reserve_click" data-ga-location="footer"
-     style="background:none;border:none;cursor:pointer;padding:0;">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
-    </svg>
-  </button>
-  {% else %}
-  <a class="text-ginza-gold hover:text-white transition-colors"
-     href="{{ tablecheck_with_utm }}" target="_blank" rel="noopener" aria-label="Reserve"
-     data-ga-event="reserve_click" data-ga-location="footer">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
-    </svg>
-  </a>
-  {% endif %}
-  {% if store.maps_link != "TBD" %}
-  <a class="text-ginza-gold hover:text-white transition-colors"
-     href="{{ store.maps_link }}" target="_blank" rel="noopener" aria-label="Google Maps"
-     data-ga-event="directions_click" data-ga-location="footer">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
-    </svg>
-  </a>
-  {% endif %}
-</div>
-<p class="text-[9px] tracking-widest text-ginza-ivory/30 uppercase">© 2026 {{ stores.brand.brand_name }}. All Rights Reserved.</p>
-</div>
-</footer>
-
-{# ============================================================
-   予約導線: フォーム版モーダル
-   store.reserve_system == "form" のときだけマウントされる。
-   TableCheck版のときは <a> リンクで外部遷移するため不要。
-   ============================================================ #}
-{% if store.is_form_reserve == 'true' or is_form_reserve == 'true' %}
-  {% include "partials/reserve-form-modal.njk" %}
-{% endif %}
-
-{# ============================================================
-   予約導線: 電話案内モーダル
-   store.tablecheck_url == "TBD" のときだけマウントされる。
-   TableCheckのURLがまだ準備できていない店舗向けに、
-   電話予約をご案内するゴールド枠モーダルを表示する。
-   ============================================================ #}
-{% if store.is_form_reserve != 'true' and is_form_reserve != 'true' and store.tablecheck_url == 'TBD' %}
-<style>
-  .call-modal-backdrop {
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(9,9,9,0.85); backdrop-filter: blur(8px);
-    display: none; align-items: center; justify-content: center;
-    padding: 20px; opacity: 0; transition: opacity 0.3s ease;
-  }
-  .call-modal-backdrop.open { display: flex; opacity: 1; }
-  .call-modal {
-    position: relative; width: 100%; max-width: 380px;
-    background: linear-gradient(180deg, #0e0e0e 0%, #090909 100%);
-    border: 1px solid rgba(201,169,110,0.4);
-    border-radius: 16px; padding: 36px 28px 28px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 40px rgba(201,169,110,0.12);
-    text-align: center;
-    transform: translateY(20px); transition: transform 0.35s ease;
-  }
-  .call-modal-backdrop.open .call-modal { transform: translateY(0); }
-  .call-modal-close {
-    position: absolute; top: 12px; right: 12px;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: rgba(240,237,228,0.06); border: 1px solid rgba(201,169,110,0.2);
-    color: rgba(240,237,228,0.6); cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s, color 0.2s;
-  }
-  .call-modal-close:hover { background: rgba(240,237,228,0.12); color: #c9a96e; }
-  .call-modal-icon {
-    width: 56px; height: 56px; margin: 0 auto 16px;
-    border-radius: 50%; border: 1px solid rgba(201,169,110,0.4);
-    display: flex; align-items: center; justify-content: center;
-    background: radial-gradient(circle at center, rgba(201,169,110,0.15) 0%, transparent 70%);
-  }
-  .call-modal-label {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(201,169,110,0.7); margin-bottom: 8px;
-  }
-  .call-modal-title {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 24px; color: #f0ede4; margin-bottom: 12px; line-height: 1.3;
-  }
-  .call-modal-desc {
-    font-family: 'Epilogue', sans-serif; font-weight: 300;
-    font-size: 13px; line-height: 1.6; color: rgba(240,237,228,0.65);
-    margin-bottom: 24px;
-  }
-  .call-modal-storename {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px; color: rgba(201,169,110,0.85);
-    margin-bottom: 4px;
-  }
-  .call-modal-hours {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 11px; letter-spacing: 0.1em; color: rgba(240,237,228,0.45);
-    margin-bottom: 20px;
-  }
-  .call-modal-btn {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%; padding: 16px; border-radius: 10px;
-    background: #c9a96e; color: #090909;
-    font-family: 'Josefin Sans', sans-serif; font-weight: 700; font-size: 14px;
-    letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none;
-    box-shadow: 0 0 24px rgba(201,169,110,0.3);
-    transition: transform 0.2s, opacity 0.2s;
-  }
-  .call-modal-btn:hover { transform: scale(1.03); opacity: 0.95; }
-  .call-modal-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; color: #c9a96e; margin: 16px 0 8px;
-    letter-spacing: 0.05em;
-  }
-  .call-modal-note {
-    font-family: 'Epilogue', sans-serif; font-size: 10px;
-    color: rgba(240,237,228,0.35); letter-spacing: 0.08em;
-    margin-top: 16px; line-height: 1.5;
-  }
-</style>
-
-<div class="call-modal-backdrop" id="callReserveModal" onclick="if(event.target===this)closeCallReserveModal()">
-  <div class="call-modal" role="dialog" aria-modal="true" aria-labelledby="callModalTitle">
-    <button class="call-modal-close" onclick="closeCallReserveModal()" aria-label="Close">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M6 6l12 12M6 18L18 6" stroke-linecap="round"/>
-      </svg>
-    </button>
-
-    <div class="call-modal-icon">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.5">
-        <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <p class="torch__desc">
+        We finish every dish <em>in front of you</em>. The chef brings the
+        torch to the wagyu — flame meets fat, the surface caramelizes in
+        seconds, and the aroma reaches you before the plate does.
+      </p>
+      <p class="torch__desc">
+        It's the moment phones come out, the moment <em>you remember</em>
+        when you fly home.
+      </p>
+      <a href="#reserve" class="torch__cta">
+        Watch it happen — Reserve <span>→</span>
+      </a>
     </div>
 
-    <p class="call-modal-label">Reserve by Phone</p>
-    <h3 class="call-modal-title" id="callModalTitle">Please Call Us Directly</h3>
-    <p class="call-modal-desc">
-      Online reservations are not yet available at this location.<br/>
-      Our staff will be happy to assist you in English.
+    <div class="torch__video-wrap">
+      <div class="torch__video-frame">
+        <video
+          class="torch__video"
+          autoplay muted loop playsinline preload="auto"
+          poster="/ramen-image/9.jpg"
+          aria-label="Wagyu performance at our counter">
+          <source src="/ramen-image/ramen.MOV" type="video/quicktime">
+          <source src="/ramen-image/ramen.MOV" type="video/mp4">
+          <source src="/ramen-image/ramen.mp4" type="video/mp4">
+        </video>
+        <div class="torch__video-label">
+          <span class="torch__video-tag">Live from the counter</span>
+          <p>The flame, the wagyu, the moment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="story-section">
+  <div class="story__inner">
+
+    <div class="story__photo">
+      <span class="tag">Since 1962</span>
+      <img src="/ramen-image/9.jpg" alt="Five generations of wagyu craftsmen">
+    </div>
+
+    <div>
+      <span class="story__chip">Our story</span>
+      <h2 class="story__title">From <em>real wagyu,</em> a real bowl.</h2>
+
+      <div class="story__body">
+        <p>Our family started as wagyu merchants in <em>1962</em>. Five generations of facing cattle, judging meat, and refining the same craft — wholesale, butcher, restaurant.</p>
+        <p>In my thirties, I visited America, and the "WAGYU" I saw there shocked me. Australian and American cattle being sold as wagyu, people smiling, saying "<em>so this is wagyu?</em>" — and what they ate wasn't the real thing.</p>
+        <p>As the fifth generation, I made a decision: <em>deliver real wagyu to the world again</em>. Not the over-fattened industrial cuts. <em>Healthy lean wagyu</em> with deep umami in the meat itself. That's the wagyu in this bowl.</p>
+        <p>And <em>{{ store.city }}</em> — at the heart of Japan's food culture — is where we serve it as ramen. Walk in, and into this bowl. <em>Halal-friendly</em>, made for travelers who came to Japan for the real thing.</p>
+        <p class="story__quote">
+          "Real wagyu, for everyone in the world."
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section class="trust-section">
+  <div class="trust__inner">
+
+    <div class="trust__copy">
+      <span class="chip">Muslim-friendly</span>
+      <h2>Eat <em>without worry.</em></h2>
+      <p class="trust__lede">
+        Japanese wagyu — halal-friendly, served with care for travelers
+        from around the world. Please share any dietary needs when you book.
+      </p>
+    </div>
+
+    <div class="trust__panel">
+      <div class="top">
+        <span>Halal-friendly</span>
+        <span class="ar">صديق المسلم</span>
+      </div>
+      <div class="seal">
+        <div class="ring"><span class="ar-big">حلال</span></div>
+        <div class="label-en"><em>Halal-friendly Wagyu Ramen.</em></div>
+      </div>
+      <div class="bottom">
+        <div><span class="k">Wagyu</span><span class="v">Japanese</span></div>
+        <div><span class="k">Service</span><span class="v">Halal-friendly</span></div>
+        <div><span class="k">Hours</span><span class="v">{{ store.hours_short }}</span></div>
+        <div><span class="k">Location</span><span class="v">{{ store.city }}</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="seo-prose">
+    <p>
+      Looking for <em>halal ramen</em> near {{ store.station_en }}? Searching
+      <em>halal restaurants near me</em> or <em>ramen near me</em> while
+      traveling in Japan? Our halal-friendly <em>noodle</em> shop serves
+      Japanese Wagyu in a deep, savory broth — the bowl travelers
+      come back for. One of the most-saved <em>halal restaurants</em> in
+      {{ store.city }} for visitors from Malaysia, Indonesia, Singapore, the UAE,
+      and beyond.
+    </p>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews-section">
+
+  <div class="reviews__head reviews__head--center">
+    <div class="reviews__chapter">Reviews</div>
+    <h2 class="reviews__title">Loved by <em>travelers worldwide.</em></h2>
+  </div>
+
+  <div class="rating-display">
+    <div class="rating-display__stars" aria-label="4.6 out of 5 stars">
+      <span class="star filled">★</span>
+      <span class="star filled">★</span>
+      <span class="star filled">★</span>
+      <span class="star filled">★</span>
+      <span class="star half">★</span>
+    </div>
+    <div class="rating-display__score">
+      <span class="num">4.6</span>
+      <span class="of">/ 5.0</span>
+    </div>
+    <div class="rating-display__count">
+      Based on <em>{{ store.rating_count }}</em> verified reviews
+    </div>
+    <div class="rating-display__sources">
+      <span class="src">Google</span>
+      <span class="dot">·</span>
+      <span class="src">TripAdvisor</span>
+      <span class="dot">·</span>
+      <span class="src">Tabelog</span>
+    </div>
+  </div>
+
+  <div class="reviews__cta">
+    <a href="#reserve">Reserve your seat <span>→</span></a>
+  </div>
+
+</section>
+
+<!-- ============ ACCESS ============ -->
+<section class="access-section">
+
+  <div class="access__head">
+    <div class="access__chapter">Access</div>
+    <h2 class="access__title">Steps from <em>{{ store.station_en }}.</em></h2>
+  </div>
+
+  <div class="access__grid">
+
+    <div class="access__map">
+      <span class="label">{{ store.station_en }}</span>
+      <iframe
+        src="{{ store.maps_embed }}"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="{{ store.station_en }} — {{ store.name_short }} map"></iframe>
+      <a class="open-link" href="{{ store.maps_link }}" target="_blank" rel="noopener">↗ Directions</a>
+    </div>
+
+    <div class="access__info">
+      <div class="k">— Store</div>
+      <h3><em>{{ store.name_full_en }}</em></h3>
+      <div class="head-jp">Ramen noodle (Japanese Food)</div>
+      <span class="head-cn">{{ store.name_cn }}</span>
+
+      <div class="rows">
+        <div class="row">
+          <span class="rk">Hours</span>
+          <span class="rv"><em>{{ store.hours }}</em><small>{{ store.hours_note }}{% if store.hours_special %} · {{ store.hours_special }}{% endif %}</small></span>
+        </div>
+        <div class="row">
+          <span class="rk">Phone</span>
+          <span class="rv"><em><a href="tel:+{{ store.tel_raw }}" style="color:inherit;text-decoration:none">{{ store.tel_display }}</a></em><small>Reservations welcome</small></span>
+        </div>
+        <div class="row">
+          <span class="rk">Address</span>
+          <span class="rv">
+            {{ store.address_en }}
+            <small>{{ store.address_postal }}</small>
+          </span>
+        </div>
+        <div class="row">
+          <span class="rk">Station</span>
+          <span class="rv">
+            <em>{{ store.station_en }}</em>
+            <small>{{ store.station_jp }}</small>
+          </span>
+        </div>
+        <div class="row">
+          <span class="rk">Seats</span>
+          <span class="rv">
+            <em>{{ store.seats }}</em>
+            <small>{{ store.seats_note }}</small>
+          </span>
+        </div>
+        <div class="row">
+          <span class="rk">Facilities</span>
+          <span class="rv">
+            {{ store.facilities_main }}
+            <small>{{ store.facilities_sub }}</small>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============ RESERVE ============ -->
+<section class="reserve-section" id="reserve">
+  <div class="reserve__inner">
+
+    <div class="reserve__chapter">Reserve</div>
+
+    <h2 class="reserve__title">
+      Ready
+      <span class="strike">— when you are.</span>
+    </h2>
+
+    <p class="reserve__lede">
+      For the best experience, reservations are recommended.
+      <em>Book online in seconds</em> to secure your seat at the
+      wagyu-and-broth standard you came for.
     </p>
 
-    <p class="call-modal-storename">{{ store.name_short }}</p>
-    <p class="call-modal-hours">Open {{ store.hours }}</p>
+    <div class="reserve__cta-group">
+      <a class="reserve__cta-primary" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
+        Reserve online <span class="arrow">→</span>
+      </a>
+      <a class="reserve__cta-secondary" href="tel:+{{ store.tel_raw }}">
+        <span class="icon">☎</span>
+        <span>
+          {{ store.tel_display }}
+          <small>Or call us</small>
+        </span>
+      </a>
+    </div>
 
-    <a class="call-modal-btn" href="tel:{{ store.tel_raw }}"
-       onclick="trackCallReserve()"
-       data-ga-event="call_reserve_click" data-ga-location="modal">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#090909" stroke-width="1.8">
-        <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Call {{ store.tel_display }}
+    <div class="reserve__alts">
+      <a href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_short | urlencode }}">
+        Ask a question · <em>{{ store.email }}</em>
+      </a>
+      <a href="{{ store.maps_link }}" target="_blank" rel="noopener">
+        Directions · <em>{{ store.station_en }}</em>
+      </a>
+      {% if store.instagram_url %}<a href="{{ store.instagram_url }}" target="_blank" rel="noopener" class="alt-instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        Instagram · <em>{{ store.instagram_handle }}</em>
+      </a>{% endif %}
+    </div>
+
+    <p class="reserve__status">
+      Open <em>{{ store.hours_short }}</em>, every day · Reservations welcome
+    </p>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============ STICKY ============ -->
+<div class="sticky-live" id="stickyLive">
+  <div class="sticky-live__inner">
+    <div class="sticky-live__item">
+      <span class="sticky-live__dot"></span>
+      <span><em id="sticky-viewing">7</em> viewing now</span>
+    </div>
+    <div class="sticky-live__sep"></div>
+    <div class="sticky-live__item">
+      <span class="sticky-live__check">✓</span>
+      <span><em id="sticky-reserved">14</em> reservations this week</span>
+    </div>
+    <a class="sticky-live__cta" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
+      Check Availability <span>→</span>
     </a>
+  </div>
+</div>
 
-    <p class="call-modal-note">* Tap the button above to start a call.</p>
+<!-- ============ DIALOG ============ -->
+<div class="engage-dialog" id="engageDialog" role="dialog" aria-modal="true" hidden>
+  <div class="engage-dialog__backdrop"></div>
+  <div class="engage-dialog__panel">
+    <button class="engage-dialog__close" aria-label="Close">✕</button>
+    <div class="engage-dialog__chip">An Invitation</div>
+    <h2 class="engage-dialog__title">Reserve <em>your seat.</em></h2>
+    <p class="engage-dialog__lede">
+      Thank you for visiting. We're a small, popular spot —
+      <em>reservations are recommended</em> to make sure we can welcome you.
+    </p>
+    <div class="engage-dialog__actions">
+      <a class="engage-dialog__btn primary" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
+        Reserve online <span>→</span>
+      </a>
+      <a class="engage-dialog__btn secondary" href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_short | urlencode }}">
+        Ask us a question
+      </a>
+    </div>
+    <div class="engage-dialog__foot">
+      Or call <a href="tel:+{{ store.tel_raw }}">{{ store.tel_display }}</a> · {{ store.hours_short }} every day
+    </div>
   </div>
 </div>
 
 <script>
-  var __callReserveTrigger = '';
-  function openCallReserveModal(triggerLocation) {
-    __callReserveTrigger = triggerLocation || '';
-    var m = document.getElementById('callReserveModal');
-    if (m) {
-      m.classList.add('open');
-      document.body.style.overflow = 'hidden';
+  // ナビのスクロール検出
+  (function(){
+    var nav = document.querySelector('.lp-nav');
+    if (!nav) return;
+    function onScroll(){
+      if (window.scrollY > 60) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
     }
-  }
-  function closeCallReserveModal() {
-    var m = document.getElementById('callReserveModal');
-    if (m) {
-      m.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  }
-  function trackCallReserve() {
-    if (typeof gtag === 'function') {
-      gtag('event', 'call_reserve_action', {
-        'event_category': 'conversion',
-        'event_label': __callReserveTrigger,
-        'store_name': '{{ store.slug }}',
-        'store_area': '{{ store.region }}',
-        'brand': '{{ stores.brand.brand_slug }}',
-        'channel': '{{ store.channel_id }}'
-      });
-    }
-  }
-  // Escapeキーで閉じる
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeCallReserveModal();
-  });
-</script>
-{% endif %}
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
 
-<script>
-  const observer = new IntersectionObserver((e) => {
-    e.forEach(el => { if (el.isIntersecting) el.target.classList.add('active'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // ヒーロースライドショー（画像4枚）
+  (function(){
+    var slideshow = document.getElementById('heroSlideshow');
+    if (!slideshow) return;
+    var slides = slideshow.querySelectorAll('.hero__slide');
+    if (slides.length < 2) return;
+    var current = 0;
+    // タイミング: 各画像 5.5秒
+    var INTERVAL = 5500;
+    function next(){
+      slides[current].classList.remove('is-active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-active');
+      setTimeout(next, INTERVAL);
+    }
+    setTimeout(next, INTERVAL);
+  })();
 
-  /* === GA4 custom event tracking === */
-  if (typeof gtag === 'function') {
-    document.addEventListener('click', function(e){
-      var el = e.target.closest('[data-ga-event]');
-      if (!el) return;
-      var evtName = el.getAttribute('data-ga-event');
-      var location = el.getAttribute('data-ga-location') || '';
-      gtag('event', evtName, {
-        'event_category': 'engagement',
-        'event_label': location,
-        'store_name': '{{ store.slug }}',
-        'store_area': '{{ store.region }}',
-        'brand': '{{ stores.brand.brand_slug }}',
-        'channel': '{{ store.channel_id }}'
-      });
-    }, true);
-  }
+  // Sticky live activity
+  (function(){
+    var v = document.getElementById('sticky-viewing');
+    var r = document.getElementById('sticky-reserved');
+    function setV(){
+      if (!v) return;
+      v.textContent = 5 + Math.floor(Math.random() * 5);
+    }
+    function setR(){
+      if (!r) return;
+      var stored = parseInt(sessionStorage.getItem('{{ store.slug }}-reserved'), 10);
+      if (!stored || isNaN(stored) || stored < 11 || stored > 17) {
+        stored = 11 + Math.floor(Math.random() * 7);
+        sessionStorage.setItem('{{ store.slug }}-reserved', stored);
+      }
+      if (Math.random() < 0.4 && stored < 17) {
+        stored += 1;
+        sessionStorage.setItem('{{ store.slug }}-reserved', stored);
+      }
+      r.textContent = stored;
+    }
+    setV();
+    setR();
+    setInterval(setV, 180000);
+    setInterval(setR, 9000000);
+  })();
+
+  // 20秒後の予約促進ダイアログ
+  (function(){
+    var KEY = '{{ store.slug }}-engaged-shown';
+    if (sessionStorage.getItem(KEY) === '1') return;
+    var dlg = document.getElementById('engageDialog');
+    if (!dlg) return;
+    var close = dlg.querySelector('.engage-dialog__close');
+    var backdrop = dlg.querySelector('.engage-dialog__backdrop');
+    function open(){
+      dlg.hidden = false;
+      requestAnimationFrame(function(){ dlg.classList.add('show'); });
+      sessionStorage.setItem(KEY, '1');
+    }
+    function shut(){
+      dlg.classList.remove('show');
+      setTimeout(function(){ dlg.hidden = true; }, 400);
+    }
+    setTimeout(open, 20000);
+    close && close.addEventListener('click', shut);
+    backdrop && backdrop.addEventListener('click', shut);
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape' && !dlg.hidden) shut();
+    });
+    dlg.querySelectorAll('.engage-dialog__btn').forEach(function(a){
+      a.addEventListener('click', shut);
+    });
+  })();
 </script>
 
 </body>
