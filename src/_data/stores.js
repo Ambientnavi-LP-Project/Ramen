@@ -215,7 +215,7 @@ STORES.forEach(store => {
   });
 });
 
-module.exports = {
+export default {
   brand: {
     domain: "japan-omakase.wagyu-sushi.com",
     ga4_id: "G-71QJSRH923",
