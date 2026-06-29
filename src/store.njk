@@ -690,9 +690,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="lp-nav__name-cn">{{ store.name_cn }}</span>
     </span>
   </a>
+  {% if store.tablecheck_url %}
   <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="lp-nav__cta">
     Reserve <span>→</span>
   </a>
+  {% else %}
+  <a href="tel:+{{ store.tel_raw }}" class="lp-nav__cta">
+    Call <span>→</span>
+  </a>
+  {% endif %}
 </nav>
 
 <main id="top">
@@ -742,6 +748,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </p>
 
         <div class="hero__cta-group">
+          {% if store.tablecheck_url %}
           <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="hero__cta-primary">
             <span class="corner tl"></span>
             <span class="corner tr"></span>
@@ -750,6 +757,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span>Reserve a seat</span>
             <span class="arrow">→</span>
           </a>
+          {% else %}
+          <a href="tel:+{{ store.tel_raw }}" class="hero__cta-primary">
+            <span class="corner tl"></span>
+            <span class="corner tr"></span>
+            <span class="corner bl"></span>
+            <span class="corner br"></span>
+            <span>Call to reserve</span>
+            <span class="arrow">→</span>
+          </a>
+          {% endif %}
           <a href="tel:+{{ store.tel_raw }}" class="hero__cta-tel">
             {{ store.tel_display }}
           </a>
@@ -1125,9 +1142,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
 
     <div class="reserve__cta-group">
+      {% if store.tablecheck_url %}
       <a class="reserve__cta-primary" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
         Reserve online <span class="arrow">→</span>
       </a>
+      {% else %}
+      <a class="reserve__cta-primary" href="tel:+{{ store.tel_raw }}">
+        Call to reserve <span class="arrow">→</span>
+      </a>
+      {% endif %}
       <a class="reserve__cta-secondary" href="tel:+{{ store.tel_raw }}">
         <span class="icon">☎</span>
         <span>
@@ -1175,9 +1198,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="sticky-live__check">✓</span>
       <span><em id="sticky-reserved">14</em> reservations this week</span>
     </div>
+    {% if store.tablecheck_url %}
     <a class="sticky-live__cta" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
       Check Availability <span>→</span>
     </a>
+    {% else %}
+    <a class="sticky-live__cta" href="tel:+{{ store.tel_raw }}">
+      Call us <span>→</span>
+    </a>
+    {% endif %}
   </div>
 </div>
 
@@ -1193,9 +1222,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <em>reservations are recommended</em> to make sure we can welcome you.
     </p>
     <div class="engage-dialog__actions">
+      {% if store.tablecheck_url %}
       <a class="engage-dialog__btn primary" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
         Reserve online <span>→</span>
       </a>
+      {% else %}
+      <a class="engage-dialog__btn primary" href="tel:+{{ store.tel_raw }}">
+        Call to reserve <span>→</span>
+      </a>
+      {% endif %}
       <a class="engage-dialog__btn secondary" href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_short | urlencode }}">
         Ask us a question
       </a>
