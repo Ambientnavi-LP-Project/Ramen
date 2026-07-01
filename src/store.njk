@@ -777,11 +777,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="hero__bottom">
       <div class="hero__trust">
+        {% if store.rating %}
         <div class="hero__trust-item">
           <span class="hero__trust-stars">★★★★★</span>
-          <span class="hero__trust-text"><em>{{ store.rating }}</em> · 1,000+ reviews</span>
+          <span class="hero__trust-text"><em>{{ store.rating }}</em>{% if store.rating_count %} · {{ store.rating_count }} reviews{% endif %}</span>
         </div>
         <div class="hero__trust-divider"></div>
+        {% endif %}
         <div class="hero__trust-item">
           <span class="hero__trust-text">Reservations recommended</span>
         </div>
@@ -1018,6 +1020,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ============ REVIEWS ============ -->
+{% if store.rating %}
 <section class="reviews-section">
 
   <div class="reviews__head reviews__head--center">
@@ -1026,7 +1029,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="rating-display">
-    <div class="rating-display__stars" aria-label="4.6 out of 5 stars">
+    <div class="rating-display__stars" aria-label="{{ store.rating }} out of 5 stars">
       <span class="star filled">★</span>
       <span class="star filled">★</span>
       <span class="star filled">★</span>
@@ -1034,7 +1037,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="star half">★</span>
     </div>
     <div class="rating-display__score">
-      <span class="num">4.6</span>
+      <span class="num">{{ store.rating }}</span>
       <span class="of">/ 5.0</span>
     </div>
     <div class="rating-display__count">
@@ -1054,6 +1057,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
 </section>
+{% endif %}
 
 <!-- ============ ACCESS ============ -->
 <section class="access-section">
@@ -1063,8 +1067,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="access__title">Steps from <em>{{ store.station_en }}.</em></h2>
   </div>
 
-  <div class="access__grid">
+  <div class="access__grid"{% if not store.maps_embed %} style="grid-template-columns:1fr;max-width:760px"{% endif %}>
 
+    {% if store.maps_embed %}
     <div class="access__map">
       <span class="label">{{ store.station_en }}</span>
       <iframe
@@ -1073,6 +1078,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         title="{{ store.station_en }} — {{ store.name_short }} map"></iframe>
       <a class="open-link" href="{{ store.maps_link }}" target="_blank" rel="noopener">↗ Directions</a>
     </div>
+    {% endif %}
 
     <div class="access__info">
       <div class="k">— Store</div>
@@ -1103,6 +1109,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <small>{{ store.station_jp }}</small>
           </span>
         </div>
+        {% if store.seats %}
         <div class="row">
           <span class="rk">Seats</span>
           <span class="rv">
@@ -1110,6 +1117,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <small>{{ store.seats_note }}</small>
           </span>
         </div>
+        {% endif %}
         <div class="row">
           <span class="rk">Facilities</span>
           <span class="rv">
@@ -1164,9 +1172,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_short | urlencode }}">
         Ask a question · <em>{{ store.email }}</em>
       </a>
-      <a href="{{ store.maps_link }}" target="_blank" rel="noopener">
+      {% if store.maps_link %}<a href="{{ store.maps_link }}" target="_blank" rel="noopener">
         Directions · <em>{{ store.station_en }}</em>
-      </a>
+      </a>{% endif %}
       {% if store.instagram_url %}<a href="{{ store.instagram_url }}" target="_blank" rel="noopener" class="alt-instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
