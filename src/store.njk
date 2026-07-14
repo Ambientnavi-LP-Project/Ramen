@@ -17,13 +17,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ store.name_meta }} {{ store.name_cn }}</title>
+<title>{{ store.name_meta }}</title>
 
 
 
 <meta name="description" content="{{ store.name_meta }} — looking for halal ramen or halal restaurants near me? Authentic Japanese Wagyu noodle, halal-friendly, near {{ store.station_en }}. The ramen near me locals and travelers come back for.">
 <meta name="keywords" content="halal ramen, halal restaurants, halal near me, ramen near me, noodle, wagyu ramen, halal kyoto, halal japan, wagyu beef halal, japanese food halal">
-<meta property="og:title" content="{{ store.name_meta }} · {{ store.name_cn }}">
+<meta property="og:title" content="{{ store.name_meta }}">
 <meta property="og:description" content="Authentic halal ramen — Japanese Wagyu noodle, the halal restaurant near {{ store.station_en }} travelers fly in for.">
 <meta property="og:type" content="restaurant">
 
@@ -56,10 +56,9 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .lp-nav__logo{text-decoration:none;display:flex;align-items:center;gap:14px;min-width:0;flex:1}
 .lp-nav__name{display:flex;flex-direction:column;gap:2px;min-width:0}
 .lp-nav__name-en{font-family:var(--display);font-size:13px;color:var(--paper);font-weight:600;line-height:1.22;letter-spacing:0.01em;white-space:normal;overflow:visible;text-shadow:0 2px 10px rgba(0,0,0,0.7)}
-.lp-nav__name-cn{font-family:var(--jp);font-size:10px;font-weight:500;color:rgba(245,237,224,0.72);letter-spacing:0.14em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 8px rgba(0,0,0,0.6)}
 .lp-nav__cta{padding:11px 24px;background:transparent;color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;border:1px solid rgba(212,175,110,0.7);transition:background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
 .lp-nav__cta:hover{background:var(--gold);color:var(--ink-deep);border-color:var(--gold);transform:translateY(-1px)}
-@media (max-width:600px){.lp-nav{padding:12px 14px;gap:10px}.lp-nav.scrolled{padding:10px 14px}.lp-nav__name{gap:1px}.lp-nav__name-en{font-size:11.5px;letter-spacing:0;line-height:1.2;font-style:normal;font-weight:600}.lp-nav__name-cn{font-size:10px;letter-spacing:0.06em}.lp-nav__cta{padding:8px 12px;font-size:9px;letter-spacing:0.2em}}
+@media (max-width:600px){.lp-nav{padding:12px 14px;gap:10px}.lp-nav.scrolled{padding:10px 14px}.lp-nav__name{gap:1px}.lp-nav__name-en{font-size:11.5px;letter-spacing:0;line-height:1.2;font-style:normal;font-weight:600}.lp-nav__cta{padding:8px 12px;font-size:9px;letter-spacing:0.2em}}
 
 /* =================================================================
    HERO — Full-screen slideshow background + 麺 overlay + bold text
@@ -174,7 +173,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   display:flex;flex-direction:column;
 }
 
-/* ヒーロー上の店名ライン（ナビと同じ2行構成） */
+/* ヒーロー上の店名ライン */
 .hero__eyebrow{
   display:flex;flex-direction:column;align-items:flex-start;gap:4px;
   margin-bottom:36px;
@@ -184,11 +183,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   font-size:14px;color:var(--paper);letter-spacing:0.01em;
   line-height:1.3;
   text-shadow:0 2px 10px rgba(0,0,0,0.7);
-}
-.hero__eyebrow-cn{
-  font-family:var(--jp);font-size:11px;font-weight:500;
-  color:var(--gold-pale);letter-spacing:0.2em;
-  text-shadow:0 2px 8px rgba(0,0,0,0.6);
 }
 
 /* タイトル — 店名フル（長文なので折り返し前提で画面内に収める） */
@@ -222,23 +216,16 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 
 /* ============================================================
  * 予約ボタン — 朱印(はんこ) × 暖簾(のれん) インスパイア
- * - くすんだ朱（神社の鳥居や漆器の色）
- * - 内外の二重金枠（判子の縁）
- * - 四隅の小さなL字マーカー（額装感）
- * - 上下の細い縦線（暖簾の布が垂れる風）
  * ============================================================ */
 .hero__cta-primary{
   position:relative;
   display:inline-flex;align-items:center;gap:14px;
   padding:18px 38px;
-  /* くすんだ朱：神社/漆器系の落ち着いた赤 */
   background:linear-gradient(180deg, #a64537 0%, #8e3025 100%);
   color:var(--gold-pale);text-decoration:none;
   font-family:var(--sans);font-size:11px;letter-spacing:0.34em;
   text-transform:uppercase;font-weight:700;
-  /* 外側の金枠 */
   border:1px solid rgba(212,175,110,0.85);
-  /* 内側の細い金枠（判子の二重縁） */
   box-shadow:
     inset 0 0 0 1px rgba(212,175,110,0.18),
     inset 0 0 0 5px rgba(154,53,32,0.0),
@@ -331,7 +318,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .hero__trust-text em{color:var(--gold-pale);font-style:italic;font-weight:600}
 .hero__trust-divider{width:1px;height:18px;background:rgba(245,237,224,0.22)}
 
-/* スクロールサイン */
 /* タブレット */
 @media (max-width:1100px){
   .hero__content{padding:120px 6vw 40px}
@@ -342,10 +328,9 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 
 /* モバイル */
 @media (max-width:680px){
-  /* スマホ: スライドショーは画面上部40%の「横長枠」、コンテンツはその下に流す */
   .hero{min-height:100vh;min-height:100svh}
   .hero__slideshow{
-    inset:auto;  /* PC時の inset:0 を打ち消す */
+    inset:auto;
     position:absolute;
     top:64px;left:0;right:0;
     bottom:auto;
@@ -363,9 +348,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   .hero__slideshow::after{
     box-shadow:none;
   }
-  /* 横長画像を縦の帯に置くとき、器を中心に・明るい手前を切る */
   .hero__slide img{object-position:64% 42%}
-  /* コンテンツをフェード部に少し重ねて始める（ナビ64px + 帯46vh − 重なり58px） */
   .hero__content{
     padding:calc(64px + 46vh - 58px) 22px 28px;
     gap:24px;
@@ -384,7 +367,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   }
   .hero__eyebrow{margin-bottom:24px;gap:3px}
   .hero__eyebrow-en{font-size:12.5px;line-height:1.35}
-  .hero__eyebrow-cn{font-size:10px;letter-spacing:0.18em}
   .hero__title{font-size:clamp(22px, 6vw, 31px);line-height:1.2;margin-bottom:22px}
   .hero__subtitle{font-size:17px;line-height:1.45;margin-bottom:30px}
   .hero__cta-group{flex-direction:column;align-items:stretch;gap:16px}
@@ -437,10 +419,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   font-family:var(--display);font-style:italic;font-weight:500;
   font-size:13.5px;color:var(--paper);letter-spacing:0.01em;
   line-height:1.35;
-}
-.bowl__brand-cn{
-  font-family:var(--jp);font-size:10.5px;font-weight:500;
-  color:var(--gold-pale);letter-spacing:0.22em;
 }
 @media (max-width:1024px){.bowl__hero{grid-template-columns:1fr;gap:40px}.bowl__photo{aspect-ratio:4/3;max-width:600px;margin:0 auto;width:100%}}
 @media (max-width:600px){.bowl-section{padding:80px 22px 90px}.bowl__hero{margin-bottom:60px}}
@@ -591,10 +569,9 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .access__map .open-link:hover{color:var(--gold);border-color:var(--gold)}
 .access__info{background:rgba(31,24,20,.5);border:1px solid rgba(201,163,90,.2);padding:36px 30px}
 .access__info .k{font-family:var(--sans);font-size:9.5px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
-.access__info h3{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--paper);margin-bottom:4px;line-height:1.2}
+.access__info h3{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--paper);margin-bottom:4px;line-height:1.25;overflow-wrap:anywhere}
 .access__info h3 em{font-style:italic;color:var(--gold)}
-.access__info .head-jp{font-family:var(--jp);font-size:13px;color:var(--paper-dim);letter-spacing:.16em;margin-bottom:6px}
-.access__info .head-cn{display:block;font-family:var(--jp);font-size:11.5px;color:var(--paper-mute);letter-spacing:.08em;margin-bottom:24px}
+.access__info .head-jp{font-family:var(--jp);font-size:13px;color:var(--paper-dim);letter-spacing:.16em;margin-bottom:24px}
 .access__info .rows{padding-top:18px;border-top:1px solid rgba(201,163,90,.2);display:flex;flex-direction:column}
 .access__info .row{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(201,163,90,.12)}
 .access__info .row:last-child{border-bottom:0}
@@ -692,7 +669,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#top" class="lp-nav__logo">
     <span class="lp-nav__name">
       <span class="lp-nav__name-en">{{ store.name_full_en }}</span>
-      <span class="lp-nav__name-cn">{{ store.name_cn }}</span>
     </span>
   </a>
   {% if store.tablecheck_url %}
@@ -714,7 +690,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ヒーロー背景（単一画像） -->
   <div class="hero__slideshow" id="heroSlideshow">
     <div class="hero__slide is-active">
-      <img src="/ramen-image/hero.jpg" alt="{{ store.name_short }} — signature halal wagyu ramen" fetchpriority="high">
+      <img src="/ramen-image/hero.jpg" alt="{{ store.name_full_en }} — signature halal wagyu ramen" fetchpriority="high">
     </div>
   </div>
 
@@ -819,7 +795,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="bowl__brand">
         <span class="bowl__brand-en">{{ store.name_full_en }}</span>
-        <span class="bowl__brand-cn">{{ store.name_cn }}</span>
       </div>
     </div>
   </div>
@@ -1058,7 +1033,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <iframe
         src="{{ store.maps_embed }}"
         loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        title="{{ store.station_en }} — {{ store.name_short }} map"></iframe>
+        title="{{ store.station_en }} — {{ store.name_full_en }} map"></iframe>
       <a class="open-link" href="{{ store.maps_link }}" target="_blank" rel="noopener">↗ Directions</a>
     </div>
     {% endif %}
@@ -1067,7 +1042,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="k">— Store</div>
       <h3><em>{{ store.name_full_en }}</em></h3>
       <div class="head-jp">Ramen noodle (Japanese Food)</div>
-      <span class="head-cn">{{ store.name_cn }}</span>
 
       <div class="rows">
         <div class="row">
@@ -1152,7 +1126,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="reserve__alts">
-      <a href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_short | urlencode }}">
+      <a href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_full_en | urlencode }}">
         Ask a question · <em>{{ store.email }}</em>
       </a>
       {% if store.maps_link %}<a href="{{ store.maps_link }}" target="_blank" rel="noopener">
