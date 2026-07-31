@@ -15,648 +15,99 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5DGT9H6L');</script>
 <!-- End Google Tag Manager -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ store.name_meta }}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{{ store.name }} — 100% Japanese Wagyu, Halal. 5th-generation butcher since 1962. Halal burger &amp; steak near {{ store.station_en }}.{% if store.morning %} Halal breakfast &amp; brunch served from {{ store.morning_hours }} — wagyu egg burgers in the morning.{% endif %}" />
+  <title>{{ store.name }}{% if store.morning %} | Halal Breakfast &amp; Brunch{% endif %}</title>
 
 
 
-<meta name="description" content="{{ store.name_meta }} — looking for halal ramen or halal restaurants near me? Authentic Japanese Wagyu noodle, halal-friendly, near {{ store.station_en }}. The ramen near me locals and travelers come back for.">
-<meta name="keywords" content="halal ramen, halal restaurants, halal near me, ramen near me, noodle, wagyu ramen, halal kyoto, halal japan, wagyu beef halal, japanese food halal">
-<meta property="og:title" content="{{ store.name_meta }}">
-<meta property="og:description" content="Authentic halal ramen — Japanese Wagyu noodle, the halal restaurant near {{ store.station_en }} travelers fly in for.">
-<meta property="og:type" content="restaurant">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --ink-deep:#0e0a07;--ink:#1f1812;--ink-2:#2a2018;--ink-3:#16110d;--ink-warm:#1a130e;--ink-card:#1c1611;
-  --paper:#f5ede0;--paper-dim:#c8b89e;--paper-mute:#90836f;--paper-faint:rgba(245,237,224,0.55);
-  --gold:#d4af6e;--gold-bright:#e6c280;--gold-pale:#efd9a5;--gold-dim:#8a6f3a;--gold-deep:#a68445;
-  --vermilion:#c4452b;--vermilion-deep:#9a3520;--vermilion-soft:#d76548;
-  --sumi:#1a120a;--pulse-green:#9eb87f;
-  /* 可読性重視のシンプル構成：欧文 Inter / 和文 Noto Sans JP / アラビア文字 Amiri */
-  --display:'Inter',system-ui,-apple-system,sans-serif;
-  --serif:'Inter',system-ui,-apple-system,sans-serif;
-  --jp:'Noto Sans JP','Inter',system-ui,sans-serif;
-  --brush:'Noto Sans JP','Inter',system-ui,sans-serif;
-  --ar:'Amiri',serif;--sans:'Inter',system-ui,-apple-system,sans-serif;--hand:'Inter',system-ui,sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{background:var(--ink-deep);color:var(--paper);font-family:var(--serif);overflow-x:hidden;font-weight:400;line-height:1.55}
-body{padding-bottom:64px}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");opacity:0.14;mix-blend-mode:overlay}
-
-/* NAV */
-.lp-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;background:linear-gradient(180deg, rgba(10,8,7,0.65) 0%, rgba(10,8,7,0.3) 60%, transparent 100%);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background 0.4s, padding 0.4s}
-.lp-nav.scrolled{background:rgba(10,8,7,0.92);padding:12px 32px;border-bottom:1px solid rgba(201,163,90,0.12)}
-.lp-nav__logo{text-decoration:none;display:flex;align-items:center;gap:14px;min-width:0;flex:1}
-.lp-nav__name{display:flex;flex-direction:column;gap:2px;min-width:0}
-.lp-nav__name-en{font-family:var(--display);font-size:13px;color:var(--paper);font-weight:600;line-height:1.22;letter-spacing:0.01em;white-space:normal;overflow:visible;text-shadow:0 2px 10px rgba(0,0,0,0.7)}
-.lp-nav__cta{padding:11px 24px;background:transparent;color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;border:1px solid rgba(212,175,110,0.7);transition:background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
-.lp-nav__cta:hover{background:var(--gold);color:var(--ink-deep);border-color:var(--gold);transform:translateY(-1px)}
-@media (max-width:600px){.lp-nav{padding:12px 14px;gap:10px}.lp-nav.scrolled{padding:10px 14px}.lp-nav__name{gap:1px}.lp-nav__name-en{font-size:11.5px;letter-spacing:0;line-height:1.2;font-style:normal;font-weight:600}.lp-nav__cta{padding:8px 12px;font-size:9px;letter-spacing:0.2em}}
-
-/* =================================================================
-   HERO — Full-screen slideshow background + 麺 overlay + bold text
-================================================================= */
-.hero{
-  position:relative;min-height:100vh;min-height:100svh;
-  background:#0a0805;
-  overflow:hidden;
-}
-
-/* スライドショー全体のラッパー（画面いっぱい） */
-.hero__slideshow{
-  position:absolute;inset:0;z-index:0;
-  background:#000;
-}
-
-/* 各スライド */
-.hero__slide{
-  position:absolute;inset:0;
-  opacity:0;
-  transition:opacity 1.6s ease-in-out;
-}
-.hero__slide.is-active{opacity:1}
-
-/* 動画スライド */
-.hero__slide video{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center center;
-  filter:saturate(1.05) contrast(1.02);
-}
-
-/* 画像スライド（Ken Burns 風ゆっくりズーム） */
-.hero__slide img{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center center;
-  filter:saturate(1.05) contrast(1.02);
-  transform:scale(1.0);
-  transition:transform 7s ease-out;
-}
-.hero__slide.is-active img{
-  transform:scale(1.08);
-}
-@media (prefers-reduced-motion:reduce){
-  .hero__slide img{transition:none}
-  .hero__slide.is-active img{transform:none}
-}
-
-/* スライドショー上の暗化グラデーション（最小限、左の文字側だけ暗く） */
-.hero__slideshow::before{
-  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:
-    linear-gradient(90deg,
-      rgba(8,7,5,0.86) 0%,
-      rgba(8,7,5,0.55) 28%,
-      rgba(8,7,5,0.12) 52%,
-      transparent 72%),
-    linear-gradient(180deg,
-      rgba(8,7,5,0.4) 0%,
-      transparent 24%,
-      transparent 58%,
-      rgba(8,7,5,0.92) 100%);
-}
-/* 端のヴィネット */
-.hero__slideshow::after{
-  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  box-shadow:inset 0 0 200px rgba(10,8,5,0.65);
-}
-
-/* 巨大な「麺」— 確実に金色で見える書道感。文字エリアと被らない位置に */
-.hero__mei{
-  position:absolute;
-  font-family:var(--brush);
-  font-weight:400;
-  color:var(--gold-bright);
-  opacity:0.32;
-  pointer-events:none;
-  user-select:none;
-  z-index:3;
-  line-height:0.9;
-  letter-spacing:-0.05em;
-  /* 動画の暗い部分でも輪郭が見えるよう、軽い金色のグローを足す */
-  text-shadow:
-    0 0 60px rgba(230,194,128,0.35),
-    0 4px 20px rgba(0,0,0,0.4);
-}
-/* PC: 画面右下にどんと配置。動画と一緒の側、文字とは被らない */
-.hero__mei--pc{
-  display:block;
-  font-size:min(70vh, 46vw);
-  bottom:2vh;right:-2vw;
-  transform:rotate(-4deg);
-}
-.hero__mei--mobile{display:none}
-
-/* コンテンツ */
-.hero__content{
-  position:relative;z-index:5;
-  min-height:100vh;min-height:100svh;
-  max-width:1600px;margin:0 auto;
-  padding:130px 60px 50px;
-  display:grid;grid-template-rows:1fr auto;
-}
-
-.hero__center{
-  display:flex;align-items:flex-end;
-  min-height:55vh;
-  padding-top:38vh;
-  padding-bottom:4vh;
-}
-.hero__copy{
-  max-width:780px;
-  display:flex;flex-direction:column;
-}
-
-/* ヒーロー上の店名ライン */
-.hero__eyebrow{
-  display:flex;flex-direction:column;align-items:flex-start;gap:4px;
-  margin-bottom:36px;
-}
-.hero__eyebrow-en{
-  font-family:var(--display);font-style:italic;font-weight:500;
-  font-size:14px;color:var(--paper);letter-spacing:0.01em;
-  line-height:1.3;
-  text-shadow:0 2px 10px rgba(0,0,0,0.7);
-}
-
-/* タイトル — 店名フル（長文なので折り返し前提で画面内に収める） */
-.hero__title{
-  font-family:var(--display);
-  font-weight:700;
-  font-size:clamp(26px, 3.4vw, 46px);
-  line-height:1.16;letter-spacing:-0.01em;
-  color:var(--paper);margin-bottom:28px;
-  max-width:min(720px, 100%);
-  text-wrap:balance;overflow-wrap:anywhere;
-  text-shadow:
-    0 4px 30px rgba(0,0,0,0.75),
-    0 2px 12px rgba(0,0,0,0.65);
-}
-
-/* サブタイトル — display 体で italic */
-.hero__subtitle{
-  font-family:var(--display);
-  font-style:italic;
-  font-weight:400;
-  font-size:clamp(20px, 1.9vw, 28px);line-height:1.45;
-  color:var(--paper);max-width:560px;
-  margin-bottom:48px;letter-spacing:0.005em;
-  text-shadow:0 2px 18px rgba(0,0,0,0.75);
-}
-
-.hero__cta-group{
-  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
-}
-
-/* ============================================================
- * 予約ボタン — 朱印(はんこ) × 暖簾(のれん) インスパイア
- * ============================================================ */
-.hero__cta-primary{
-  position:relative;
-  display:inline-flex;align-items:center;gap:14px;
-  padding:18px 38px;
-  background:linear-gradient(180deg, #a64537 0%, #8e3025 100%);
-  color:var(--gold-pale);text-decoration:none;
-  font-family:var(--sans);font-size:11px;letter-spacing:0.34em;
-  text-transform:uppercase;font-weight:700;
-  border:1px solid rgba(212,175,110,0.85);
-  box-shadow:
-    inset 0 0 0 1px rgba(212,175,110,0.18),
-    inset 0 0 0 5px rgba(154,53,32,0.0),
-    inset 0 0 0 6px rgba(212,175,110,0.32),
-    0 8px 24px rgba(154,53,32,0.35),
-    0 2px 8px rgba(0,0,0,0.4);
-  transition:transform 0.35s, box-shadow 0.35s, filter 0.3s;
-}
-/* 暖簾の縦線：左右に細く2本ずつ垂らす */
-.hero__cta-primary::before,
-.hero__cta-primary::after{
-  content:"";position:absolute;
-  top:-6px;bottom:-6px;width:1px;
-  background:linear-gradient(180deg,
-    transparent 0%,
-    rgba(212,175,110,0.5) 15%,
-    rgba(212,175,110,0.7) 50%,
-    rgba(212,175,110,0.5) 85%,
-    transparent 100%);
-  pointer-events:none;
-}
-.hero__cta-primary::before{left:-1px}
-.hero__cta-primary::after{right:-1px}
-
-/* 四隅のL字マーカー（判子の角飾り） */
-.hero__cta-primary > .corner{
-  position:absolute;width:7px;height:7px;
-  border:1px solid var(--gold);
-  pointer-events:none;
-}
-.hero__cta-primary > .corner.tl{top:3px;left:3px;border-right:0;border-bottom:0}
-.hero__cta-primary > .corner.tr{top:3px;right:3px;border-left:0;border-bottom:0}
-.hero__cta-primary > .corner.bl{bottom:3px;left:3px;border-right:0;border-top:0}
-.hero__cta-primary > .corner.br{bottom:3px;right:3px;border-left:0;border-top:0}
-
-.hero__cta-primary .arrow{
-  font-family:serif;font-size:16px;line-height:1;
-  color:var(--gold);opacity:0.9;
-  transition:transform 0.3s;
-}
-.hero__cta-primary:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.08);
-  box-shadow:
-    inset 0 0 0 1px rgba(212,175,110,0.3),
-    inset 0 0 0 6px rgba(212,175,110,0.45),
-    0 12px 32px rgba(154,53,32,0.5),
-    0 3px 10px rgba(0,0,0,0.45);
-}
-.hero__cta-primary:hover .arrow{transform:translateX(4px)}
-
-/* 電話番号 — 控えめな金色italic、ボタンに視線を譲る */
-.hero__cta-tel{
-  font-family:var(--display);font-style:italic;font-weight:500;
-  font-size:16px;color:var(--gold-pale);text-decoration:none;
-  letter-spacing:0.01em;position:relative;padding:6px 0;
-  transition:color 0.3s;
-  text-shadow:0 2px 10px rgba(0,0,0,0.7);
-  opacity:0.92;
-}
-.hero__cta-tel::before{
-  content:"☎";display:inline-block;margin-right:8px;
-  font-style:normal;font-size:13px;opacity:0.7;vertical-align:1px;
-}
-.hero__cta-tel::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
-  background:rgba(212,175,110,0.3);transition:background 0.3s;
-}
-.hero__cta-tel:hover{color:var(--gold);opacity:1}
-.hero__cta-tel:hover::after{background:var(--gold)}
-
-/* 下: トラスト + スクロールサイン */
-.hero__bottom{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:36px;flex-wrap:wrap;
-  padding-top:36px;
-  border-top:1px solid rgba(245,237,224,0.16);
-}
-.hero__trust{
-  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
-  font-family:var(--sans);
-}
-.hero__trust-item{display:inline-flex;align-items:center;gap:14px}
-.hero__trust-stars{font-family:var(--display);font-size:16px;color:var(--gold);letter-spacing:0.06em;line-height:1;text-shadow:0 0 12px rgba(212,175,110,0.4)}
-.hero__trust-text{
-  font-family:var(--display);font-style:italic;font-weight:500;font-size:16px;color:var(--paper);
-  letter-spacing:0.01em;
-  text-shadow:0 2px 10px rgba(0,0,0,0.6);
-}
-.hero__trust-text em{color:var(--gold-pale);font-style:italic;font-weight:600}
-.hero__trust-divider{width:1px;height:18px;background:rgba(245,237,224,0.22)}
-
-/* タブレット */
-@media (max-width:1100px){
-  .hero__content{padding:120px 6vw 40px}
-  .hero__title{font-size:clamp(24px, 4.2vw, 40px)}
-  .hero__mei--pc{font-size:min(60vh, 70vw);bottom:2vh;right:-6vw}
-  .hero__bottom{flex-direction:column;align-items:flex-start;gap:20px}
-}
-
-/* モバイル */
-@media (max-width:680px){
-  .hero{min-height:100vh;min-height:100svh}
-  .hero__slideshow{
-    inset:auto;
-    position:absolute;
-    top:64px;left:0;right:0;
-    bottom:auto;
-    height:46vh;
-  }
-  .hero__slideshow::before{
-    background:
-      linear-gradient(180deg,
-        rgba(10,8,5,0.50) 0%,
-        rgba(10,8,5,0.06) 22%,
-        rgba(10,8,5,0.06) 44%,
-        rgba(10,8,5,0.70) 78%,
-        rgba(10,8,5,0.99) 100%);
-  }
-  .hero__slideshow::after{
-    box-shadow:none;
-  }
-  .hero__slide img{object-position:64% 42%}
-  .hero__content{
-    padding:calc(64px + 46vh - 58px) 22px 28px;
-    gap:24px;
-    grid-template-rows:auto auto;
-  }
-  .hero__center{min-height:auto;padding:0;align-items:flex-start}
-  .hero__mei--pc{display:none}
-  .hero__mei--mobile{
-    display:block;
-    font-size:min(50vh, 70vw);
-    top:calc(60px + 40vh + 30px);right:-14vw;
-    color:var(--gold-bright);opacity:0.18;
-    transform:rotate(-3deg);
-    text-shadow:0 0 40px rgba(230,194,128,0.3), 0 4px 16px rgba(0,0,0,0.4);
-    z-index:1;
-  }
-  .hero__eyebrow{margin-bottom:24px;gap:3px}
-  .hero__eyebrow-en{font-size:12.5px;line-height:1.35}
-  .hero__title{font-size:clamp(22px, 6vw, 31px);line-height:1.2;margin-bottom:22px}
-  .hero__subtitle{font-size:17px;line-height:1.45;margin-bottom:30px}
-  .hero__cta-group{flex-direction:column;align-items:stretch;gap:16px}
-  .hero__cta-primary{justify-content:center;padding:16px 28px}
-  .hero__cta-tel{text-align:center;font-size:15px;align-self:center;padding-top:4px}
-  .hero__bottom{padding-top:24px;gap:14px}
-  .hero__trust{gap:14px;flex-direction:column;align-items:flex-start}
-  .hero__trust-divider{display:none}
-  .hero__trust-text{font-size:14px}
-}
-
-/* BOWL */
-.bowl-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 20% 0%, rgba(138,90,43,0.08), transparent 55%),radial-gradient(ellipse at 80% 100%, rgba(201,163,90,0.06), transparent 50%),var(--ink-deep);overflow:hidden}
-.bowl-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(180deg,var(--gold-deep) 0%,transparent 100%);z-index:2}
-.bowl__head{max-width:1280px;margin:0 auto 70px;text-align:center}
-.bowl__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:inline-flex;align-items:center;gap:14px}
-.bowl__chapter::before,.bowl__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
-.bowl__title{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6vw,88px);line-height:1.02;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
-.bowl__title em{font-style:italic;color:var(--gold)}
-.bowl__intro{font-family:var(--serif);font-size:18px;line-height:1.7;color:rgba(243,236,225,0.78);max-width:720px;margin:0 auto}
-.bowl__intro em{font-style:italic;color:var(--gold);font-weight:500}
-.bowl__hero{max-width:1280px;margin:0 auto 80px;display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
-.bowl__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.55)}
-.bowl__photo img{width:100%;height:100%;object-fit:cover;display:block}
-.bowl__photo .bowl__video{width:100%;height:100%;object-fit:cover;display:block}
-.bowl__photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 80px rgba(10,8,7,0.5)}
-.bowl__photo .corner{position:absolute;width:50px;height:50px;border:1px solid var(--gold);pointer-events:none}
-.bowl__photo .corner.tl{top:14px;left:14px;border-right:0;border-bottom:0}
-.bowl__photo .corner.tr{top:14px;right:14px;border-left:0;border-bottom:0}
-.bowl__photo .corner.bl{bottom:14px;left:14px;border-right:0;border-top:0}
-.bowl__photo .corner.br{bottom:14px;right:14px;border-left:0;border-top:0}
-.bowl__photo .label{position:absolute;top:24px;left:24px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(10,8,7,0.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(201,163,90,0.45);color:var(--gold);padding:8px 16px;font-family:var(--sans);font-size:9.5px;letter-spacing:0.36em;text-transform:uppercase;font-weight:600}
-.bowl__photo .label::before{content:"";display:inline-block;width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0}
-.bowl__details h3{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,54px);line-height:1.05;letter-spacing:-0.02em;color:var(--paper);margin-bottom:8px}
-.bowl__details h3 em{font-style:italic;color:var(--gold)}
-.bowl__details .name-jp{font-family:var(--jp);font-size:16px;color:var(--paper-dim);letter-spacing:0.22em;margin-bottom:28px}
-.bowl__details p.desc{font-family:var(--serif);font-size:17px;line-height:1.75;color:rgba(243,236,225,0.85);margin-bottom:24px}
-.bowl__details p.desc em{font-style:italic;color:var(--gold);font-weight:500}
-.bowl__cta{display:inline-flex;align-items:center;gap:14px;padding:18px 32px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:background 0.3s, transform 0.2s;cursor:pointer}
-.bowl__cta:hover{background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);transform:translateY(-2px)}
-/* ロゴ的な店名ブロック（軽い装飾枠つき） */
-.bowl__brand{
-  margin-top:36px;padding:18px 0;
-  border-top:1px solid rgba(212,175,110,0.25);
-  border-bottom:1px solid rgba(212,175,110,0.25);
-  display:flex;flex-direction:column;gap:5px;
-  max-width:480px;
-}
-.bowl__brand-en{
-  font-family:var(--display);font-style:italic;font-weight:500;
-  font-size:13.5px;color:var(--paper);letter-spacing:0.01em;
-  line-height:1.35;
-}
-@media (max-width:1024px){.bowl__hero{grid-template-columns:1fr;gap:40px}.bowl__photo{aspect-ratio:4/3;max-width:600px;margin:0 auto;width:100%}}
-@media (max-width:600px){.bowl-section{padding:80px 22px 90px}.bowl__hero{margin-bottom:60px}}
-
-/* FLAVORS */
-.flavors-section{position:relative;padding:130px 60px 140px;background:linear-gradient(180deg, var(--ink-deep) 0%, #14100c 100%)}
-.flavors__head{max-width:1280px;margin:0 auto 70px;text-align:center}
-.flavors__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:inline-flex;align-items:center;gap:14px}
-.flavors__chapter::before,.flavors__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
-.flavors__title{font-family:var(--serif);font-weight:400;font-size:clamp(46px,5.4vw,78px);line-height:1.02;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
-.flavors__title em{font-style:italic;color:var(--gold)}
-.flavors__hero{max-width:1280px;margin:0 auto 80px;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
-.flavors__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.55)}
-.flavors__photo img{width:100%;height:100%;object-fit:cover;display:block}
-.flavors__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 50%, rgba(10,8,7,0.55) 100%)}
-.flavors__photo-label{position:absolute;bottom:24px;left:24px;right:24px;z-index:2;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
-.flavors__photo-label .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(10,8,7,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,163,90,0.45);color:var(--gold);padding:8px 16px;font-family:var(--sans);font-size:9.5px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600}
-.flavors__photo-label .badge::before{content:"";display:inline-block;width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0}
-.flavors__photo-label .meta{font-family:var(--jp);font-size:13px;color:var(--paper);letter-spacing:0.2em;background:rgba(10,8,7,0.55);backdrop-filter:blur(4px);padding:5px 12px;border-left:1px solid rgba(201,163,90,0.3)}
-.flavors__text{display:flex;flex-direction:column;gap:6px}
-.flavor-row{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:22px 0;border-bottom:1px solid rgba(201,163,90,0.18);transition:border-color 0.3s}
-.flavor-row:last-child{border-bottom:0}
-.flavor-row:hover{border-color:rgba(201,163,90,0.4)}
-.flavor-row__num{font-family:var(--serif);font-style:italic;font-weight:400;font-size:38px;color:var(--gold);line-height:1;opacity:0.55;align-self:flex-start}
-.flavor-row__name{font-family:var(--serif);font-weight:400;font-size:28px;color:var(--paper);line-height:1.1;margin-bottom:3px}
-.flavor-row__name em{font-style:italic;color:var(--gold)}
-.flavor-row__desc{font-family:var(--serif);font-size:15.5px;line-height:1.6;color:var(--paper-dim)}
-.combo{max-width:1280px;margin:60px auto 0;padding:30px;background:linear-gradient(135deg, rgba(201,163,90,0.10), rgba(138,90,43,0.05));border:1px solid rgba(201,163,90,0.28)}
-.combo__inner{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:center}
-.combo__photo{position:relative;aspect-ratio:4/3;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.45)}
-.combo__photo img{width:100%;height:100%;object-fit:cover;display:block}
-.combo__badge{position:absolute;top:18px;left:18px;display:inline-flex;align-items:center;gap:8px;background:rgba(10,8,7,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,163,90,0.5);color:var(--gold);padding:8px 16px;font-family:var(--sans);font-size:9.5px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600}
-.combo__badge::before{content:"";display:inline-block;width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0;box-shadow:0 0 6px rgba(201,163,90,0.7)}
-.combo__chapter{font-family:var(--sans);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.combo__title{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,50px);line-height:1.05;letter-spacing:-0.02em;color:var(--paper);margin-bottom:8px}
-.combo__title em{font-style:italic;color:var(--gold)}
-.combo__desc{font-family:var(--serif);font-size:17px;line-height:1.7;color:var(--paper-dim);margin-bottom:18px}
-.combo__desc em{font-style:italic;color:var(--gold);font-weight:500}
-.combo__tag{font-family:var(--sans);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--paper-mute);padding-top:16px;border-top:1px solid rgba(201,163,90,0.2)}
-@media (max-width:1024px){.flavors__hero{grid-template-columns:1fr;gap:40px}.flavors__photo{max-width:600px;margin:0 auto;width:100%;aspect-ratio:4/3}.combo__inner{grid-template-columns:1fr;gap:30px}}
-@media (max-width:600px){.flavors-section{padding:80px 22px 90px}.combo{padding:20px}.flavor-row__num{font-size:30px}.flavor-row__name{font-size:24px}}
-
-/* TORCH */
-.torch-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 80% 20%, rgba(255,140,40,0.10), transparent 50%),radial-gradient(ellipse at 20% 80%, rgba(138,90,43,0.08), transparent 55%),var(--ink-deep)}
-.torch__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center}
-.torch__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
-.torch__chapter::before{content:"";width:36px;height:1px;background:var(--gold)}
-.torch__title{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5vw,72px);line-height:1.02;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
-.torch__title em{font-style:italic;color:var(--gold)}
-.torch__desc{font-family:var(--serif);font-size:17px;line-height:1.7;color:rgba(243,236,225,0.82);margin-bottom:18px}
-.torch__desc em{font-style:italic;color:var(--gold);font-weight:500}
-.torch__cta{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:background 0.3s, transform 0.2s;margin-top:14px}
-.torch__cta:hover{background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);transform:translateY(-2px)}
-.torch__video-wrap{display:flex;justify-content:center}
-.torch__video-frame{position:relative;width:340px;max-width:100%;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid rgba(201,163,90,0.3);box-shadow:0 0 60px rgba(201,163,90,0.15), 0 30px 80px rgba(0,0,0,0.5);background:#000}
-.torch__video{width:100%;height:100%;object-fit:cover;display:block}
-.torch__video-label{position:absolute;left:0;right:0;bottom:0;padding:30px 22px 22px;background:linear-gradient(to top, rgba(10,8,7,0.88) 0%, rgba(10,8,7,0.45) 60%, transparent 100%);pointer-events:none}
-.torch__video-tag{display:inline-block;font-family:var(--sans);font-size:9.5px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:var(--gold);margin-bottom:6px}
-.torch__video-label p{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--paper);line-height:1.3}
-@media (max-width:1024px){.torch__inner{grid-template-columns:1fr;gap:40px;justify-items:center}.torch__video-wrap{width:100%}}
-@media (max-width:600px){.torch-section{padding:80px 22px 90px}.torch__video-frame{width:280px}}
-
-/* STORY */
-.story-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 20% 0%, rgba(138,90,43,0.07), transparent 55%),var(--ink-deep)}
-.story-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(180deg,var(--gold) 0%,transparent 100%)}
-.story__inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
-.story__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.5)}
-.story__photo img{width:100%;height:100%;object-fit:cover;display:block}
-.story__photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 80px rgba(10,8,7,0.5)}
-.story__photo .tag{position:absolute;top:24px;left:24px;z-index:2;font-family:var(--sans);font-size:9.5px;letter-spacing:0.28em;color:var(--paper);text-transform:uppercase;font-weight:600;background:rgba(10,8,7,0.75);backdrop-filter:blur(6px);border:1px solid rgba(201,163,90,0.4);padding:7px 14px}
-.story__chip{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:rgba(212,175,110,0.1);color:var(--gold-pale);border:1px solid var(--gold);font-family:var(--sans);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;margin-bottom:22px}
-.story__title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1.04;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
-.story__title em{font-style:italic;color:var(--gold)}
-.story__body p{font-family:var(--serif);font-size:16.5px;line-height:1.75;color:rgba(243,236,225,0.78);margin-bottom:22px}
-.story__body p em{font-style:italic;color:var(--gold);font-weight:500}
-.story__quote{margin-top:28px;padding:24px 0 0;border-top:1px solid rgba(201,163,90,0.22);font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold);line-height:1.35}
-.story__quote small{display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:0.32em;color:var(--paper-mute);text-transform:uppercase;margin-top:12px}
-@media (max-width:1024px){.story__inner{grid-template-columns:1fr;gap:50px}.story__photo{max-width:520px;margin:0 auto;width:100%}}
-@media (max-width:600px){.story-section{padding:80px 22px 90px}}
-
-/* TRUST */
-.trust-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 80% 0%, rgba(201,163,90,0.06), transparent 55%),var(--ink-deep)}
-.trust__inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
-.trust__copy .chip{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:rgba(212,175,110,0.1);color:var(--gold-pale);border:1px solid var(--gold);font-family:var(--sans);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;margin-bottom:22px}
-.trust__copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.6vw,60px);line-height:1.04;letter-spacing:-0.02em;color:var(--paper);margin-bottom:24px}
-.trust__copy h2 em{font-style:italic;color:var(--gold)}
-.trust__lede{font-family:var(--serif);font-size:18px;line-height:1.7;color:var(--paper-dim);max-width:520px;font-weight:500}
-.trust__lede em{font-style:italic;color:var(--gold-pale);font-weight:600}
-.trust__panel{position:relative;aspect-ratio:4/5;background:radial-gradient(ellipse at 30% 25%, rgba(201,163,90,0.10), transparent 60%),radial-gradient(ellipse at 75% 75%, rgba(138,90,43,0.07), transparent 65%),linear-gradient(135deg, var(--ink), var(--ink-deep));border:1px solid rgba(201,163,90,0.25);padding:50px 40px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px rgba(0,0,0,0.4)}
-.trust__panel .top{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--sans);font-size:10px;letter-spacing:0.32em;color:var(--gold);text-transform:uppercase;font-weight:500}
-.trust__panel .ar{font-family:var(--ar);font-size:15px;color:var(--paper-dim);direction:rtl;letter-spacing:0;text-transform:none}
-.trust__panel .seal{align-self:center;text-align:center;margin:auto 0}
-.trust__panel .ring{width:180px;height:180px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto 22px;background:radial-gradient(circle at 50% 50%, rgba(201,163,90,0.08), transparent 70%)}
-.trust__panel .ring::before,.trust__panel .ring::after{content:"";position:absolute;inset:8px;border-radius:50%;border:1px solid rgba(201,163,90,0.4)}
-.trust__panel .ring::after{inset:14px;border-style:dashed;opacity:0.5}
-.trust__panel .ring .ar-big{font-family:var(--ar);font-size:64px;color:var(--gold);font-weight:700;line-height:1;direction:rtl}
-.trust__panel .label-en{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--paper);margin-bottom:4px}
-.trust__panel .label-en em{font-style:italic;color:var(--gold)}
-.trust__panel .bottom{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:22px;border-top:1px solid rgba(201,163,90,0.22)}
-.trust__panel .bottom .k{display:block;font-family:var(--sans);font-size:9px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:3px}
-.trust__panel .bottom .v{font-family:var(--serif);font-style:italic;color:var(--paper);font-size:13px}
-@media (max-width:1024px){.trust__inner{grid-template-columns:1fr;gap:50px}.trust__panel{max-width:520px;margin:0 auto;width:100%}}
-@media (max-width:600px){.trust-section{padding:80px 22px 90px}.trust__panel{padding:36px 24px}.trust__panel .ring{width:140px;height:140px}.trust__panel .ring .ar-big{font-size:48px}}
-.seo-prose{max-width:780px;margin:60px auto 0;padding:24px 28px;background:rgba(201,163,90,0.03);border-left:1px solid rgba(201,163,90,0.18);font-family:var(--serif);font-size:15px;line-height:1.7;color:var(--paper-mute)}
-.seo-prose em{font-style:italic;color:var(--paper-dim);font-weight:400}
-.seo-prose p{margin:0}
-@media (max-width:600px){.seo-prose{margin:40px 22px 0;padding:20px 22px;font-size:14px}}
-
-/* REVIEWS */
-.reviews-section{position:relative;padding:120px 60px 130px;background:radial-gradient(ellipse at 50% 50%, rgba(201,163,90,0.06), transparent 60%),var(--ink-deep);text-align:center}
-.reviews__head--center{max-width:900px;margin:0 auto 56px;display:flex;flex-direction:column;align-items:center}
-.reviews__chapter{font-family:var(--sans);font-size:10.5px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
-.reviews__chapter::before,.reviews__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
-.reviews__title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4.6vw,60px);line-height:1.05;letter-spacing:-0.02em;color:var(--paper);margin-bottom:8px}
-.reviews__title em{font-style:italic;color:var(--gold)}
-.rating-display{max-width:560px;margin:0 auto;padding:48px 40px;background:linear-gradient(160deg, rgba(201,163,90,0.07) 0%, rgba(201,163,90,0.02) 100%);border:1px solid rgba(201,163,90,0.22);display:flex;flex-direction:column;align-items:center;gap:18px;position:relative}
-.rating-display::before,.rating-display::after{content:"";position:absolute;width:40px;height:40px;border:1px solid var(--gold)}
-.rating-display::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
-.rating-display::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
-.rating-display__stars{display:inline-flex;gap:8px;font-size:42px;line-height:1;color:var(--gold);letter-spacing:0}
-.rating-display__stars .star{display:inline-block;font-family:var(--serif);filter:drop-shadow(0 2px 6px rgba(201,163,90,0.3))}
-.rating-display__stars .star.half{background:linear-gradient(90deg, var(--gold) 60%, rgba(201,163,90,0.25) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.rating-display__score{display:inline-flex;align-items:baseline;gap:8px}
-.rating-display__score .num{font-family:var(--serif);font-style:italic;font-weight:500;font-size:64px;color:var(--paper);line-height:1;letter-spacing:-0.01em}
-.rating-display__score .of{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--paper-mute)}
-.rating-display__count{font-family:var(--serif);font-size:16px;color:var(--paper-dim);line-height:1.5}
-.rating-display__count em{font-style:italic;color:var(--gold);font-weight:500;font-size:18px}
-.rating-display__sources{display:inline-flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid rgba(201,163,90,0.18);font-family:var(--sans);font-size:10.5px;letter-spacing:0.28em;color:var(--paper-mute);text-transform:uppercase;font-weight:500}
-.rating-display__sources .src{color:var(--paper-dim)}
-.rating-display__sources .dot{color:var(--gold);opacity:0.6}
-.reviews__cta{margin-top:50px}
-.reviews__cta a{display:inline-flex;align-items:center;gap:12px;padding:16px 30px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:background 0.3s}
-.reviews__cta a:hover{background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%)}
-@media (max-width:680px){.reviews-section{padding:80px 22px 90px}.rating-display{padding:36px 24px}.rating-display__stars{font-size:32px;gap:6px}.rating-display__score .num{font-size:48px}}
-
-/* ACCESS */
-.access-section{position:relative;padding:120px 60px;background:linear-gradient(180deg,#14100c,var(--ink-deep))}
-.access__head{max-width:1280px;margin:0 auto 50px;text-align:center}
-.access__chapter{font-family:var(--sans);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
-.access__chapter::before,.access__chapter::after{content:"";width:32px;height:1px;background:var(--gold)}
-.access__title{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5vw,68px);line-height:1.04;color:var(--paper);margin-bottom:10px}
-.access__title em{font-style:italic;color:var(--gold)}
-.access__grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:50px}
-.access__map{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink-card);border:1px solid rgba(201,163,90,.2)}
-.access__map iframe{width:100%;height:100%;border:0;display:block}
-.access__map .label{position:absolute;top:18px;left:18px;z-index:2;background:rgba(14,10,7,0.85);color:var(--gold-pale);border:1px solid var(--gold);backdrop-filter:blur(8px);padding:8px 14px;font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600}
-.access__map .open-link{position:absolute;bottom:18px;right:18px;z-index:2;padding:8px 16px;background:rgba(10,8,7,.85);backdrop-filter:blur(4px);border:1px solid rgba(201,163,90,.4);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;transition:border-color .3s, color .3s}
-.access__map .open-link:hover{color:var(--gold);border-color:var(--gold)}
-.access__info{background:rgba(31,24,20,.5);border:1px solid rgba(201,163,90,.2);padding:36px 30px}
-.access__info .k{font-family:var(--sans);font-size:9.5px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
-.access__info h3{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--paper);margin-bottom:4px;line-height:1.25;overflow-wrap:anywhere}
-.access__info h3 em{font-style:italic;color:var(--gold)}
-.access__info .head-jp{font-family:var(--jp);font-size:13px;color:var(--paper-dim);letter-spacing:.16em;margin-bottom:24px}
-.access__info .rows{padding-top:18px;border-top:1px solid rgba(201,163,90,.2);display:flex;flex-direction:column}
-.access__info .row{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(201,163,90,.12)}
-.access__info .row:last-child{border-bottom:0}
-.access__info .rk{font-family:var(--sans);font-size:9.5px;letter-spacing:.28em;color:var(--paper-mute);text-transform:uppercase;font-weight:500;line-height:1.5}
-.access__info .rv{font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--paper)}
-.access__info .rv em{font-style:italic;color:var(--gold);font-weight:500}
-.access__info .rv small{display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.18em;color:var(--paper-mute);text-transform:uppercase;margin-top:4px}
-@media (max-width:1024px){.access__grid{grid-template-columns:1fr;gap:30px}}
-@media (max-width:600px){.access-section{padding:70px 22px 90px}}
-
-/* RESERVE */
-.reserve-section{position:relative;padding:130px 60px 130px;background:radial-gradient(ellipse at 50% 0%, rgba(138,90,43,0.10), transparent 55%),radial-gradient(ellipse at 50% 100%, rgba(201,163,90,0.08), transparent 60%),var(--ink-deep)}
-.reserve-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(180deg,var(--gold-deep) 0%,transparent 100%)}
-.reserve__inner{max-width:1100px;margin:0 auto;text-align:center}
-.reserve__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:inline-flex;align-items:center;gap:14px}
-.reserve__chapter::before,.reserve__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
-.reserve__title{font-family:var(--serif);font-weight:400;font-size:clamp(54px,7vw,108px);line-height:0.98;letter-spacing:-0.03em;color:var(--paper);margin-bottom:20px}
-.reserve__title em{font-style:italic;color:var(--gold-pale)}
-.reserve__title .strike{display:block;font-style:italic;color:var(--gold-pale);font-size:0.58em;line-height:1.2;margin-top:8px;font-weight:400}
-.reserve__lede{font-family:var(--serif);font-size:19px;line-height:1.7;color:rgba(243,236,225,0.85);max-width:680px;margin:0 auto 48px}
-.reserve__lede em{font-style:italic;color:var(--gold);font-weight:500}
-.reserve__cta-group{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
-.reserve__cta-primary{display:inline-flex;align-items:center;gap:14px;padding:24px 46px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:13px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;border:1px solid var(--gold);transition:transform 0.3s, filter 0.3s;cursor:pointer;box-shadow:0 16px 50px rgba(196,69,43,0.4),0 4px 12px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.18)}
-.reserve__cta-primary:hover{transform:translateY(-3px);filter:brightness(1.06)}
-.reserve__cta-primary .arrow{font-style:normal;font-family:serif;font-size:22px;color:var(--gold-pale)}
-.reserve__cta-secondary{display:inline-flex;align-items:center;gap:14px;padding:20px 36px;background:transparent;text-decoration:none;border:1px solid rgba(201,163,90,0.4);font-family:var(--serif);font-style:italic;font-size:22px;color:var(--paper);transition:color 0.3s, border-color 0.3s}
-.reserve__cta-secondary:hover{color:var(--gold);border-color:var(--gold)}
-.reserve__cta-secondary .icon{font-size:22px;color:var(--gold)}
-.reserve__cta-secondary small{display:block;font-family:var(--sans);font-style:normal;font-size:9.5px;letter-spacing:0.28em;color:var(--paper-mute);text-transform:uppercase;margin-top:3px}
-.reserve__alts{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;padding:24px 0;border-top:1px solid rgba(201,163,90,0.18);border-bottom:1px solid rgba(201,163,90,0.18);margin-bottom:36px;align-items:center}
-.reserve__alts a{font-family:var(--sans);font-size:10.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--paper-dim);font-weight:500;text-decoration:none;transition:color 0.3s;display:inline-flex;align-items:center;gap:8px}
-.reserve__alts a:hover{color:var(--gold)}
-.reserve__alts a em{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:13px;letter-spacing:0;text-transform:none;font-weight:500;margin:0 4px}
-.reserve__alts .alt-instagram svg{width:16px;height:16px}
-.reserve__status{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--paper-mute)}
-.reserve__status em{color:var(--gold);font-style:italic;font-weight:500}
-.reserve__status::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold-deep);margin-right:8px;animation:pulse 1.4s ease-in-out infinite;vertical-align:middle}
-@media (max-width:600px){.reserve-section{padding:80px 22px 90px}.reserve__title{font-size:46px}.reserve__lede{font-size:16px}.reserve__cta-group{flex-direction:column;align-items:stretch}.reserve__cta-primary,.reserve__cta-secondary{justify-content:center;text-align:center}.reserve__cta-secondary{font-size:18px}.reserve__alts{flex-direction:column;gap:12px;text-align:center}}
-
-/* STICKY */
-.sticky-live{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:150;background:rgba(10,8,7,0.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(201,163,90,0.32);border-radius:999px;box-shadow:0 12px 40px rgba(0,0,0,0.55),0 4px 12px rgba(0,0,0,0.4),inset 0 1px 0 rgba(201,163,90,0.08);animation:sticky-enter 0.7s cubic-bezier(0.16,1,0.3,1) 0.5s both;max-width:calc(100vw - 32px)}
-.sticky-live.hidden{transform:translate(-50%, 200%);opacity:0}
-@keyframes sticky-enter{from{transform:translate(-50%, 200%);opacity:0}to{transform:translate(-50%, 0);opacity:1}}
-.sticky-live__inner{padding:10px 16px 10px 22px;display:flex;align-items:center;gap:18px}
-.sticky-live__item{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:11.5px;color:var(--paper-dim);line-height:1.4;letter-spacing:0.02em;white-space:nowrap}
-.sticky-live__item em{font-family:var(--serif);font-style:italic;color:var(--gold);font-weight:500;font-size:15px;margin:0 1px}
-.sticky-live__dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px rgba(74,222,128,0.6);animation:sticky-pulse 2.4s ease-in-out infinite;flex-shrink:0}
-@keyframes sticky-pulse{0%,100%{opacity:1}50%{opacity:0.5}}
-.sticky-live__check{color:var(--gold);font-weight:700;font-size:12px;font-family:var(--sans);flex-shrink:0}
-.sticky-live__sep{width:1px;height:14px;background:rgba(201,163,90,0.25);flex-shrink:0}
-.sticky-live__cta{padding:12px 24px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11.5px;letter-spacing:0.26em;text-transform:uppercase;font-weight:700;border-radius:999px;transition:filter 0.3s, transform 0.3s;display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;flex-shrink:0;border:1px solid var(--gold);box-shadow:0 6px 18px rgba(196,69,43,0.5),0 2px 6px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.2);position:relative;animation:cta-pulse 2.6s ease-in-out infinite}
-.sticky-live__cta::before{content:"";position:absolute;inset:-2px;border-radius:999px;border:1px solid var(--gold);opacity:0;animation:cta-ring 2.6s ease-out infinite;pointer-events:none}
-@keyframes cta-pulse{0%,100%{box-shadow:0 6px 18px rgba(196,69,43,0.5), 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)}50%{box-shadow:0 10px 26px rgba(196,69,43,0.7), 0 3px 10px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.25)}}
-@keyframes cta-ring{0%{transform:scale(1);opacity:0.6}100%{transform:scale(1.18);opacity:0}}
-.sticky-live__cta:hover{filter:brightness(1.1);transform:translateY(-2px)}
-@media (max-width:640px){body{padding-bottom:96px}.sticky-live{bottom:14px;border-radius:18px;width:calc(100vw - 28px);max-width:none}.sticky-live__inner{padding:10px 12px;gap:10px;flex-wrap:wrap;justify-content:space-between}.sticky-live__item{font-size:10px;gap:5px}.sticky-live__item em{font-size:12px}.sticky-live__sep{display:none}.sticky-live__cta{padding:9px 14px;font-size:9.5px;letter-spacing:0.14em;gap:5px;margin-left:auto}}
-
-/* DIALOG */
-.engage-dialog{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.4s}
-.engage-dialog[hidden]{display:none}
-.engage-dialog.show{opacity:1;pointer-events:auto}
-.engage-dialog__backdrop{position:absolute;inset:0;background:rgba(10,8,7,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.engage-dialog__panel{position:relative;max-width:540px;width:100%;background:linear-gradient(165deg, #1c1410 0%, #261b14 50%, #1a130e 100%);border:1px solid rgba(212,175,110,0.35);padding:54px 44px 36px;box-shadow:0 50px 100px rgba(0,0,0,0.7),0 0 60px rgba(212,175,110,0.08),inset 0 1px 0 rgba(212,175,110,0.12);transform:translateY(20px) scale(0.98);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
-.engage-dialog.show .engage-dialog__panel{transform:translateY(0) scale(1)}
-.engage-dialog__panel::before,.engage-dialog__panel::after{content:"";position:absolute;width:44px;height:44px;border:1px solid var(--gold);pointer-events:none}
-.engage-dialog__panel::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
-.engage-dialog__panel::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
-.engage-dialog__close{position:absolute;top:16px;right:16px;width:32px;height:32px;background:transparent;border:1px solid rgba(212,175,110,0.3);border-radius:50%;color:var(--paper-dim);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:5}
-.engage-dialog__close:hover{color:var(--ink-deep);border-color:var(--gold);background:var(--gold)}
-.engage-dialog__chip{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10.5px;letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;font-weight:700;margin-bottom:22px}
-.engage-dialog__chip::before{content:"";width:30px;height:1px;background:var(--gold)}
-.engage-dialog__title{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.4vw,52px);line-height:1.05;color:var(--paper);margin-bottom:18px;letter-spacing:-0.02em}
-.engage-dialog__title em{font-style:italic;color:var(--gold-pale);font-weight:400}
-.engage-dialog__lede{font-family:var(--serif);font-size:17px;line-height:1.65;color:rgba(245,237,224,0.85);margin-bottom:32px;font-weight:500}
-.engage-dialog__lede em{font-style:italic;color:var(--gold-pale);font-weight:600}
-.engage-dialog__actions{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
-.engage-dialog__btn{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 24px;text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;transition:all 0.3s;cursor:pointer;border:1px solid transparent}
-.engage-dialog__btn.primary{background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);border:1px solid var(--gold);box-shadow:0 10px 30px rgba(196,69,43,0.35),inset 0 1px 0 rgba(255,255,255,0.15)}
-.engage-dialog__btn.primary:hover{transform:translateY(-2px);filter:brightness(1.08)}
-.engage-dialog__btn.secondary{background:transparent;color:var(--paper);border:1px solid rgba(212,175,110,0.5)}
-.engage-dialog__btn.secondary:hover{color:var(--gold-pale);border-color:var(--gold);background:rgba(212,175,110,0.06)}
-.engage-dialog__foot{padding-top:20px;border-top:1px solid rgba(212,175,110,0.18);font-family:var(--sans);font-size:10.5px;letter-spacing:0.24em;color:var(--paper-mute);text-transform:uppercase;text-align:center;font-weight:500}
-.engage-dialog__foot a{color:var(--gold);text-decoration:none;font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;font-weight:500;border-bottom:1px solid var(--gold-dim);padding-bottom:1px}
-@media (max-width:540px){.engage-dialog__panel{padding:36px 24px 26px}}
-</style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #faf8f4; color: #18140c; font-family: 'Noto Sans JP', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .08s; } .d2 { transition-delay: .18s; } .d3 { transition-delay: .30s; } .d4 { transition-delay: .44s; }
+    .gold-rule { display: block; width: 36px; height: 1.5px; background: #c9a84c; margin: 12px auto 0; }
+    .label { font-size: 10px; letter-spacing: .48em; color: #c9a84c; font-family: 'Cormorant Garamond', serif; text-transform: uppercase; }
+    .walkin-bar { background: #e63c2f; font-size: 11px; letter-spacing: .18em; font-weight: 600; text-align: center; padding: 9px 16px; color: #fff; }
+    .img-frame { padding: 0 20px; margin-bottom: 20px; }
+    .img-frame-inner { border-radius: 4px; overflow: hidden; position: relative; }
+    .hero-wrap { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 0 20px 52px; overflow: hidden; background: #080808; }
+    .triptych { position: absolute; inset: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; border-radius: 4px; overflow: hidden; }
+    .tri-col { position: relative; overflow: hidden; }
+    .tri-col video, .tri-col .tri-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .tri-col .tri-img { background-size: cover; background-position: center; }
+    @keyframes kb { from { transform: scale(1.0); } to { transform: scale(1.1); } }
+    .tri-col .tri-img, .tri-col video { animation: kb 14s ease-in-out infinite alternate; }
+    .tri-col:nth-child(2) .tri-img, .tri-col:nth-child(2) video { animation-delay: -5s; }
+    .tri-col:nth-child(3) .tri-img, .tri-col:nth-child(3) video { animation-delay: -10s; }
+    @keyframes col-up { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0% 0 0 0); } }
+    .tri-col:nth-child(1) { animation: col-up .95s .0s cubic-bezier(.22,1,.36,1) both; }
+    .tri-col:nth-child(2) { animation: col-up .95s .14s cubic-bezier(.22,1,.36,1) both; }
+    .tri-col:nth-child(3) { animation: col-up .95s .28s cubic-bezier(.22,1,.36,1) both; }
+    @media (max-width: 767px) { .triptych { grid-template-columns: 1fr; } .tri-col:nth-child(1), .tri-col:nth-child(2) { display: none; } }
+    .tri-overlay { position: absolute; inset: 0; background: rgba(8,8,8,.12); }
+    /* ヒーロー店舗別スライドショー（3秒クロスフェード + Ken Burns） */
+    .tri-slideshow { position: absolute; inset: 0; }
+    .tri-slideshow .tri-slide {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      animation: kb 9s ease-in-out infinite alternate;
+    }
+    .tri-slideshow .tri-slide.is-active { opacity: 1; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, transparent 45%, rgba(8,8,8,.7) 70%, rgba(8,8,8,.97) 100%); pointer-events: none; }
+    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(230,60,47,.5); } 70% { box-shadow: 0 0 0 16px rgba(230,60,47,0); } 100% { box-shadow: 0 0 0 0 rgba(230,60,47,0); } }
+    .btn-primary { display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 100px; background: #e63c2f; color: #fff; padding: 16px 28px; font-size: 15px; letter-spacing: .05em; text-decoration: none; font-weight: 600; animation: pulse-ring 2.4s infinite; transition: background .2s, transform .2s; }
+    .btn-primary:hover { background: #c9281e; transform: translateY(-2px); }
+    .btn-secondary { display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 100px; background: transparent; color: #18140c; padding: 15px 28px; font-size: 14px; letter-spacing: .05em; text-decoration: none; border: 1px solid rgba(24,20,12,.3); transition: background .2s; }
+    .btn-secondary:hover { background: rgba(24,20,12,.06); }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+    .scroll-arrow { position: absolute; bottom: 20px; left: 50%; color: rgba(245,237,224,.35); font-size: 18px; animation: bounce 1.9s ease-in-out infinite; }
+    .marquee-wrap { background: #faf8f4; overflow: hidden; border-top: 1px solid rgba(201,168,76,.3); border-bottom: 1px solid rgba(201,168,76,.3); padding: 13px 0; }
+    @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { display: flex; white-space: nowrap; animation: marquee-scroll 22s linear infinite; will-change: transform; }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item { display: inline-flex; align-items: center; gap: 10px; padding: 0 40px; font-family: 'Cormorant Garamond', serif; font-size: clamp(.85rem, 3vw, 1rem); font-weight: 400; letter-spacing: .22em; color: #c9a84c; }
+    .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(201,168,76,.45); flex-shrink: 0; }
+    .menu-grid { display: flex; flex-direction: column; gap: 20px; }
+    .menu-card { background: #ffffff; border: 1px solid rgba(201,168,76,.22); border-radius: 4px; overflow: hidden; }
+    .menu-card-img-wrap { padding: 12px 12px 0; }
+    .menu-card-img-wrap-inner { border-radius: 3px; overflow: hidden; aspect-ratio: 16/9; }
+    .menu-card-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+    .menu-card:hover .menu-card-img { transform: scale(1.04); }
+    .menu-card-body { padding: 16px 18px 18px; }
+    .menu-card-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; color: #18140c; }
+    .menu-card-desc { font-size: 11px; color: rgba(24,20,12,.5); line-height: 1.75; font-weight: 300; margin-bottom: 12px; }
+    .review-card { background: #f5f0e8; border: 1px solid rgba(24,20,12,.07); border-left: 2px solid #e63c2f; padding: 18px 20px; border-radius: 2px; }
+    .review-card:nth-child(even) { border-left-color: #c9a84c; }
+    .info-row { display: flex; gap: 14px; align-items: flex-start; background: #ece8df; padding: 16px; border-radius: 3px; }
+    .info-icon { color: #c9a84c; font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .wagyu-text-wrap { max-width: 360px; }
+    @media (min-width: 768px) { .wagyu-text-wrap { max-width: 860px; } }
+    .google-rating-block { display: flex; flex-direction: column; gap: 20px; }
+    .google-rating-img { width: 100%; }
+    .google-rating-text { display: flex; flex-direction: column; justify-content: center; }
+    @media (min-width: 768px) { .google-rating-block { flex-direction: row; align-items: center; gap: 40px; max-width: 800px; } .google-rating-img { width: 340px; flex-shrink: 0; } }
+    .review-carousel { overflow-x: auto; display: flex; align-items: flex-start; gap: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; margin: 0 -24px; padding-left: 0; padding-right: 24px; }
+    .review-carousel::-webkit-scrollbar { display: none; }
+    /* 言語切り替え（EN / FR / 中文 / 한국어） */
+    .lang-switcher { position: fixed; bottom: 14px; right: 14px; z-index: 200; display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 100px; border: 1px solid rgba(201,168,76,.55); background: rgba(8,8,8,.82); backdrop-filter: blur(12px); box-shadow: 0 2px 14px rgba(8,8,8,.25); }
+    .lang-switcher button { appearance: none; border: none; background: transparent; color: rgba(245,237,224,.6); font-family: 'Noto Sans JP', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .04em; padding: 5px 9px; border-radius: 100px; cursor: pointer; transition: background .2s, color .2s; }
+    .lang-switcher button:hover { color: #f5ede0; }
+    .lang-switcher button.active { background: #c9a84c; color: #18140c; }
+    .review-carousel img { flex: 0 0 82vw; max-width: 300px; border-radius: 12px; height: auto; display: block; scroll-snap-align: start; box-shadow: 0 2px 12px rgba(24,20,12,.1); }
+    @media (min-width: 768px) { .review-carousel { overflow-x: visible; flex-wrap: nowrap; align-items: flex-start; scroll-snap-type: none; margin: 0; gap: 10px; } .review-carousel img { flex: 1 1 0; width: 0; max-width: none; scroll-snap-align: none; } .review-swipe-hint { display: none; } }
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -664,578 +115,742 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<!-- ============ NAV ============ -->
-<nav class="lp-nav">
-  <a href="#top" class="lp-nav__logo">
-    <span class="lp-nav__name">
-      <span class="lp-nav__name-en">{{ store.name_full_en }}</span>
-    </span>
-  </a>
-  {% if store.tablecheck_url %}
-  <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="lp-nav__cta">
-    Reserve <span>→</span>
-  </a>
-  {% else %}
-  <a href="tel:+{{ store.tel_raw }}" class="lp-nav__cta">
-    Call <span>→</span>
-  </a>
-  {% endif %}
-</nav>
-
-<main id="top">
-
-<!-- ============ HERO（フルスクリーンスライドショー + 巨大「麺」）============ -->
-<section class="hero">
-
-  <!-- ヒーロー背景（単一画像） -->
-  <div class="hero__slideshow" id="heroSlideshow">
-    <div class="hero__slide is-active">
-      <img src="/ramen-image/hero.jpg" alt="{{ store.name_full_en }} — signature halal wagyu ramen" fetchpriority="high">
-    </div>
+  <div class="lang-switcher" role="group" aria-label="Language switcher">
+    <button type="button" data-lang="en" class="active">EN</button>
+    <button type="button" data-lang="fr">FR</button>
+    <button type="button" data-lang="zh">中文</button>
+    <button type="button" data-lang="ko">한국어</button>
   </div>
 
-  <!-- コンテンツ -->
-  <div class="hero__content">
-
-    <div class="hero__center">
-      <div class="hero__copy">
-
-        <h1 class="hero__title">{{ store.name_full_en }}</h1>
-
-        <p class="hero__subtitle">
-          Japanese wagyu over a deep broth — a bowl you have to try at least once.
-        </p>
-
-        <div class="hero__cta-group">
-          {% if store.tablecheck_url %}
-          <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="hero__cta-primary">
-            <span class="corner tl"></span>
-            <span class="corner tr"></span>
-            <span class="corner bl"></span>
-            <span class="corner br"></span>
-            <span>Reserve a seat</span>
-            <span class="arrow">→</span>
-          </a>
-          {% else %}
-          <a href="tel:+{{ store.tel_raw }}" class="hero__cta-primary">
-            <span class="corner tl"></span>
-            <span class="corner tr"></span>
-            <span class="corner bl"></span>
-            <span class="corner br"></span>
-            <span>Call to reserve</span>
-            <span class="arrow">→</span>
-          </a>
-          {% endif %}
-          <a href="tel:+{{ store.tel_raw }}" class="hero__cta-tel">
-            {{ store.tel_display }}
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="hero__bottom">
-      <div class="hero__trust">
-        {% if store.rating %}
-        <div class="hero__trust-item">
-          <span class="hero__trust-stars">★★★★★</span>
-          <span class="hero__trust-text"><em>{{ store.rating }}</em>{% if store.rating_count %} · {{ store.rating_count }} reviews{% endif %}</span>
-        </div>
-        <div class="hero__trust-divider"></div>
-        {% endif %}
-        <div class="hero__trust-item">
-          <span class="hero__trust-text">Reservations recommended</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ THE BOWL ============ -->
-<section class="bowl-section">
-  <div class="bowl__head">
-    <div class="bowl__chapter">The Bowl</div>
-    <h2 class="bowl__title">A bowl <em>worth flying for.</em></h2>
-    <p class="bowl__intro">
-      Travelers come to {{ store.city }} for many things. <em>This bowl</em> is one of them.
-      <em>Japanese wagyu</em> sliced and laid over a rich broth — a halal
-      ramen that exists at the intersection of <em>real wagyu</em> and
-      <em>real ramen</em>, and nothing else like it in the city.
-    </p>
+  <div class="walkin-bar">
+    WALK-INS WELCOME &nbsp;·&nbsp; ウォークイン歓迎 &nbsp;·&nbsp; ترحيب بالزوار بدون حجز
   </div>
 
-  <div class="bowl__hero">
-    <div class="bowl__photo">
-      <span class="corner tl"></span>
-      <span class="corner tr"></span>
-      <span class="corner bl"></span>
-      <span class="corner br"></span>
-      <video class="bowl__video"
-             autoplay muted loop playsinline preload="auto"
-             poster="/ramen-image/8.jpg"
-             aria-label="Wagyu ramen — the bowl up close">
-        <source src="/ramen-image/hero.mp4" type="video/mp4">
-      </video>
-    </div>
-
-    <div class="bowl__details">
-      <h3>Wagyu <em>Ramen.</em></h3>
-      <div class="name-jp">Japanese Wagyu</div>
-
-      <p class="desc">
-        Sliced <em>Japanese wagyu</em> over a deep, savory broth.
-        Served halal-friendly, in the heart of {{ store.city }}. A bowl built around
-        one idea: the wagyu, and the broth that lets it shine.
-      </p>
-
-      <a href="#reserve" class="bowl__cta">
-        Book your seat <span>→</span>
-      </a>
-
-      <div class="bowl__brand">
-        <span class="bowl__brand-en">{{ store.name_full_en }}</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FLAVORS ============ -->
-<section class="flavors-section">
-  <div class="flavors__head">
-    <div class="flavors__chapter">Flavors</div>
-    <h2 class="flavors__title">Choose your <em>broth.</em></h2>
-  </div>
-
-  <div class="flavors__hero">
-    <div class="flavors__photo">
-      <img src="/ramen-image/6.jpg" alt="Wagyu ramen — our signature bowl">
-      <div class="flavors__photo-label">
-        <span class="badge">Signature Wagyu Ramen</span>
-        <span class="meta">和牛ラーメン</span>
-      </div>
-    </div>
-
-    <div class="flavors__text">
-      <div class="flavor-row">
-        <div class="flavor-row__num">01</div>
-        <div class="flavor-row__body">
-          <div class="flavor-row__name">Wagyu <em>Miso</em></div>
-          <p class="flavor-row__desc">A rich, deep miso broth layered with the umami of the wagyu slices.</p>
-        </div>
-      </div>
-
-      <div class="flavor-row">
-        <div class="flavor-row__num">02</div>
-        <div class="flavor-row__body">
-          <div class="flavor-row__name">Wagyu <em>Shoyu</em></div>
-          <p class="flavor-row__desc">A traditional shoyu broth that lets the wagyu speak first.</p>
-        </div>
-      </div>
-
-      <div class="flavor-row">
-        <div class="flavor-row__num">03</div>
-        <div class="flavor-row__body">
-          <div class="flavor-row__name">Wagyu <em>Spicy</em></div>
-          <p class="flavor-row__desc">Our signature spicy broth, layered with house chili oil and chili threads. The heat lifts the fat off the wagyu in waves.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="combo">
-    <div class="combo__inner">
-      <div class="combo__photo">
-        <img src="/ramen-image/7.jpg" alt="Wagyu ramen + marbled wagyu donburi combo set">
-        <span class="combo__badge">Most Popular Combo</span>
-      </div>
-      <div class="combo__body">
-        <div class="combo__chapter">Set Menu</div>
-        <h3 class="combo__title">+ <em>Marbled Wagyu Donburi</em></h3>
-
-        <p class="combo__desc">
-          Pair any ramen with our <em>marbled wagyu donburi</em> — sliced wagyu
-          over rice, finished tableside. The <em>combo everyone orders</em> when
-          they sit down. One bowl is never enough.
-        </p>
-        <div class="combo__tag">Available with any flavor</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TORCH ============ -->
-<section class="torch-section">
-  <div class="torch__inner">
-    <div class="torch__copy">
-      <div class="torch__chapter">The Experience</div>
-      <h2 class="torch__title">Flame-torched <em>at your table.</em></h2>
-
-      <p class="torch__desc">
-        We finish every dish <em>in front of you</em>. The chef brings the
-        torch to the wagyu — flame meets fat, the surface caramelizes in
-        seconds, and the aroma reaches you before the plate does.
-      </p>
-      <p class="torch__desc">
-        It's the moment phones come out, the moment <em>you remember</em>
-        when you fly home.
-      </p>
-      <a href="#reserve" class="torch__cta">
-        Watch it happen — Reserve <span>→</span>
-      </a>
-    </div>
-
-    <div class="torch__video-wrap">
-      <div class="torch__video-frame">
-        <video
-          class="torch__video"
-          autoplay muted loop playsinline preload="auto"
-          poster="/ramen-image/9.jpg"
-          aria-label="Wagyu performance at our counter">
-          <source src="/ramen-image/ramen.MOV" type="video/quicktime">
-          <source src="/ramen-image/ramen.MOV" type="video/mp4">
-          <source src="/ramen-image/ramen.mp4" type="video/mp4">
+  <!-- ① HERO -->
+  <section class="hero-wrap">
+    <div class="triptych">
+      <div class="tri-col">
+        <video autoplay muted loop playsinline preload="auto" poster="/assets/burger2.jpg">
+          <source src="/assets/hero-right-new.mp4" type="video/mp4" />
         </video>
-        <div class="torch__video-label">
-          <span class="torch__video-tag">Live from the counter</span>
-          <p>The flame, the wagyu, the moment.</p>
+        <div class="tri-overlay"></div>
+      </div>
+      <div class="tri-col">
+        {% if store.hero_photos and store.hero_photos.length %}
+        <div class="tri-slideshow" data-slideshow>
+          {% for photo in store.hero_photos %}
+          <img class="tri-slide{% if loop.first %} is-active{% endif %}" src="/{{ photo }}" alt="{{ store.name_short }} — {{ loop.index }}" />
+          {% endfor %}
         </div>
+        {% else %}
+        <div style="position:absolute; inset:0; background:#080808;"></div>
+        {% endif %}
+        <div class="tri-overlay"></div>
+      </div>
+      <div class="tri-col">
+        <video autoplay muted loop playsinline preload="auto" poster="/assets/burger.jpg">
+          <source src="/assets/hero-left-new.mp4" type="video/mp4" />
+        </video>
+        <div class="tri-overlay"></div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============ STORY ============ -->
-<section class="story-section">
-  <div class="story__inner">
+    <div class="hero-overlay"></div>
 
-    <div class="story__photo">
-      <span class="tag">Since 1962</span>
-      <img src="/ramen-image/9.jpg" alt="Five generations of wagyu craftsmen">
+    <div class="reveal" style="position:absolute; top:42px; left:50%; transform:translateX(-50%); text-align:center; z-index:1; width:92%; max-width:620px;">
+      <p style="font-family:'Cormorant Garamond', serif; font-size:clamp(.92rem,3.4vw,1.15rem); letter-spacing:.05em; color:#f5ede0; font-weight:400; line-height:1.5;">
+        {{ store.name }}
+      </p>
     </div>
 
-    <div>
-      <span class="story__chip">Our story</span>
-      <h2 class="story__title">From <em>real wagyu,</em> a real bowl.</h2>
+    <div style="position:relative; z-index:1; text-align:center; width:100%; max-width:360px;">
+      <p class="label reveal d1" style="margin-bottom:14px;">{{ store.area_label }}</p>
 
-      <div class="story__body">
-        <p>Our family started as wagyu merchants in <em>1962</em>. Five generations of facing cattle, judging meat, and refining the same craft — wholesale, butcher, restaurant.</p>
-        <p>In my thirties, I visited America, and the "WAGYU" I saw there shocked me. Australian and American cattle being sold as wagyu, people smiling, saying "<em>so this is wagyu?</em>" — and what they ate wasn't the real thing.</p>
-        <p>As the fifth generation, I made a decision: <em>deliver real wagyu to the world again</em>. Not the over-fattened industrial cuts. <em>Healthy lean wagyu</em> with deep umami in the meat itself. That's the wagyu in this bowl.</p>
-        <p>And <em>{{ store.city }}</em> — at the heart of Japan's food culture — is where we serve it as ramen. Walk in, and into this bowl. <em>Halal-friendly</em>, made for travelers who came to Japan for the real thing.</p>
-        <p class="story__quote">
-          "Real wagyu, for everyone in the world."
+      <h1 class="reveal d2" style="font-family:'Bebas Neue'; font-size:clamp(2.5rem,10vw,4rem); font-weight:700; line-height:1.1; letter-spacing:-.01em; margin-bottom:14px; color:#f5ede0;">
+        {{ store.hero_headline_place }}<br/>
+        <span data-i18n="hero_h1_html"><em style="color:#c9a84c; font-style:normal;">Legendary</em><br/>
+        Wagyu Burger</span>
+      </h1>
+
+      <p class="reveal d3" style="font-size:clamp(.85rem,3vw,.95rem); color:rgba(245,237,224,.72); font-weight:300; letter-spacing:.06em; margin-bottom:6px;">
+        <span data-i18n="hero_tagline">A True Wagyu Experience from the 5th Generation Butcher.</span>
+      </p>
+      <p class="reveal d3" style="font-size:clamp(.66rem,2.3vw,.74rem); color:rgba(245,237,224,.38); letter-spacing:.18em; margin-bottom:28px;">
+        <span data-i18n="hero_meta_prefix">JAPANESE FOOD RESTAURANT</span> · {{ store.city | upper }} · <span data-i18n="hero_meta_since">SINCE 1962</span>{% if store.morning %} · <span data-i18n="hero_meta_morning">MORNING &amp; BRUNCH</span>{% endif %}
+      </p>
+
+      <div class="reveal d4" style="display:flex; flex-direction:column; gap:12px;">
+        {% if store.maps_link %}<a href="{{ store.maps_link }}" target="_blank" rel="noopener" class="btn-primary"><span data-i18n="cta_directions">Get Directions</span></a>{% endif %}
+        {% if store.tablecheck_url %}<a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="btn-secondary" style="color:#f5ede0; border-color:rgba(245,237,224,.35);"><span data-i18n="cta_reserve">Reserve a Table</span></a>{% else %}<a href="tel:+{{ store.tel_raw }}" class="btn-primary"><span data-i18n="cta_call">Call to Reserve</span></a>{% endif %}
+      </div>
+    </div>
+
+    <div class="scroll-arrow">↓</div>
+  </section>
+
+  <!-- ② WAGYU HERO TEXT -->
+  <section style="background:#faf8f4; padding:80px 32px 72px; text-align:center;">
+    <div class="wagyu-text-wrap" style="margin:0 auto;">
+      <p class="label reveal" style="margin-bottom:22px; letter-spacing:.55em;" data-i18n="wagyu_label">MIYAZAKI · JAPAN</p>
+      <h2 class="reveal" style="font-family:'Bebas Neue', serif; font-size:clamp(2.6rem,11vw,4.2rem); font-weight:700; line-height:1.05; letter-spacing:-.01em; margin-bottom:6px; color:#18140c;" data-i18n="wagyu_heading_html">100%<br/>AUTHENTIC<br/>JAPANESE<br/>WAGYU</h2>
+      <p class="reveal d1" style="font-family:'Cormorant Garamond', serif; font-size:clamp(1.1rem,4.5vw,1.6rem); font-weight:300; letter-spacing:.32em; color:#c9a84c; margin-top:14px; margin-bottom:40px;" data-i18n="wagyu_halal">Ḥalāl BEEF</p>
+      <span class="gold-rule reveal" style="margin-bottom:40px; display:block;"></span>
+      <p class="reveal d2" style="font-size:clamp(.88rem,3vw,.98rem); line-height:2; color:rgba(24,20,12,.65); font-weight:300; letter-spacing:.03em; margin-bottom:22px; text-align:left;" data-i18n="wagyu_para1">
+        For us, "real Wagyu" is not industrially raised beef focused only on excessive marbling and fat. True Wagyu is raised carefully and healthily, with rich flavor and tenderness in the red meat itself. The umami should come not only from the fat, but from the quality of the meat as a whole — that is what I believe authentic Wagyu truly is.
+      </p>
+      <p class="reveal d3" style="font-size:clamp(.88rem,3vw,.98rem); line-height:2; color:rgba(24,20,12,.65); font-weight:300; letter-spacing:.03em; margin-bottom:22px; text-align:left;" data-i18n="wagyu_para2">
+        To achieve this, we are deeply involved in every step: carefully raising cattle with our own standards, processing the meat while preserving freshness, and serving it through thoughtful preparation and cooking. Today, this style of Wagyu is gaining the most attention among Japanese gourmets and chefs.
+      </p>
+      <p class="reveal d3" style="font-size:clamp(.88rem,3vw,.98rem); line-height:2; color:rgba(24,20,12,.65); font-weight:300; letter-spacing:.03em; margin-bottom:22px; text-align:left;" data-i18n="wagyu_para3">
+        That is why we want guests from around the world to experience this "true taste" of Japan at our restaurant.
+      </p>
+      <p class="reveal d3" style="font-size:clamp(.88rem,3vw,.98rem); line-height:2; color:rgba(24,20,12,.65); font-weight:300; letter-spacing:.03em; margin-bottom:22px; text-align:left;" data-i18n="wagyu_para4">
+        To ensure Muslim guests can also dine with peace of mind, we provide Wagyu processed at one of the few halal-certified slaughterhouses in Japan.
+      </p>
+      <p class="reveal d3" style="font-size:clamp(.88rem,3vw,.98rem); line-height:2; color:rgba(24,20,12,.65); font-weight:300; letter-spacing:.03em; text-align:left;" data-i18n="wagyu_para5">
+        Our goal is to create a place where anyone — regardless of nationality, religion, age, or gender — can comfortably enjoy authentic Japanese Wagyu together.
+      </p>
+    </div>
+  </section>
+
+  <!-- ② BURGER IMAGE -->
+  <div class="img-frame" style="margin-bottom:0; background:#faf8f4;">
+    <div class="img-frame-inner reveal">
+      <img src="/assets/burger.jpg" alt="{{ store.name }} — Wagyu burger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; object-position:center top;" />
+    </div>
+  </div>
+
+  <!-- ③ MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item" style="color:#18140c; font-weight:500;">{{ store.name }}</span>
+      <span class="marquee-dot"></span>
+      <span class="marquee-item" data-i18n="marquee_wagyu">100% Japanese Wagyu</span>
+      <span class="marquee-dot"></span>
+      <span class="marquee-item" data-i18n="marquee_halal">Halal · ハラール</span>
+      <span class="marquee-dot"></span>
+      <span class="marquee-item" data-i18n="marquee_steak">Steak Hamburger</span>
+      <span class="marquee-dot"></span>
+      {% if store.morning %}<span class="marquee-item" data-i18n="marquee_morning">Morning &amp; Brunch · モーニング</span>
+      <span class="marquee-dot"></span>{% endif %}
+      <span class="marquee-item" data-i18n="marquee_butcher">5th Gen. Butcher Since 1962</span>
+      <span class="marquee-dot"></span>
+      <span class="marquee-item" data-i18n="marquee_walkins">Walk-ins Welcome · ウォークイン歓迎</span>
+      <span class="marquee-dot"></span>
+      <span class="marquee-item" style="color:#18140c; font-weight:500;">{{ store.name }}</span>
+      <span class="marquee-dot"></span>
+      <span class="marquee-item" data-i18n="marquee_wagyu">100% Japanese Wagyu</span>
+      <span class="marquee-dot"></span>
+      <span class="marquee-item" data-i18n="marquee_halal">Halal · ハラール</span>
+      <span class="marquee-dot"></span>
+      <span class="marquee-item" data-i18n="marquee_steak">Steak Hamburger</span>
+      <span class="marquee-dot"></span>
+      {% if store.morning %}<span class="marquee-item" data-i18n="marquee_morning">Morning &amp; Brunch · モーニング</span>
+      <span class="marquee-dot"></span>{% endif %}
+      <span class="marquee-item" data-i18n="marquee_butcher">5th Gen. Butcher Since 1962</span>
+      <span class="marquee-dot"></span>
+      <span class="marquee-item" data-i18n="marquee_walkins">Walk-ins Welcome · ウォークイン歓迎</span>
+      <span class="marquee-dot"></span>
+    </div>
+  </div>
+
+  <!-- ③.5 SHOP NAME PLATE -->
+  <section style="background:#080808; padding:64px 24px; position:relative; overflow:hidden;">
+    <div style="position:absolute; top:18px; left:18px; width:28px; height:28px; border-top:1px solid rgba(201,168,76,.45); border-left:1px solid rgba(201,168,76,.45);"></div>
+    <div style="position:absolute; top:18px; right:18px; width:28px; height:28px; border-top:1px solid rgba(201,168,76,.45); border-right:1px solid rgba(201,168,76,.45);"></div>
+    <div style="position:absolute; bottom:18px; left:18px; width:28px; height:28px; border-bottom:1px solid rgba(201,168,76,.45); border-left:1px solid rgba(201,168,76,.45);"></div>
+    <div style="position:absolute; bottom:18px; right:18px; width:28px; height:28px; border-bottom:1px solid rgba(201,168,76,.45); border-right:1px solid rgba(201,168,76,.45);"></div>
+    <div style="max-width:820px; margin:0 auto; text-align:center;">
+      <p class="label reveal" style="margin-bottom:26px; color:#c9a84c;" data-i18n="shopname_label">SHOP NAME</p>
+      <p class="reveal d1" style="font-family:'Cormorant Garamond', serif; font-size:clamp(1.3rem,5vw,2rem); font-weight:400; line-height:1.5; color:#f5ede0; letter-spacing:.04em; margin-bottom:10px;">
+        {{ store.name }}
+      </p>
+      <span class="gold-rule reveal d2" style="margin:18px auto 0;"></span>
+    </div>
+  </section>
+
+  <!-- ③ STORY -->
+  <section style="background:#faf8f4; padding:72px 0;">
+    <div style="padding:48px 24px 0; max-width:820px; margin:0 auto; text-align:center;">
+      <p class="label reveal" style="margin-bottom:14px;" data-i18n="story_label">OUR STORY</p>
+      <h2 class="reveal" style="font-family:'Bebas Neue'; font-size:clamp(1.9rem,7vw,2.8rem); font-weight:600; line-height:1.2; margin-bottom:10px;">
+        <span data-i18n="story_heading_html">The 5th Generation<br/>Wagyu Butcher</span>
+      </h2>
+      <span class="gold-rule reveal" style="margin-bottom:28px;"></span>
+      <p class="reveal" style="font-size:clamp(.85rem,2vw,.95rem); line-height:2; color:rgba(24,20,12,.75); font-weight:300; letter-spacing:.03em; margin-top:28px;" data-i18n="story_body_html">
+        As Wagyu craftsmen, we raise our cattle in Miyazaki using our own original blended feed, carefully developed to create truly delicious red meat.<br/><br/>
+        We are committed to producing Miyazaki Wagyu — highly regarded around the world and often considered equal to the finest Kobe Beef — while continuing to pursue the ideal balance of flavor, tenderness, and rich umami.<br/><br/>
+        One of the defining characteristics of Miyazaki Wagyu is the natural sweetness and rich aroma of the meat itself.<br/><br/>
+        For guests who truly appreciate authentic Wagyu and want to fully enjoy the texture, flavor, and character of the meat, we warmly invite you to experience it for yourself.
+      </p>
+    </div>
+  </section>
+
+  <!-- ④ FARM IMAGE -->
+  <div class="img-frame" style="margin-bottom:0; background:#faf8f4;">
+    <div class="img-frame-inner reveal">
+      <img src="/assets/farm.jpg" alt="Miyazaki Wagyu farm — {{ store.name }}" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; object-position:center center;" />
+    </div>
+  </div>
+
+  {% if store.google_rating %}
+  <!-- ⑥ SOCIAL PROOF (Google rating — 店舗別変数 / google_rating がある店舗のみ表示) -->
+  <section style="background:#f2ede4; padding:72px 0;">
+    <div style="max-width:360px; margin:0 auto; text-align:center; margin-bottom:32px; padding:0 24px;">
+      <p class="label reveal" style="margin-bottom:12px;" data-i18n="recog_label">RECOGNITION</p>
+      <h2 class="reveal" style="font-family:'Bebas Neue'; font-size:clamp(1.6rem,6vw,2.2rem); font-weight:600; line-height:1.25;">
+        <span data-i18n="recog_heading_html">Trusted by Travelers<br/>Around the World</span>
+      </h2>
+      <span class="gold-rule reveal"></span>
+    </div>
+
+    <div class="reveal google-rating-block" style="max-width:720px; margin:0 auto 28px; padding:0 24px;">
+      <img src="/{{ store.google_rating_img }}" alt="Google Maps rating — {{ store.name_short }}"
+        class="google-rating-img" style="border-radius:12px; display:block; box-shadow:0 2px 12px rgba(24,20,12,.1);" />
+      <div class="google-rating-text">
+        <p style="font-family:'Bebas Neue', sans-serif; font-size:clamp(1.4rem,3vw,2rem); letter-spacing:.08em; color:#c9a84c; margin-bottom:6px;" data-i18n="recog_thanks_html">Thanks!<br/>Google Review</p>
+        <p style="font-family:'Bebas Neue', sans-serif; font-size:clamp(2.8rem,6vw,4rem); line-height:1; color:#18140c; margin-bottom:6px;">
+          {{ store.google_rating }} <span style="color:#FBBC05; font-size:70%;">★★★★★</span>
+        </p>
+        <p style="font-size:clamp(.88rem,1.5vw,1rem); color:#18140c; font-weight:500; letter-spacing:.04em; line-height:1.8;">
+          <span data-i18n="recog_rated_prefix">Rated</span> {{ store.google_rating }} <span data-i18n="recog_rated_suffix">/ 5.0 on Google Review</span><br/>
+          <span data-i18n="recog_count_prefix">Trusted reviews from wagyu lovers and burger enthusiasts around the world have surpassed</span> {{ store.google_count }}.
         </p>
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- ============ TRUST ============ -->
-<section class="trust-section">
-  <div class="trust__inner">
-
-    <div class="trust__copy">
-      <span class="chip">Muslim-friendly</span>
-      <h2>Eat <em>without worry.</em></h2>
-      <p class="trust__lede">
-        Japanese wagyu — halal-friendly, served with care for travelers
-        from around the world. Please share any dietary needs when you book.
-      </p>
+    <div class="review-carousel reveal" style="padding:0 20px;">
+      <img src="/assets/review_4102.jpg" alt="Google review" loading="lazy" />
+      <img src="/assets/review_4107.jpg" alt="Google review" loading="lazy" />
+      <img src="/assets/review_4108.jpg" alt="Google review" loading="lazy" />
+      <img src="/assets/review_4106.jpg" alt="Google review" loading="lazy" />
+      <img src="/assets/review_4105.jpg" alt="Google review" loading="lazy" />
     </div>
+    <p class="review-swipe-hint reveal" style="font-size:10px; color:rgba(24,20,12,.3); letter-spacing:.12em; text-align:right; margin-top:10px; padding:0 24px;">← swipe →</p>
+  </section>
+  {% endif %}
 
-    <div class="trust__panel">
-      <div class="top">
-        <span>Halal-friendly</span>
-        <span class="ar">صديق المسلم</span>
+  <!-- ⑦ TRIPADVISOR (全店共通) -->
+  <section style="background:#faf8f4; padding:56px 24px; border-top:1px solid rgba(201,168,76,.15);">
+    <div style="max-width:900px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:28px;">
+        <p class="label reveal" style="margin-bottom:12px;" data-i18n="tripadvisor_label">TRIPADVISOR</p>
+        <h2 class="reveal" style="font-family:'Bebas Neue'; font-size:clamp(1.4rem,5vw,2rem); font-weight:600; line-height:1.3;">
+          {% if store.slug == "higashi-ginza" %}<span data-i18n="tripadvisor_heading_self_html">On August 17, 2025, this Ginza flagship store ranked<br/>
+          <em style="color:#c9a84c; font-style:normal;">No.1</em> in the Gourmet &amp; Restaurant category<br/>in Central Tokyo on Tripadvisor.</span>{% else %}<span data-i18n="tripadvisor_heading_html">On August 17, 2025, our Ginza flagship store ranked<br/>
+          <em style="color:#c9a84c; font-style:normal;">No.1</em> in the Gourmet &amp; Restaurant category<br/>in Central Tokyo on Tripadvisor.</span>{% endif %}
+        </h2>
+        <span class="gold-rule reveal"></span>
       </div>
-      <div class="seal">
-        <div class="ring"><span class="ar-big">حلال</span></div>
-        <div class="label-en"><em>Halal-friendly Wagyu Ramen.</em></div>
+      {% if store.tripadvisor_img %}
+      <div class="reveal">
+        <img src="/{{ store.tripadvisor_img }}" alt="Tripadvisor Tokyo No.1 Ranking — Ginza Flagship Store" loading="lazy" style="width:100%; border-radius:8px; display:block;" />
       </div>
-      <div class="bottom">
-        <div><span class="k">Wagyu</span><span class="v">Japanese</span></div>
-        <div><span class="k">Service</span><span class="v">Halal-friendly</span></div>
-        <div><span class="k">Hours</span><span class="v">{{ store.hours_short }}</span></div>
-        <div><span class="k">Location</span><span class="v">{{ store.city }}</span></div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="seo-prose">
-    <p>
-      Looking for <em>halal ramen</em> near {{ store.station_en }}? Searching
-      <em>halal restaurants near me</em> or <em>ramen near me</em> while
-      traveling in Japan? Our halal-friendly <em>noodle</em> shop serves
-      Japanese Wagyu in a deep, savory broth — the bowl travelers
-      come back for. One of the most-saved <em>halal restaurants</em> in
-      {{ store.city }} for visitors from Malaysia, Indonesia, Singapore, the UAE,
-      and beyond.
-    </p>
-  </div>
-</section>
-
-<!-- ============ REVIEWS ============ -->
-{% if store.rating %}
-<section class="reviews-section">
-
-  <div class="reviews__head reviews__head--center">
-    <div class="reviews__chapter">Reviews</div>
-    <h2 class="reviews__title">Loved by <em>travelers worldwide.</em></h2>
-  </div>
-
-  <div class="rating-display">
-    <div class="rating-display__stars" aria-label="{{ store.rating }} out of 5 stars">
-      <span class="star filled">★</span>
-      <span class="star filled">★</span>
-      <span class="star filled">★</span>
-      <span class="star filled">★</span>
-      <span class="star half">★</span>
-    </div>
-    <div class="rating-display__score">
-      <span class="num">{{ store.rating }}</span>
-      <span class="of">/ 5.0</span>
-    </div>
-    <div class="rating-display__count">
-      Based on <em>{{ store.rating_count }}</em> verified reviews
-    </div>
-    <div class="rating-display__sources">
-      <span class="src">Google</span>
-      <span class="dot">·</span>
-      <span class="src">TripAdvisor</span>
-      <span class="dot">·</span>
-      <span class="src">Tabelog</span>
-    </div>
-  </div>
-
-  <div class="reviews__cta">
-    <a href="#reserve">Reserve your seat <span>→</span></a>
-  </div>
-
-</section>
-{% endif %}
-
-<!-- ============ ACCESS ============ -->
-<section class="access-section">
-
-  <div class="access__head">
-    <div class="access__chapter">Access</div>
-    <h2 class="access__title">Steps from <em>{{ store.station_en }}.</em></h2>
-  </div>
-
-  <div class="access__grid"{% if not store.maps_embed %} style="grid-template-columns:1fr;max-width:760px"{% endif %}>
-
-    {% if store.maps_embed %}
-    <div class="access__map">
-      <span class="label">{{ store.station_en }}</span>
-      <iframe
-        src="{{ store.maps_embed }}"
-        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        title="{{ store.station_en }} — {{ store.name_full_en }} map"></iframe>
-      <a class="open-link" href="{{ store.maps_link }}" target="_blank" rel="noopener">↗ Directions</a>
-    </div>
-    {% endif %}
-
-    <div class="access__info">
-      <div class="k">— Store</div>
-      <h3><em>{{ store.name_full_en }}</em></h3>
-      <div class="head-jp">Ramen noodle (Japanese Food)</div>
-
-      <div class="rows">
-        <div class="row">
-          <span class="rk">Hours</span>
-          <span class="rv"><em>{{ store.hours }}</em><small>{{ store.hours_note }}{% if store.hours_special %} · {{ store.hours_special }}{% endif %}</small></span>
-        </div>
-        <div class="row">
-          <span class="rk">Phone</span>
-          <span class="rv"><em><a href="tel:+{{ store.tel_raw }}" style="color:inherit;text-decoration:none">{{ store.tel_display }}</a></em><small>Reservations welcome</small></span>
-        </div>
-        <div class="row">
-          <span class="rk">Address</span>
-          <span class="rv">
-            {{ store.address_en }}
-            <small>{{ store.address_postal }}</small>
-          </span>
-        </div>
-        <div class="row">
-          <span class="rk">Station</span>
-          <span class="rv">
-            <em>{{ store.station_en }}</em>
-            <small>{{ store.station_jp }}</small>
-          </span>
-        </div>
-        {% if store.seats %}
-        <div class="row">
-          <span class="rk">Seats</span>
-          <span class="rv">
-            <em>{{ store.seats }}</em>
-            <small>{{ store.seats_note }}</small>
-          </span>
-        </div>
-        {% endif %}
-        <div class="row">
-          <span class="rk">Facilities</span>
-          <span class="rv">
-            {{ store.facilities_main }}
-            <small>{{ store.facilities_sub }}</small>
-          </span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ============ RESERVE ============ -->
-<section class="reserve-section" id="reserve">
-  <div class="reserve__inner">
-
-    <div class="reserve__chapter">Reserve</div>
-
-    <h2 class="reserve__title">
-      Ready
-      <span class="strike">— when you are.</span>
-    </h2>
-
-    <p class="reserve__lede">
-      For the best experience, reservations are recommended.
-      <em>Book online in seconds</em> to secure your seat at the
-      wagyu-and-broth standard you came for.
-    </p>
-
-    <div class="reserve__cta-group">
-      {% if store.tablecheck_url %}
-      <a class="reserve__cta-primary" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
-        Reserve online <span class="arrow">→</span>
-      </a>
-      {% else %}
-      <a class="reserve__cta-primary" href="tel:+{{ store.tel_raw }}">
-        Call to reserve <span class="arrow">→</span>
-      </a>
       {% endif %}
-      <a class="reserve__cta-secondary" href="tel:+{{ store.tel_raw }}">
-        <span class="icon">☎</span>
-        <span>
-          {{ store.tel_display }}
-          <small>Or call us</small>
-        </span>
-      </a>
     </div>
+  </section>
 
-    <div class="reserve__alts">
-      <a href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_full_en | urlencode }}">
-        Ask a question · <em>{{ store.email }}</em>
-      </a>
-      {% if store.maps_link %}<a href="{{ store.maps_link }}" target="_blank" rel="noopener">
-        Directions · <em>{{ store.station_en }}</em>
-      </a>{% endif %}
-      {% if store.instagram_url %}<a href="{{ store.instagram_url }}" target="_blank" rel="noopener" class="alt-instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-        </svg>
-        Instagram · <em>{{ store.instagram_handle }}</em>
-      </a>{% endif %}
+  <!-- ⑦ MENU (全店共通画像) -->
+  <section style="background:#faf8f4; padding:72px 24px;">
+    <div style="max-width:900px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:40px;">
+        <p class="label reveal" style="margin-bottom:12px;" data-i18n="menu_label">SIGNATURE MENU</p>
+        <h2 class="reveal" style="font-family:'Bebas Neue'; font-size:clamp(1.6rem,6vw,2.2rem); font-weight:600; line-height:1.25;">
+          <span data-i18n="menu_heading_html">Choose Your<br/>Wagyu Experience</span>
+        </h2>
+        <span class="gold-rule reveal"></span>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card reveal d1">
+          <div class="menu-card-img-wrap"><div class="menu-card-img-wrap-inner">
+            <img class="menu-card-img" src="/assets/burger2.jpg" alt="Wagyu Burger" loading="lazy" />
+          </div></div>
+          <div class="menu-card-body">
+            <p class="menu-card-name" data-i18n="menu_item1_name">Wagyu Burger</p>
+            <p class="menu-card-desc" data-i18n="menu_item1_desc">Japanese Wagyu patty · Signature house sauce · Brioche bun</p>
+          </div>
+        </div>
+        <div class="menu-card reveal d2">
+          <div class="menu-card-img-wrap"><div class="menu-card-img-wrap-inner">
+            <img class="menu-card-img" src="/assets/steak.jpg" alt="Wagyu Steak" loading="lazy" />
+          </div></div>
+          <div class="menu-card-body">
+            <p class="menu-card-name" data-i18n="menu_item2_name">Wagyu Steak</p>
+            <p class="menu-card-desc" data-i18n="menu_item2_desc">Premium cut · Teppanyaki-style · Chef's secret seasoning</p>
+          </div>
+        </div>
+        <div class="menu-card reveal d3">
+          <div class="menu-card-img-wrap"><div class="menu-card-img-wrap-inner">
+            <img class="menu-card-img" src="/assets/ramen.jpg" alt="Burger & Steak Combo" loading="lazy" />
+          </div></div>
+          <div class="menu-card-body">
+            <p class="menu-card-name" data-i18n="menu_item3_name">Burger &amp; Steak Combo</p>
+            <p class="menu-card-desc" data-i18n="menu_item3_desc">Japanese Wagyu patty · Grilled Wagyu steak · Signature house sauce · Value set available</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <p class="reserve__status">
-      Open <em>{{ store.hours_short }}</em>, every day · Reservations welcome
+  {% if store.morning %}
+  <!-- ⑦.5 MORNING & BRUNCH (morning: true の店舗のみ表示) -->
+  <section style="background:#f2ede4; padding:72px 24px; border-top:1px solid rgba(201,168,76,.2);">
+    <div style="max-width:900px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:36px;">
+        <p class="label reveal" style="margin-bottom:12px;" data-i18n="morning_label">MORNING &amp; BRUNCH</p>
+        <h2 class="reveal" style="font-family:'Bebas Neue'; font-size:clamp(1.6rem,6vw,2.2rem); font-weight:600; line-height:1.25;">
+          <span data-i18n="morning_heading_html">We're Open for<br/><em style="color:#c9a84c; font-style:normal;">Breakfast</em>, Too</span>
+        </h2>
+        <span class="gold-rule reveal"></span>
+        <p class="reveal d1" style="max-width:620px; margin:26px auto 0; font-size:clamp(.85rem,3vw,.95rem); line-height:2; color:rgba(24,20,12,.65); font-weight:300; letter-spacing:.03em; text-align:left;" data-i18n="morning_body">
+          Long before lunch service begins, our griddle is already warm. The same 5th-generation Miyazaki Wagyu is shaped into a burger built for the first meal of the day — a fresh patty, a soft toasted bun, and an egg cooked the way you like it. Halal from farm to griddle, so every guest can start the day at the same table.
+        </p>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-card reveal d1">
+          <div class="menu-card-img-wrap"><div class="menu-card-img-wrap-inner">
+            <img class="menu-card-img" src="/assets/morning-scrambled-egg-burger.jpg" alt="Scrambled Egg Wagyu Burger — halal breakfast burger" loading="lazy" />
+          </div></div>
+          <div class="menu-card-body">
+            <p class="menu-card-name" data-i18n="morning_item1_name">Scrambled Egg Wagyu Burger</p>
+            <p class="menu-card-desc" data-i18n="morning_item1_desc">Miyazaki Wagyu patty · Fluffy scrambled egg · Melted cheddar · A soft, comforting way to start the day.</p>
+          </div>
+        </div>
+        <div class="menu-card reveal d2">
+          <div class="menu-card-img-wrap"><div class="menu-card-img-wrap-inner">
+            <img class="menu-card-img" src="/assets/morning-fried-egg-burger.jpg" alt="Fried Egg Wagyu Burger — halal brunch burger" loading="lazy" />
+          </div></div>
+          <div class="menu-card-body">
+            <p class="menu-card-name" data-i18n="morning_item2_name">Fried Egg Wagyu Burger</p>
+            <p class="menu-card-desc" data-i18n="morning_item2_desc">Miyazaki Wagyu patty · Sunny-side-up egg · Melted cheddar · A runny yolk for a rich, hearty morning.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-row reveal d3" style="margin-top:20px; border:1px solid rgba(201,168,76,.25); background:rgba(201,168,76,.04);">
+        <span class="info-icon">☀</span>
+        <div>
+          <p style="font-size:10px; color:rgba(201,168,76,.8); letter-spacing:.14em; margin-bottom:4px;" data-i18n="morning_hours_label">MORNING HOURS</p>
+          <p style="font-size:13px; font-weight:300; margin-bottom:3px;">{{ store.morning_hours }}{% if store.morning_note %} · {{ store.morning_note }}{% endif %}</p>
+          <p style="font-size:11px; color:rgba(24,20,12,.5);" data-i18n="morning_hours_note">Breakfast &amp; brunch menu · Walk-ins welcome</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- ⑧ ACCESS + FINAL CTA -->
+  <section style="background:#f2ede4; padding:72px 24px; border-top:1px solid rgba(201,168,76,.2);">
+    <div style="max-width:900px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:32px;">
+        <p class="label reveal" style="margin-bottom:12px;" data-i18n="visit_label">VISIT US</p>
+        <h2 class="reveal" style="font-family:'Bebas Neue'; font-size:clamp(1.6rem,6vw,2.2rem); font-weight:600; line-height:1.25;">
+          <span data-i18n="visit_heading_prefix_html">We're Waiting<br/>for You in</span> {{ store.city }}
+        </h2>
+        <span class="gold-rule reveal"></span>
+      </div>
+
+{% if store.maps_embed %}
+      <div class="img-frame reveal" style="margin-bottom:20px; padding:0;">
+        <div class="img-frame-inner" style="aspect-ratio:16/7; position:relative;">
+          <iframe src="{{ store.maps_embed }}" style="width:100%; height:100%; border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="{{ store.name_short }} map"></iframe>
+        </div>
+      </div>
+      {% endif %}
+
+      <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:28px;">
+        <div class="info-row reveal d1" style="border:1px solid rgba(201,168,76,.25); background:rgba(8,8,8,.04);">
+          <span class="info-icon">◆</span>
+          <div>
+            <p style="font-size:10px; color:rgba(201,168,76,.85); letter-spacing:.18em; margin-bottom:6px; font-weight:500;" data-i18n="info_shopname">SHOP NAME · 店名</p>
+            <p style="font-family:'Cormorant Garamond', serif; font-size:15px; font-weight:400; line-height:1.5; color:#18140c;">
+              {{ store.name }}
+            </p>
+          </div>
+        </div>
+        <div class="info-row reveal d2">
+          <span class="info-icon">—</span>
+          <div>
+            <p style="font-size:10px; color:rgba(24,20,12,.4); letter-spacing:.12em; margin-bottom:4px;" data-i18n="info_address">ADDRESS</p>
+            <p style="font-size:13px; font-weight:300; margin-bottom:3px;">{{ store.address_en }}</p>
+            <p style="font-size:11px; color:rgba(24,20,12,.5);">{{ store.station_note }} · <span data-i18n="info_near">near</span> {{ store.station_en }}</p>
+          </div>
+        </div>
+        <div class="info-row reveal d3">
+          <span class="info-icon">—</span>
+          <div>
+            <p style="font-size:10px; color:rgba(24,20,12,.4); letter-spacing:.12em; margin-bottom:4px;" data-i18n="info_hours">HOURS</p>
+            <p style="font-size:13px; font-weight:300; margin-bottom:3px;">{{ store.hours }}</p>
+            <p style="font-size:11px; color:rgba(24,20,12,.5);">{{ store.hours_note }}{% if store.hours_special %} · {{ store.hours_special }}{% endif %}</p>
+          </div>
+        </div>
+        <div class="info-row reveal d3">
+          <span class="info-icon">☎</span>
+          <div>
+            <p style="font-size:10px; color:rgba(24,20,12,.4); letter-spacing:.12em; margin-bottom:4px;" data-i18n="info_phone">PHONE</p>
+            <p style="font-size:13px; font-weight:300;"><a href="tel:+{{ store.tel_raw }}" style="color:inherit; text-decoration:none;">{{ store.tel_display }}</a></p>
+          </div>
+        </div>
+        <div class="info-row reveal d4" style="border:1px solid rgba(201,168,76,.2); background:rgba(201,168,76,.04);">
+          <span class="info-icon">✦</span>
+          <div>
+            <p style="font-size:10px; color:rgba(201,168,76,.7); letter-spacing:.12em; margin-bottom:4px;" data-i18n="info_halal">HALAL INFO</p>
+            <p style="font-size:13px; font-weight:300; margin-bottom:3px;" data-i18n="info_halal_line1">Halal · 100% Japanese Wagyu</p>
+            <p style="font-size:11px; color:rgba(24,20,12,.5);" data-i18n="info_halal_line2">No pork · Muslim-friendly</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="display:flex; flex-direction:column; gap:12px;">
+        {% if store.maps_link %}<a href="{{ store.maps_link }}" target="_blank" rel="noopener" class="btn-primary"><span data-i18n="cta_directions">Get Directions</span></a>{% endif %}
+        {% if store.tablecheck_url %}<a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="btn-secondary"><span data-i18n="cta_reserve">Reserve a Table</span></a>{% else %}<a href="tel:+{{ store.tel_raw }}" class="btn-primary"><span data-i18n="cta_call">Call to Reserve</span></a>{% endif %}
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#080808; padding:44px 24px 32px; text-align:center; border-top:1px solid rgba(201,168,76,.1);">
+    <p style="font-family:'Cormorant Garamond', serif; font-size:clamp(.95rem,3.2vw,1.15rem); color:#f5ede0; letter-spacing:.05em; line-height:1.55; max-width:620px; margin:0 auto 8px;">
+      {{ store.name }}
     </p>
-
-  </div>
-</section>
-
-</main>
-
-<!-- ============ STICKY ============ -->
-<div class="sticky-live" id="stickyLive">
-  <div class="sticky-live__inner">
-    <div class="sticky-live__item">
-      <span class="sticky-live__dot"></span>
-      <span><em id="sticky-viewing">7</em> viewing now</span>
+    <p style="font-size:10px; color:rgba(245,237,224,.32); letter-spacing:.28em; margin-bottom:22px;" data-i18n="footer_tagline">EST. 1962 &nbsp;·&nbsp; 5TH GEN. BUTCHER</p>
+    <div style="display:flex; justify-content:center; gap:28px;">
+      {% if store.instagram_url %}<a href="{{ store.instagram_url }}" target="_blank" rel="noopener" style="font-size:10px; color:rgba(245,237,224,.32); text-decoration:none; letter-spacing:.14em;" data-i18n="footer_instagram">INSTAGRAM</a>{% endif %}
+      {% if store.tablecheck_url %}<a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" style="font-size:10px; color:rgba(245,237,224,.32); text-decoration:none; letter-spacing:.14em;" data-i18n="footer_reservation">RESERVATION</a>{% else %}<a href="tel:+{{ store.tel_raw }}" style="font-size:10px; color:rgba(245,237,224,.32); text-decoration:none; letter-spacing:.14em;" data-i18n="footer_call">CALL</a>{% endif %}
+      {% if store.maps_link %}<a href="{{ store.maps_link }}" target="_blank" rel="noopener" style="font-size:10px; color:rgba(245,237,224,.32); text-decoration:none; letter-spacing:.14em;" data-i18n="footer_maps">MAPS</a>{% endif %}
     </div>
-    <div class="sticky-live__sep"></div>
-    <div class="sticky-live__item">
-      <span class="sticky-live__check">✓</span>
-      <span><em id="sticky-reserved">14</em> reservations this week</span>
-    </div>
-    {% if store.tablecheck_url %}
-    <a class="sticky-live__cta" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
-      Check Availability <span>→</span>
-    </a>
-    {% else %}
-    <a class="sticky-live__cta" href="tel:+{{ store.tel_raw }}">
-      Call us <span>→</span>
-    </a>
-    {% endif %}
-  </div>
-</div>
+  </footer>
 
-<!-- ============ (予約促進ダイアログは削除) ============ -->
 
-<script>
-  // ナビのスクロール検出
-  (function(){
-    var nav = document.querySelector('.lp-nav');
-    if (!nav) return;
-    function onScroll(){
-      if (window.scrollY > 60) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
+  <script>
+    /* === 言語切り替え EN / FR / ZH / KO ===
+       翻訳は機械翻訳をベースに調整したものです。
+       公開前にネイティブによる確認を推奨します（特に FR / ZH / KO）。 */
+    const translations = {
+          "en": {
+                "hero_h1_html": "<em style=\"color:#c9a84c; font-style:normal;\">Legendary</em><br>Wagyu Burger",
+                "hero_tagline": "A True Wagyu Experience from the 5th Generation Butcher.",
+                "hero_meta_prefix": "JAPANESE FOOD RESTAURANT",
+                "hero_meta_since": "SINCE 1962",
+                "hero_meta_morning": "MORNING &amp; BRUNCH",
+                "cta_directions": "Get Directions",
+                "cta_reserve": "Reserve a Table",
+                "cta_call": "Call to Reserve",
+                "wagyu_label": "MIYAZAKI · JAPAN",
+                "wagyu_heading_html": "100%<br>AUTHENTIC<br>JAPANESE<br>WAGYU",
+                "wagyu_halal": "Ḥalāl BEEF",
+                "wagyu_para1": "For us, \"real Wagyu\" is not industrially raised beef focused only on excessive marbling and fat. True Wagyu is raised carefully and healthily, with rich flavor and tenderness in the red meat itself. The umami should come not only from the fat, but from the quality of the meat as a whole — that is what I believe authentic Wagyu truly is.",
+                "wagyu_para2": "To achieve this, we are deeply involved in every step: carefully raising cattle with our own standards, processing the meat while preserving freshness, and serving it through thoughtful preparation and cooking. Today, this style of Wagyu is gaining the most attention among Japanese gourmets and chefs.",
+                "wagyu_para3": "That is why we want guests from around the world to experience this \"true taste\" of Japan at our restaurant.",
+                "wagyu_para4": "To ensure Muslim guests can also dine with peace of mind, we provide Wagyu processed at one of the few halal-certified slaughterhouses in Japan.",
+                "wagyu_para5": "Our goal is to create a place where anyone — regardless of nationality, religion, age, or gender — can comfortably enjoy authentic Japanese Wagyu together.",
+                "marquee_wagyu": "100% Japanese Wagyu",
+                "marquee_halal": "Halal · ハラール",
+                "marquee_steak": "Steak Hamburger",
+                "marquee_butcher": "5th Gen. Butcher Since 1962",
+                "marquee_walkins": "Walk-ins Welcome · ウォークイン歓迎",
+                "marquee_morning": "Morning &amp; Brunch · モーニング",
+                "shopname_label": "SHOP NAME",
+                "story_label": "OUR STORY",
+                "story_heading_html": "The 5th Generation<br>Wagyu Butcher",
+                "story_body_html": "As Wagyu craftsmen, we raise our cattle in Miyazaki using our own original blended feed, carefully developed to create truly delicious red meat.<br><br>We are committed to producing Miyazaki Wagyu — highly regarded around the world and often considered equal to the finest Kobe Beef — while continuing to pursue the ideal balance of flavor, tenderness, and rich umami.<br><br>One of the defining characteristics of Miyazaki Wagyu is the natural sweetness and rich aroma of the meat itself.<br><br>For guests who truly appreciate authentic Wagyu and want to fully enjoy the texture, flavor, and character of the meat, we warmly invite you to experience it for yourself.",
+                "recog_label": "RECOGNITION",
+                "recog_heading_html": "Trusted by Travelers<br>Around the World",
+                "recog_thanks_html": "Thanks!<br>Google Review",
+                "recog_rated_prefix": "Rated",
+                "recog_rated_suffix": "/ 5.0 on Google Review",
+                "recog_count_prefix": "Trusted reviews from wagyu lovers and burger enthusiasts around the world have surpassed",
+                "tripadvisor_label": "TRIPADVISOR",
+                "tripadvisor_heading_html": "On August 17, 2025, our Ginza flagship store ranked<br><em style=\"color:#c9a84c; font-style:normal;\">No.1</em> in the Gourmet &amp; Restaurant category<br>in Central Tokyo on Tripadvisor.",
+                "tripadvisor_heading_self_html": "On August 17, 2025, this Ginza flagship store ranked<br><em style=\"color:#c9a84c; font-style:normal;\">No.1</em> in the Gourmet &amp; Restaurant category<br>in Central Tokyo on Tripadvisor.",
+                "menu_label": "SIGNATURE MENU",
+                "menu_heading_html": "Choose Your<br>Wagyu Experience",
+                "menu_item1_name": "Wagyu Burger",
+                "menu_item1_desc": "Japanese Wagyu patty · Signature house sauce · Brioche bun",
+                "menu_item2_name": "Wagyu Steak",
+                "menu_item2_desc": "Premium cut · Teppanyaki-style · Chef's secret seasoning",
+                "menu_item3_name": "Burger &amp; Steak Combo",
+                "menu_item3_desc": "Japanese Wagyu patty · Grilled Wagyu steak · Signature house sauce · Value set available",
+                "morning_label": "MORNING &amp; BRUNCH",
+                "morning_heading_html": "We're Open for<br><em style=\"color:#c9a84c; font-style:normal;\">Breakfast</em>, Too",
+                "morning_body": "Long before lunch service begins, our griddle is already warm. The same 5th-generation Miyazaki Wagyu is shaped into a burger built for the first meal of the day — a fresh patty, a soft toasted bun, and an egg cooked the way you like it. Halal from farm to griddle, so every guest can start the day at the same table.",
+                "morning_item1_name": "Scrambled Egg Wagyu Burger",
+                "morning_item1_desc": "Miyazaki Wagyu patty · Fluffy scrambled egg · Melted cheddar · A soft, comforting way to start the day.",
+                "morning_item2_name": "Fried Egg Wagyu Burger",
+                "morning_item2_desc": "Miyazaki Wagyu patty · Sunny-side-up egg · Melted cheddar · A runny yolk for a rich, hearty morning.",
+                "morning_hours_label": "MORNING HOURS",
+                "morning_hours_note": "Breakfast &amp; brunch menu · Walk-ins welcome",
+                "visit_label": "VISIT US",
+                "visit_heading_prefix_html": "We're Waiting<br>for You in",
+                "info_shopname": "SHOP NAME · 店名",
+                "info_address": "ADDRESS",
+                "info_hours": "HOURS",
+                "info_phone": "PHONE",
+                "info_halal": "HALAL INFO",
+                "info_near": "near",
+                "info_halal_line1": "Halal · 100% Japanese Wagyu",
+                "info_halal_line2": "No pork · Muslim-friendly",
+                "footer_tagline": "EST. 1962 &nbsp;·&nbsp; 5TH GEN. BUTCHER",
+                "footer_instagram": "INSTAGRAM",
+                "footer_reservation": "RESERVATION",
+                "footer_call": "CALL",
+                "footer_maps": "MAPS"
+          },
+          "fr": {
+                "hero_h1_html": "<em style=\"color:#c9a84c; font-style:normal;\">Légendaire</em><br>Burger de Wagyu",
+                "hero_tagline": "L'authentique expérience Wagyu, par un boucher de 5e génération.",
+                "hero_meta_prefix": "RESTAURANT JAPONAIS",
+                "hero_meta_since": "DEPUIS 1962",
+                "hero_meta_morning": "MATIN &amp; BRUNCH",
+                "cta_directions": "Itinéraire",
+                "cta_reserve": "Réserver une table",
+                "cta_call": "Réserver par téléphone",
+                "wagyu_label": "MIYAZAKI · JAPON",
+                "wagyu_heading_html": "100%<br>WAGYU<br>JAPONAIS<br>AUTHENTIQUE",
+                "wagyu_halal": "BŒUF Ḥalāl",
+                "wagyu_para1": "Pour nous, le « vrai Wagyu » n'est pas un bœuf d'élevage industriel obsédé par le persillage et le gras. Le véritable Wagyu est élevé avec soin et en bonne santé : sa chair rouge est elle-même savoureuse et tendre. L'umami ne doit pas venir seulement du gras, mais de la qualité de la viande dans son ensemble — c'est là, selon nous, le Wagyu authentique.",
+                "wagyu_para2": "Pour y parvenir, nous intervenons à chaque étape : élevage selon nos propres critères, découpe qui préserve la fraîcheur, puis préparation et cuisson pensées dans le détail. Aujourd'hui, ce Wagyu est celui qui retient le plus l'attention des gourmets et des chefs japonais.",
+                "wagyu_para3": "C'est pourquoi nous souhaitons faire découvrir ce « vrai goût » du Japon aux visiteurs du monde entier.",
+                "wagyu_para4": "Afin que nos hôtes musulmans puissent également dîner en toute sérénité, notre Wagyu provient de l'un des rares abattoirs certifiés halal du Japon.",
+                "wagyu_para5": "Notre ambition : un lieu où chacun — quelle que soit sa nationalité, sa religion, son âge ou son genre — peut savourer ensemble un authentique Wagyu japonais.",
+                "marquee_wagyu": "100% Wagyu japonais",
+                "marquee_halal": "Halal · Certifié",
+                "marquee_steak": "Steak &amp; Hamburger",
+                "marquee_butcher": "Boucher 5e génération depuis 1962",
+                "marquee_walkins": "Sans réservation",
+                "marquee_morning": "Matin &amp; Brunch",
+                "shopname_label": "NOM DU RESTAURANT",
+                "story_label": "NOTRE HISTOIRE",
+                "story_heading_html": "Boucher de Wagyu,<br>5e génération",
+                "story_body_html": "Artisans du Wagyu, nous élevons nos bêtes à Miyazaki avec notre propre mélange d'aliments, mis au point pour obtenir une viande rouge réellement savoureuse.<br><br>Nous produisons du Wagyu de Miyazaki — reconnu dans le monde entier et souvent jugé à la hauteur du meilleur bœuf de Kobe — en recherchant sans cesse l'équilibre idéal entre goût, tendreté et umami.<br><br>L'une des signatures du Wagyu de Miyazaki est la douceur naturelle et l'arôme profond de la viande elle-même.<br><br>Si vous aimez le Wagyu authentique et souhaitez en apprécier pleinement la texture, le goût et le caractère, nous vous invitons à en faire l'expérience.",
+                "recog_label": "RECONNAISSANCE",
+                "recog_heading_html": "La confiance des voyageurs<br>du monde entier",
+                "recog_thanks_html": "Merci !<br>Avis Google",
+                "recog_rated_prefix": "Note de",
+                "recog_rated_suffix": "/ 5,0 sur Google",
+                "recog_count_prefix": "Les avis d'amateurs de Wagyu et de burgers du monde entier dépassent désormais",
+                "tripadvisor_label": "TRIPADVISOR",
+                "tripadvisor_heading_html": "Le 17 août 2025, notre établissement phare de Ginza s'est classé<br><em style=\"color:#c9a84c; font-style:normal;\">n°1</em> de la catégorie Gastronomie &amp; Restaurants<br>du centre de Tokyo sur Tripadvisor.",
+                "tripadvisor_heading_self_html": "Le 17 août 2025, cet établissement phare de Ginza s'est classé<br><em style=\"color:#c9a84c; font-style:normal;\">n°1</em> de la catégorie Gastronomie &amp; Restaurants<br>du centre de Tokyo sur Tripadvisor.",
+                "menu_label": "MENU SIGNATURE",
+                "menu_heading_html": "Choisissez votre<br>expérience Wagyu",
+                "menu_item1_name": "Burger de Wagyu",
+                "menu_item1_desc": "Steak haché de Wagyu japonais · Sauce maison · Pain brioché",
+                "menu_item2_name": "Steak de Wagyu",
+                "menu_item2_desc": "Morceau premium · Façon teppanyaki · Assaisonnement secret du chef",
+                "menu_item3_name": "Duo Burger &amp; Steak",
+                "menu_item3_desc": "Steak haché de Wagyu · Wagyu grillé · Sauce maison · Formule avantageuse disponible",
+                "morning_label": "MATIN &amp; BRUNCH",
+                "morning_heading_html": "Ouvert aussi<br>pour le <em style=\"color:#c9a84c; font-style:normal;\">petit-déjeuner</em>",
+                "morning_body": "Bien avant le service du déjeuner, notre plancha est déjà chaude. Le même Wagyu de Miyazaki, signé par cinq générations de bouchers, devient un burger pensé pour le premier repas de la journée : un steak haché frais, un pain brioché toasté et un œuf cuit comme vous l'aimez. Halal de la ferme à la plancha, pour que chacun commence la journée à la même table.",
+                "morning_item1_name": "Burger Wagyu &amp; œufs brouillés",
+                "morning_item1_desc": "Steak haché de Wagyu de Miyazaki · Œufs brouillés moelleux · Cheddar fondu · Une entrée en matière tout en douceur.",
+                "morning_item2_name": "Burger Wagyu &amp; œuf au plat",
+                "morning_item2_desc": "Steak haché de Wagyu de Miyazaki · Œuf au plat · Cheddar fondu · Un jaune coulant pour un matin généreux.",
+                "morning_hours_label": "HORAIRES DU MATIN",
+                "morning_hours_note": "Menu petit-déjeuner &amp; brunch · Sans réservation",
+                "visit_label": "NOUS TROUVER",
+                "visit_heading_prefix_html": "Nous vous attendons<br>à",
+                "info_shopname": "NOM DU RESTAURANT",
+                "info_address": "ADRESSE",
+                "info_hours": "HORAIRES",
+                "info_phone": "TÉLÉPHONE",
+                "info_halal": "INFOS HALAL",
+                "info_near": "près de",
+                "info_halal_line1": "Halal · 100% Wagyu japonais",
+                "info_halal_line2": "Sans porc · Adapté aux clients musulmans",
+                "footer_tagline": "DEPUIS 1962 &nbsp;·&nbsp; BOUCHER 5E GÉNÉRATION",
+                "footer_instagram": "INSTAGRAM",
+                "footer_reservation": "RÉSERVATION",
+                "footer_call": "APPELER",
+                "footer_maps": "PLAN"
+          },
+          "zh": {
+                "hero_h1_html": "<em style=\"color:#c9a84c; font-style:normal;\">传奇</em><br>和牛汉堡",
+                "hero_tagline": "来自第五代和牛匠人的正宗和牛体验。",
+                "hero_meta_prefix": "日本料理餐厅",
+                "hero_meta_since": "创业于 1962 年",
+                "hero_meta_morning": "早餐 &amp; 早午餐",
+                "cta_directions": "查看路线",
+                "cta_reserve": "在线预订",
+                "cta_call": "致电预订",
+                "wagyu_label": "宫崎 · 日本",
+                "wagyu_heading_html": "100%<br>正宗<br>日本<br>和牛",
+                "wagyu_halal": "Ḥalāl 清真牛肉",
+                "wagyu_para1": "在我们看来，所谓“真正的和牛”，并不是只追求过度雪花与脂肪的工业化饲养牛肉。真正的和牛，是被细心且健康地饲养，连瘦肉本身都饱含浓郁风味与柔嫩口感的牛肉。鲜味不应只来自脂肪，而应来自整块肉的品质——这才是我们所相信的正宗和牛。",
+                "wagyu_para2": "为此，我们深入参与每一个环节：以自有标准悉心饲养、在保持鲜度的前提下处理肉品，并通过精心的备料与烹调呈现给客人。如今，这样的和牛在日本美食家与厨师之间最受关注。",
+                "wagyu_para3": "正因如此，我们希望来自世界各地的客人，都能在这里品尝到日本的“真味”。",
+                "wagyu_para4": "为了让穆斯林客人也能安心用餐，我们采用在日本为数不多的清真认证屠宰场处理的和牛。",
+                "wagyu_para5": "我们的目标，是打造一个无论国籍、宗教、年龄或性别，任何人都能自在共享正宗日本和牛的地方。",
+                "marquee_wagyu": "100% 日本和牛",
+                "marquee_halal": "清真 · Halal",
+                "marquee_steak": "牛排 · 汉堡",
+                "marquee_butcher": "第五代肉铺 · 创业于1962年",
+                "marquee_walkins": "无需预约",
+                "marquee_morning": "早餐 &amp; 早午餐",
+                "shopname_label": "店名",
+                "story_label": "品牌故事",
+                "story_heading_html": "第五代<br>和牛匠人",
+                "story_body_html": "作为和牛匠人，我们在宫崎以自家调配的原创饲料悉心饲养，只为培育出真正美味的瘦肉。<br><br>我们致力于生产宫崎和牛——它在世界范围内广受赞誉，常被认为可与顶级神户牛比肩——并持续追求风味、柔嫩与浓郁鲜味的理想平衡。<br><br>宫崎和牛的一大特征，正是肉本身自然的甘甜与丰富的香气。<br><br>如果您真正欣赏正宗和牛，希望充分品味其口感、风味与个性，诚挚邀请您亲自前来体验。",
+                "recog_label": "评价与口碑",
+                "recog_heading_html": "赢得全球旅客的信赖",
+                "recog_thanks_html": "感谢！<br>Google 评价",
+                "recog_rated_prefix": "评分",
+                "recog_rated_suffix": "/ 5.0（Google 评价）",
+                "recog_count_prefix": "来自世界各地和牛爱好者与汉堡迷的评价已超过",
+                "tripadvisor_label": "TRIPADVISOR",
+                "tripadvisor_heading_html": "2025年8月17日，我们的银座旗舰店在 Tripadvisor<br>东京市中心美食与餐厅类别中荣获<em style=\"color:#c9a84c; font-style:normal;\">第 1 名</em>。",
+                "tripadvisor_heading_self_html": "2025年8月17日，本店（银座旗舰店）在 Tripadvisor<br>东京市中心美食与餐厅类别中荣获<em style=\"color:#c9a84c; font-style:normal;\">第 1 名</em>。",
+                "menu_label": "招牌菜单",
+                "menu_heading_html": "选择属于你的<br>和牛体验",
+                "menu_item1_name": "和牛汉堡",
+                "menu_item1_desc": "日本和牛肉饼 · 招牌自制酱汁 · 布里欧修面包",
+                "menu_item2_name": "和牛牛排",
+                "menu_item2_desc": "上等部位 · 铁板烧风格 · 主厨秘制调味",
+                "menu_item3_name": "汉堡 &amp; 牛排套餐",
+                "menu_item3_desc": "日本和牛肉饼 · 炙烤和牛牛排 · 招牌自制酱汁 · 提供超值套餐",
+                "morning_label": "早餐 &amp; 早午餐",
+                "morning_heading_html": "我们也提供<br><em style=\"color:#c9a84c; font-style:normal;\">早餐</em>",
+                "morning_body": "在午餐开始之前很久，我们的铁板就已经热好了。同样是第五代匠人的宫崎和牛，被做成专为一天第一餐而生的汉堡——新鲜肉饼、松软烤面包，以及依你喜好烹制的鸡蛋。从牧场到铁板全程清真，让每一位客人都能围坐同一张桌子开启新的一天。",
+                "morning_item1_name": "炒蛋和牛汉堡",
+                "morning_item1_desc": "宫崎和牛肉饼 · 松软炒蛋 · 融化车打芝士 · 温柔又治愈的一天开始。",
+                "morning_item2_name": "太阳蛋和牛汉堡",
+                "morning_item2_desc": "宫崎和牛肉饼 · 太阳蛋 · 融化车打芝士 · 流心蛋黄，开启丰盛的早晨。",
+                "morning_hours_label": "早餐时间",
+                "morning_hours_note": "早餐与早午餐菜单 · 无需预约",
+                "visit_label": "到店信息",
+                "visit_heading_prefix_html": "我们在这里等你：",
+                "info_shopname": "店名",
+                "info_address": "地址",
+                "info_hours": "营业时间",
+                "info_phone": "电话",
+                "info_halal": "清真信息",
+                "info_near": "邻近",
+                "info_halal_line1": "清真 · 100% 日本和牛",
+                "info_halal_line2": "不使用猪肉 · 穆斯林友好",
+                "footer_tagline": "创业于 1962 年 &nbsp;·&nbsp; 第五代肉铺",
+                "footer_instagram": "INSTAGRAM",
+                "footer_reservation": "预订",
+                "footer_call": "致电",
+                "footer_maps": "地图"
+          },
+          "ko": {
+                "hero_h1_html": "<em style=\"color:#c9a84c; font-style:normal;\">전설의</em><br>와규 버거",
+                "hero_tagline": "5대째 이어온 와규 장인이 선보이는 진짜 와규.",
+                "hero_meta_prefix": "일본 요리 레스토랑",
+                "hero_meta_since": "1962년 창업",
+                "hero_meta_morning": "모닝 &amp; 브런치",
+                "cta_directions": "길찾기",
+                "cta_reserve": "온라인 예약",
+                "cta_call": "전화 예약",
+                "wagyu_label": "미야자키 · 일본",
+                "wagyu_heading_html": "100%<br>정통<br>일본산<br>와규",
+                "wagyu_halal": "Ḥalāl 할랄 소고기",
+                "wagyu_para1": "저희가 생각하는 '진짜 와규'는 과도한 마블링과 지방만을 좇는 공장식 사육 소고기가 아닙니다. 진정한 와규는 정성껏 건강하게 길러져, 붉은 살코기 자체에 깊은 풍미와 부드러움을 지닙니다. 감칠맛은 지방만이 아니라 고기 전체의 품질에서 나와야 합니다. 그것이 저희가 믿는 정통 와규입니다.",
+                "wagyu_para2": "이를 위해 저희는 모든 과정에 직접 관여합니다. 자체 기준으로 소를 정성껏 기르고, 신선도를 지키며 정육하고, 세심한 손질과 조리로 완성합니다. 오늘날 이러한 와규는 일본의 미식가와 셰프들에게 가장 주목받고 있습니다.",
+                "wagyu_para3": "그래서 저희는 세계 각지에서 오시는 손님들이 이곳에서 일본의 '진짜 맛'을 경험하시길 바랍니다.",
+                "wagyu_para4": "무슬림 손님도 안심하고 식사하실 수 있도록, 일본에 몇 곳뿐인 할랄 인증 도축장에서 처리한 와규를 사용합니다.",
+                "wagyu_para5": "국적, 종교, 나이, 성별에 관계없이 누구나 편안하게 정통 일본 와규를 함께 즐길 수 있는 공간을 만드는 것이 저희의 목표입니다.",
+                "marquee_wagyu": "100% 일본산 와규",
+                "marquee_halal": "할랄 · Halal",
+                "marquee_steak": "스테이크 · 햄버거",
+                "marquee_butcher": "5대째 정육점 · 1962년 창업",
+                "marquee_walkins": "예약 없이 환영",
+                "marquee_morning": "모닝 &amp; 브런치",
+                "shopname_label": "매장명",
+                "story_label": "우리의 이야기",
+                "story_heading_html": "5대째 이어온<br>와규 장인",
+                "story_body_html": "와규 장인으로서, 저희는 미야자키에서 자체 개발한 배합 사료로 소를 정성껏 기릅니다. 진정으로 맛있는 붉은 살코기를 위해서입니다.<br><br>세계적으로 높이 평가받으며 최고급 고베 규에 견줄 만하다고도 일컬어지는 미야자키 와규를 생산하면서, 풍미와 부드러움, 깊은 감칠맛의 이상적인 균형을 계속 추구하고 있습니다.<br><br>미야자키 와규의 가장 큰 특징은 고기 자체의 자연스러운 단맛과 풍부한 향입니다.<br><br>정통 와규를 아끼시고 그 식감과 풍미, 개성을 온전히 즐기고 싶은 분들을 진심으로 초대합니다.",
+                "recog_label": "고객 평가",
+                "recog_heading_html": "전 세계 여행자들의 신뢰",
+                "recog_thanks_html": "감사합니다!<br>Google 리뷰",
+                "recog_rated_prefix": "평점",
+                "recog_rated_suffix": "/ 5.0 (Google 리뷰)",
+                "recog_count_prefix": "전 세계 와규 애호가와 버거 팬들의 리뷰가 다음을 넘어섰습니다:",
+                "tripadvisor_label": "TRIPADVISOR",
+                "tripadvisor_heading_html": "2025년 8월 17일, 긴자 플래그십 매장이 Tripadvisor<br>도쿄 도심 미식 &amp; 레스토랑 부문에서 <em style=\"color:#c9a84c; font-style:normal;\">1위</em>에 올랐습니다.",
+                "tripadvisor_heading_self_html": "2025년 8월 17일, 이곳 긴자 플래그십 매장이 Tripadvisor<br>도쿄 도심 미식 &amp; 레스토랑 부문에서 <em style=\"color:#c9a84c; font-style:normal;\">1위</em>에 올랐습니다.",
+                "menu_label": "시그니처 메뉴",
+                "menu_heading_html": "당신의 와규를<br>선택하세요",
+                "menu_item1_name": "와규 버거",
+                "menu_item1_desc": "일본산 와규 패티 · 시그니처 하우스 소스 · 브리오슈 번",
+                "menu_item2_name": "와규 스테이크",
+                "menu_item2_desc": "프리미엄 부위 · 데판야키 스타일 · 셰프의 시크릿 시즈닝",
+                "menu_item3_name": "버거 &amp; 스테이크 세트",
+                "menu_item3_desc": "일본산 와규 패티 · 구운 와규 스테이크 · 시그니처 소스 · 세트 메뉴 제공",
+                "morning_label": "모닝 &amp; 브런치",
+                "morning_heading_html": "<em style=\"color:#c9a84c; font-style:normal;\">아침 식사</em>도<br>준비되어 있습니다",
+                "morning_body": "점심 영업이 시작되기 훨씬 전부터 저희 철판은 이미 달궈져 있습니다. 5대째 이어온 미야자키 와규가 하루의 첫 끼를 위한 버거로 완성됩니다. 신선한 패티, 부드럽게 구운 번, 그리고 원하는 방식으로 익힌 달걀. 목장에서 철판까지 할랄이므로, 모든 손님이 같은 테이블에서 하루를 시작할 수 있습니다.",
+                "morning_item1_name": "스크램블 에그 와규 버거",
+                "morning_item1_desc": "미야자키 와규 패티 · 폭신한 스크램블 에그 · 녹인 체더 · 부드럽고 편안한 하루의 시작.",
+                "morning_item2_name": "프라이드 에그 와규 버거",
+                "morning_item2_desc": "미야자키 와규 패티 · 서니사이드업 달걀 · 녹인 체더 · 흐르는 노른자로 든든한 아침.",
+                "morning_hours_label": "모닝 영업시간",
+                "morning_hours_note": "조식 &amp; 브런치 메뉴 · 예약 없이 환영",
+                "visit_label": "매장 안내",
+                "visit_heading_prefix_html": "여기에서 기다립니다:",
+                "info_shopname": "매장명",
+                "info_address": "주소",
+                "info_hours": "영업시간",
+                "info_phone": "전화",
+                "info_halal": "할랄 안내",
+                "info_near": "인근",
+                "info_halal_line1": "할랄 · 100% 일본산 와규",
+                "info_halal_line2": "돼지고기 미사용 · 무슬림 프렌들리",
+                "footer_tagline": "1962년 창업 &nbsp;·&nbsp; 5대째 정육점",
+                "footer_instagram": "INSTAGRAM",
+                "footer_reservation": "예약",
+                "footer_call": "전화",
+                "footer_maps": "지도"
+          }
+    };
+
+    function applyLanguage(lang) {
+      const dict = translations[lang] || translations.en;
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('.lang-switcher button').forEach(function (btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      try { localStorage.setItem('preferred_lang', lang); } catch (e) {}
     }
-    window.addEventListener('scroll', onScroll, {passive:true});
-    onScroll();
-  })();
 
-  // ヒーロースライドショー（画像4枚）
-  (function(){
-    var slideshow = document.getElementById('heroSlideshow');
-    if (!slideshow) return;
-    var slides = slideshow.querySelectorAll('.hero__slide');
-    if (slides.length < 2) return;
-    var current = 0;
-    // タイミング: 各画像 5.5秒
-    var INTERVAL = 5500;
-    function next(){
-      slides[current].classList.remove('is-active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('is-active');
-      setTimeout(next, INTERVAL);
-    }
-    setTimeout(next, INTERVAL);
-  })();
+    document.querySelectorAll('.lang-switcher button').forEach(function (btn) {
+      btn.addEventListener('click', function () { applyLanguage(btn.getAttribute('data-lang')); });
+    });
 
-  // Sticky live activity
-  (function(){
-    var v = document.getElementById('sticky-viewing');
-    var r = document.getElementById('sticky-reserved');
-    function setV(){
-      if (!v) return;
-      v.textContent = 5 + Math.floor(Math.random() * 5);
-    }
-    function setR(){
-      if (!r) return;
-      var stored = parseInt(sessionStorage.getItem('{{ store.slug }}-reserved'), 10);
-      if (!stored || isNaN(stored) || stored < 11 || stored > 17) {
-        stored = 11 + Math.floor(Math.random() * 7);
-        sessionStorage.setItem('{{ store.slug }}-reserved', stored);
-      }
-      if (Math.random() < 0.4 && stored < 17) {
-        stored += 1;
-        sessionStorage.setItem('{{ store.slug }}-reserved', stored);
-      }
-      r.textContent = stored;
-    }
-    setV();
-    setR();
-    setInterval(setV, 180000);
-    setInterval(setR, 9000000);
-  })();
+    (function initLang() {
+      var saved = 'en';
+      try { saved = localStorage.getItem('preferred_lang') || 'en'; } catch (e) {}
+      if (saved !== 'en') applyLanguage(saved);
+    })();
+  </script>
 
-</script>
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.hero-wrap .reveal').forEach(el => el.classList.add('visible'));
+    });
 
+    // ヒーロー店舗別スライドショー（3秒ごとにクロスフェード）
+    document.querySelectorAll('[data-slideshow]').forEach((box) => {
+      const slides = box.querySelectorAll('.tri-slide');
+      if (slides.length < 2) return;
+      let i = 0;
+      setInterval(() => {
+        slides[i].classList.remove('is-active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('is-active');
+      }, 3000);
+    });
+  </script>
 </body>
 </html>
