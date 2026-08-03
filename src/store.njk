@@ -672,11 +672,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </span>
   </a>
   {% if store.tablecheck_url %}
-  <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="lp-nav__cta">
+  <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="lp-nav__cta" data-ga-event="reserve_click">
     Reserve <span>→</span>
   </a>
   {% else %}
-  <a href="tel:+{{ store.tel_raw }}" class="lp-nav__cta">
+  <a href="tel:+{{ store.tel_raw }}" class="lp-nav__cta" data-ga-event="tel_click">
     Call <span>→</span>
   </a>
   {% endif %}
@@ -708,7 +708,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="hero__cta-group">
           {% if store.tablecheck_url %}
-          <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="hero__cta-primary">
+          <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" class="hero__cta-primary" data-ga-event="reserve_click">
             <span class="corner tl"></span>
             <span class="corner tr"></span>
             <span class="corner bl"></span>
@@ -717,7 +717,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="arrow">→</span>
           </a>
           {% else %}
-          <a href="tel:+{{ store.tel_raw }}" class="hero__cta-primary">
+          <a href="tel:+{{ store.tel_raw }}" class="hero__cta-primary" data-ga-event="tel_click">
             <span class="corner tl"></span>
             <span class="corner tr"></span>
             <span class="corner bl"></span>
@@ -726,7 +726,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="arrow">→</span>
           </a>
           {% endif %}
-          <a href="tel:+{{ store.tel_raw }}" class="hero__cta-tel">
+          <a href="tel:+{{ store.tel_raw }}" class="hero__cta-tel" data-ga-event="tel_click">
             {{ store.tel_display }}
           </a>
         </div>
@@ -1034,7 +1034,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         src="{{ store.maps_embed }}"
         loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         title="{{ store.station_en }} — {{ store.name_full_en }} map"></iframe>
-      <a class="open-link" href="{{ store.maps_link }}" target="_blank" rel="noopener">↗ Directions</a>
+      <a class="open-link" href="{{ store.maps_link }}" target="_blank" rel="noopener" data-ga-event="map_click">↗ Directions</a>
     </div>
     {% endif %}
 
@@ -1050,7 +1050,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="row">
           <span class="rk">Phone</span>
-          <span class="rv"><em><a href="tel:+{{ store.tel_raw }}" style="color:inherit;text-decoration:none">{{ store.tel_display }}</a></em><small>Reservations welcome</small></span>
+          <span class="rv"><em><a href="tel:+{{ store.tel_raw }}" style="color:inherit;text-decoration:none" data-ga-event="tel_click">{{ store.tel_display }}</a></em><small>Reservations welcome</small></span>
         </div>
         <div class="row">
           <span class="rk">Address</span>
@@ -1108,15 +1108,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="reserve__cta-group">
       {% if store.tablecheck_url %}
-      <a class="reserve__cta-primary" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
+      <a class="reserve__cta-primary" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" data-ga-event="reserve_click">
         Reserve online <span class="arrow">→</span>
       </a>
       {% else %}
-      <a class="reserve__cta-primary" href="tel:+{{ store.tel_raw }}">
+      <a class="reserve__cta-primary" href="tel:+{{ store.tel_raw }}" data-ga-event="tel_click">
         Call to reserve <span class="arrow">→</span>
       </a>
       {% endif %}
-      <a class="reserve__cta-secondary" href="tel:+{{ store.tel_raw }}">
+      <a class="reserve__cta-secondary" href="tel:+{{ store.tel_raw }}" data-ga-event="tel_click">
         <span class="icon">☎</span>
         <span>
           {{ store.tel_display }}
@@ -1129,10 +1129,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_full_en | urlencode }}">
         Ask a question · <em>{{ store.email }}</em>
       </a>
-      {% if store.maps_link %}<a href="{{ store.maps_link }}" target="_blank" rel="noopener">
+      {% if store.maps_link %}<a href="{{ store.maps_link }}" target="_blank" rel="noopener" data-ga-event="map_click">
         Directions · <em>{{ store.station_en }}</em>
       </a>{% endif %}
-      {% if store.instagram_url %}<a href="{{ store.instagram_url }}" target="_blank" rel="noopener" class="alt-instagram">
+      {% if store.instagram_url %}<a href="{{ store.instagram_url }}" target="_blank" rel="noopener" class="alt-instagram" data-ga-event="outbound_click">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -1164,11 +1164,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span><em id="sticky-reserved">14</em> reservations this week</span>
     </div>
     {% if store.tablecheck_url %}
-    <a class="sticky-live__cta" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener">
+    <a class="sticky-live__cta" href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" target="_blank" rel="noopener" data-ga-event="reserve_click">
       Check Availability <span>→</span>
     </a>
     {% else %}
-    <a class="sticky-live__cta" href="tel:+{{ store.tel_raw }}">
+    <a class="sticky-live__cta" href="tel:+{{ store.tel_raw }}" data-ga-event="tel_click">
       Call us <span>→</span>
     </a>
     {% endif %}
@@ -1235,6 +1235,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     setInterval(setR, 9000000);
   })();
 
+</script>
+
+<script>
+  /* === クリック計測（data-ga-event → dataLayer → GTM → GA4）===
+     計測したい要素に data-ga-event="イベント名" を付けるだけ。
+     店舗・チャネル等のパラメータはコード側で組み立てず、GTM側でURLから解決する。 */
+  window.dataLayer = window.dataLayer || [];
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-ga-event]');
+    if (!el) return;
+    window.dataLayer.push({ event: el.getAttribute('data-ga-event') });
+  }, true);
 </script>
 
 </body>
