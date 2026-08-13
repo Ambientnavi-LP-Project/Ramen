@@ -529,7 +529,8 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .trust__panel .label-en em{font-style:italic;color:var(--gold)}
 .trust__panel .bottom{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:22px;border-top:1px solid rgba(201,163,90,0.22)}
 .trust__panel .bottom .k{display:block;font-family:var(--sans);font-size:9px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:3px}
-.trust__panel .bottom .v{font-family:var(--serif);font-style:italic;color:var(--paper);font-size:13px}
+.trust__panel .bottom .v{display:block;font-family:var(--serif);font-style:italic;color:var(--paper);font-size:13px}
+.trust__panel .bottom .v + .v{margin-top:2px}
 @media (max-width:1024px){.trust__inner{grid-template-columns:1fr;gap:50px}.trust__panel{max-width:520px;margin:0 auto;width:100%}}
 @media (max-width:600px){.trust-section{padding:80px 22px 90px}.trust__panel{padding:36px 24px}.trust__panel .ring{width:140px;height:140px}.trust__panel .ring .ar-big{font-size:48px}}
 .seo-prose{max-width:780px;margin:60px auto 0;padding:24px 28px;background:rgba(201,163,90,0.03);border-left:1px solid rgba(201,163,90,0.18);font-family:var(--serif);font-size:15px;line-height:1.7;color:var(--paper-mute)}
@@ -589,6 +590,12 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .access__info .rv{font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--paper)}
 .access__info .rv em{font-style:italic;color:var(--gold);font-weight:500}
 .access__info .rv small{display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.18em;color:var(--paper-mute);text-transform:uppercase;margin-top:4px}
+/* 曜日別の営業時間（hours_lines がある店舗のみ） */
+.access__info .rv .hours-list{display:flex;flex-direction:column;gap:7px}
+.access__info .rv .hours-line{display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:baseline}
+.access__info .rv .hours-line .d{font-family:var(--sans);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-mute);font-weight:600;line-height:1.6}
+.access__info .rv .hours-line .t{font-family:var(--serif);font-style:italic;color:var(--gold);font-weight:500;font-size:15.5px}
+@media (max-width:420px){.access__info .rv .hours-line{grid-template-columns:1fr;gap:1px}}
 @media (max-width:1024px){.access__grid{grid-template-columns:1fr;gap:30px}}
 @media (max-width:600px){.access-section{padding:70px 22px 90px}}
 
@@ -967,7 +974,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="bottom">
         <div><span class="k">Wagyu</span><span class="v">Japanese</span></div>
         <div><span class="k">Service</span><span class="v">Halal-friendly</span></div>
-        <div><span class="k">Hours</span><span class="v">{{ store.hours_short }}</span></div>
+        <div><span class="k">Hours</span>{% if store.hours_lines %}{% for line in store.hours_lines %}<span class="v">{{ line.days }} {{ line.time }}</span>{% endfor %}{% else %}<span class="v">{{ store.hours_short }}</span>{% endif %}</div>
         <div><span class="k">Location</span><span class="v">{{ store.city }}</span></div>
       </div>
     </div>
@@ -1056,7 +1063,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="rows">
         <div class="row">
           <span class="rk">Hours</span>
+          {% if store.hours_lines %}
+          <span class="rv">
+            <span class="hours-list">
+              {% for line in store.hours_lines %}
+              <span class="hours-line"><span class="d">{{ line.days }}</span><span class="t">{{ line.time }}</span></span>
+              {% endfor %}
+            </span>
+            <small>{{ store.hours_note }}{% if store.hours_special %} · {{ store.hours_special }}{% endif %}</small>
+          </span>
+          {% else %}
           <span class="rv"><em>{{ store.hours }}</em><small>{{ store.hours_note }}{% if store.hours_special %} · {{ store.hours_special }}{% endif %}</small></span>
+          {% endif %}
         </div>
         <div class="row">
           <span class="rk">Phone</span>
@@ -1153,7 +1171,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <p class="reserve__status">
-      Open <em>{{ store.hours_short }}</em>, every day · Reservations welcome
+      {% if store.hours_summary %}{{ store.hours_summary }}{% else %}Open <em>{{ store.hours_short }}</em>, every day{% endif %} · Reservations welcome
     </p>
 
   </div>
