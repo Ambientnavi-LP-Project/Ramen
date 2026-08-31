@@ -278,3 +278,10 @@ GTM 側で URL（ホスト名／パス）から解決します。
   `addPassthroughCopy("assets")` で `_site/assets/` に出力
 - ローカル確認: `npm install` → `npm run dev`
 - 本番: Vercel が `main` への push を検知して `npm run build` → `_site/` を配信
+
+## 計測要件
+
+LPの作成・デザイン変更・テンプレート追加を行う際は、必ず以下を参照すること。
+CTAの書き方やTableCheckのURL指定を誤ると、広告のコンバージョン計測が停止する。
+
+https://github.com/Ambientnavi-LP-Project/omakase/blob/main/docs/LP%E4%BD%9C%E6%88%90%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88.md
