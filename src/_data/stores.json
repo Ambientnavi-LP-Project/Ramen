@@ -467,6 +467,39 @@
       "seats_note": "",
       "facilities_main": "Wi-Fi · Non-smoking · Cashless only",
       "facilities_sub": "Halal-friendly · Takeout · Child-friendly"
-    }
+    },
+{
+      "slug": "arashiyama",
+      "region": "kyoto",
+      "floor": "1F",
+      "name_short": "Wagyu (Halal) Ramen Noodle Arashiyama Restaurant 和牛 拉面 岚山 餐厅",
+      "name_full_en": "Wagyu (Halal) Ramen Noodle Arashiyama Restaurant 和牛 拉面 岚山 餐厅",
+      "name_meta": "Wagyu (Halal) Ramen Noodle Arashiyama Restaurant 和牛 拉面 岚山 餐厅",
+      "station_en": "Arashiyama",
+      "station_jp": "嵐山",
+      "hours": "10:00 — 17:30",
+      "hours_note": "Open every day",
+      "hours_short": "10:00 – 17:30",
+      "hours_special": "",
+      "tel_display": "090-3782-7597",
+      "tel_raw": "819037827597",
+      "address_en": "1F, 3-56 Saga Tenryuji Susukinobabacho, Ukyo-ku, Kyoto",
+      "address_postal": "〒616-8385 Kyoto, Japan",
+      "address_jp": "〒616-8385 京都府京都市右京区嵯峨天龍寺芒ノ馬場町３−５６ 1F",
+      "instagram_url": "https://www.instagram.com/5w_tokyo_official?igsh=MWdldG1kZmF6b3ducA==",
+      "instagram_handle": "@5w_tokyo_official",
+      "maps_link": "https://maps.app.goo.gl/6c8o1A8MKgHWtD3q6",
+      "maps_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d816.9260041441123!2d135.677069998146!3d35.01411366809585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001a9166f5c8ecb%3A0x3cb97ee25a5256f0!2zV2FneXUgKEhhbGFsKSBSYW1lbiBOb29kbGUgQXJhc2hpeWFtYSBSZXN0YXVyYW50IOWSjOeJmyDmi4npnaIg5bKa5bGxIOmkkOWOhQ!5e0!3m2!1sja!2sjp!4v1789361332442!5m2!1sja!2sjp",
+      "reserve_system": "tablecheck",
+      "tablecheck_url": "https://www.tablecheck.com/en/halal-wagyu-kyoto-arashiyama-main/reserve/landing",
+      "city": "Kyoto",
+      "email": "godaimeinfo@gmail.com",
+      "rating": "",
+      "rating_count": "",
+      "seats": "",
+      "seats_note": "",
+      "facilities_main": "Wi-Fi · Non-smoking · Cashless only",
+      "facilities_sub": "Halal-friendly · Takeout · Child-friendly"
+}
   ]
 }
