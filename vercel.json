@@ -5,6 +5,7 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "redirects": [
-    { "source": "/tokyo/shinjuku", "destination": "/tokyo/shinjuku-higashiguchi/", "permanent": true }
+    { "source": "/tokyo/shinjuku", "destination": "/tokyo/shinjuku-higashiguchi/", "permanent": true },
+    { "source": "/tokyo/shinjuku/", "destination": "/tokyo/shinjuku-higashiguchi/", "permanent": true }
   ]
 }
