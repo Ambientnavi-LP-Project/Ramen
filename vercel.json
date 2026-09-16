@@ -3,5 +3,8 @@
   "outputDirectory": "_site",
   "framework": null,
   "cleanUrls": true,
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/tokyo/shinjuku", "destination": "/tokyo/shinjuku-higashiguchi/", "permanent": true }
+  ]
 }
