@@ -5,7 +5,25 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "redirects": [
-    { "source": "/tokyo/shinjuku", "destination": "/tokyo/shinjuku-higashiguchi/", "permanent": true },
-    { "source": "/tokyo/shinjuku/", "destination": "/tokyo/shinjuku-higashiguchi/", "permanent": true }
+    {
+      "source": "/tokyo/shinjuku",
+      "destination": "https://halal-food-wagyu.com/tokyo/shinjuku-higashiguchi/",
+      "permanent": true
+    },
+    {
+      "source": "/tokyo/shinjuku/",
+      "destination": "https://halal-food-wagyu.com/tokyo/shinjuku-higashiguchi/",
+      "permanent": true
+    },
+    {
+      "source": "/tokyo/shinjuku-higashiguchi",
+      "destination": "https://halal-food-wagyu.com/tokyo/shinjuku-higashiguchi/",
+      "permanent": true
+    },
+    {
+      "source": "/tokyo/shinjuku-higashiguchi/",
+      "destination": "https://halal-food-wagyu.com/tokyo/shinjuku-higashiguchi/",
+      "permanent": true
+    }
   ]
 }
