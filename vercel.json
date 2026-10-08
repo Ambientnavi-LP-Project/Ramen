@@ -24,6 +24,16 @@
       "source": "/tokyo/shinjuku-higashiguchi/",
       "destination": "https://halal-food-wagyu.com/tokyo/shinjuku-higashiguchi/",
       "permanent": true
+    },
+    {
+      "source": "/kyoto/gojozaka",
+      "destination": "https://halal-food-wagyu.com/kyoto/gots-gojozaka-ramen/",
+      "permanent": true
+    },
+    {
+      "source": "/kyoto/gojozaka/",
+      "destination": "https://halal-food-wagyu.com/kyoto/gots-gojozaka-ramen/",
+      "permanent": true
     }
   ]
 }
